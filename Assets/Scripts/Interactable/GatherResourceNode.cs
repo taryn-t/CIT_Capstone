@@ -6,7 +6,7 @@ public enum ResourceNodeType{
     Undefined,
     Tree,
     Stump,
-    Ore
+    Rock
 }
 
 
