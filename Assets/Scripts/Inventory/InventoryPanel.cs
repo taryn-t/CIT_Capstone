@@ -11,7 +11,11 @@ public class InventoryPanel : MonoBehaviour
     private void Start(){
         SetIndex();
         Show();
-        this.gameObject.SetActive(false);
+        
+        foreach(Transform child in transform){
+            child.gameObject.SetActive(false);
+       }
+     
     }
 
     private void SetIndex()

@@ -30,13 +30,13 @@ public class WalkerGenerator : MonoBehaviour
     [SerializeField] public TileBase Hill;
 
     [SerializeField] public TileBase Leafy;
+    [SerializeField] Camera renderTextureCamera;
 
 
     public int MapWidth = 32;
     public int MapHeight = 32;
     public int MaximumWalkers = 10;
     public int TileCount = default;
-    public int DecorCount = default;
     public int TreeCount = default;
     public int RockCount = default;
     public int HillCount = default;
@@ -54,44 +54,97 @@ public class WalkerGenerator : MonoBehaviour
     public int ResourceRadius = 4;
     public float LeafyChance = 0.997f;
     public float FloorNoise = 0.3f;
-    public float ResourceNoise = 0.3f;
 
     private int xOrg;
     private int yOrg;
     public int Seed;
     public Map map;
-    [SerializeField] Maps maps;
+    [SerializeField] Games games;
     [SerializeField] ResourceTiles resourceTiles;
-    string key;
+    [SerializeField] GameObject playerPrefab;
+    private GameData game;
+    private string key;
 
     
     void Start(){
-        Seed = (int)UnityEngine.Random.value;
-        key = SceneManager.GetActiveScene().name;
-        map = maps.maps.FirstOrDefault(m=>m.key == key);
+        // Seed = (int)UnityEngine.Random.value;
+        // key = Seed.ToString();
+        // map = maps.maps.FirstOrDefault(m=>m.key == key);
 
-        if(map!=null)
+        // if(map!=null)
+        // {
+        //     xOrg =games.data.Last().map.MapWidth/ 2;
+        //     yOrg =games.data.Last().map.MapHeight / 2;
+        //     Vector3Int TileCenter = new Vector3Int(xOrg, yOrg, 0);
+
+        //     games.data.Last().map.LoadMap(tilemap, decorTileMap, resourceTileMap, hillTilemap, TileCenter,Wall);
+        // }
+
+        // else
+        // {
+        //      InitializeGrid();
+        // }
+        GameManager.Instance.SetMapGen(this.gameObject);
+    }
+
+
+    public void LoadMap(string saveGame){
+
+        Instantiate(renderTextureCamera, new Vector3(MapWidth/2, MapHeight/2,0 ), Quaternion.identity);
+        renderTextureCamera.orthographicSize = (float)MapWidth;
+        
+        GameManager.Instance.menu.ChangePanel(4);
+        key = saveGame;
+        game = games.data.FirstOrDefault(m=>m.name == saveGame);
+        
+    
+         if(map!=null)
         {
-            xOrg =map.MapWidth/ 2;
-            yOrg =map.MapHeight / 2;
+            xOrg =game.map.MapWidth/ 2;
+            yOrg =game.map.MapHeight / 2;
             Vector3Int TileCenter = new Vector3Int(xOrg, yOrg, 0);
 
-            map.LoadMap(tilemap, decorTileMap, resourceTileMap, hillTilemap, TileCenter,Wall);
+            game.map.LoadMap(tilemap, decorTileMap, resourceTileMap, hillTilemap, TileCenter,Wall);
         }
 
-        else
-        {
-             InitializeGrid();
-        }
+        GameManager.Instance.SetGameData(game);
+        
+        GameObject player = Instantiate(playerPrefab, game.playerData.lastPosition, Quaternion.identity);
 
-         
+        GameManager.Instance.GetVirtualCamera().SetFollow(player.transform);
+
+        GameManager.Instance.mapGenerated =true;
+        GameManager.Instance.menu.Close();
+        GameManager.Instance.dayTimeController.time = game.gameTime;
+        GameManager.Instance.autoSave.Init();
 
     }
 
-    private void InitializeSavedMap()
-    {
-        throw new NotImplementedException();
-    }
+   public void StartGeneration(string seed, string gameName, GameObject go)
+   {
+        Instantiate(renderTextureCamera, new Vector3(MapWidth/2, MapHeight/2,0 ), Quaternion.identity);
+        renderTextureCamera.orthographicSize = (float)MapWidth;
+        
+        GameManager.Instance.menu.ChangePanel(4);
+        key = gameName;
+        
+        if(seed== ""){
+              Seed = (int)UnityEngine.Random.value;
+        }else{
+
+            char[] chars = seed.ToCharArray();
+            int seedInt = 0;
+            foreach(char character in chars){
+                seedInt += character -'0';
+            }
+
+            Seed = seedInt;
+        }
+    
+        
+        InitializeGrid();
+
+   }
 
     void InitializeGrid()
     {
@@ -99,23 +152,27 @@ public class WalkerGenerator : MonoBehaviour
         Grid[,] grid = new Grid[MapWidth, MapHeight];
 
         map = new Map(grid,MapWidth,MapHeight,key);
-   
-        for (int x = 0; x <map.gridHandler.GetLength(0); x++)
+        Vector3 c = new Vector3Int(MapWidth/2, MapHeight/2,0);
+        game = new GameData(key, map, DateTime.Now, c);
+
+        games.data.Add(game);
+        map = null;
+        for (int x = 0; x <games.data.Last().map.gridHandler.GetLength(0); x++)
         {
-            for (int y = 0; y <map.gridHandler.GetLength(1); y++)
+            for (int y = 0; y <games.data.Last().map.gridHandler.GetLength(1); y++)
             {
-              map.gridHandler[x, y] = Grid.EMPTY;
+              games.data.Last().map.gridHandler[x, y] = Grid.EMPTY;
             }
         }
 
         Walkers = new List<Walker>();
-        xOrg =map.gridHandler.GetLength(0) / 2;
-        yOrg =map.gridHandler.GetLength(1) / 2;
+        xOrg =games.data.Last().map.gridHandler.GetLength(0) / 2;
+        yOrg =games.data.Last().map.gridHandler.GetLength(1) / 2;
 
         Vector3Int TileCenter = new Vector3Int(xOrg, yOrg, 0);
 
         Walker curWalker = new Walker(new Vector2(TileCenter.x, TileCenter.y), GetDirection(), ChanceToChange);
-        map.gridHandler[TileCenter.x, TileCenter.y] = Grid.FLOOR;
+        games.data.Last().map.gridHandler[TileCenter.x, TileCenter.y] = Grid.FLOOR;
         tilemap.BoxFill(TileCenter, Wall, 0, 0 , MapWidth-1, MapHeight-1);
         tilemap.SetTile(TileCenter, Floor);
         Walkers.Add(curWalker);
@@ -151,23 +208,25 @@ public class WalkerGenerator : MonoBehaviour
             return false;
          }
 
+    
+
         for (int searchX = x - distance; searchX <= x + distance; searchX++)
             {
                 for (int searchY = y - distance; searchY <= y + distance; searchY++)
                 {
-                    int xClamp = Mathf.Clamp(searchX, 0,map.gridHandler.GetLength(0)-1);
-                    int yClamp =Mathf.Clamp(searchY, 0,map.gridHandler.GetLength(1)-1);
+                    int xClamp = Mathf.Clamp(searchX, 0,games.data.Last().map.gridHandler.GetLength(0)-1);
+                    int yClamp =Mathf.Clamp(searchY, 0,games.data.Last().map.gridHandler.GetLength(1)-1);
 
                     Vector3Int pos = new Vector3Int(xClamp,yClamp);
 
                     
                     if(resourceTileMap.HasTile(pos) ){
-                        
                         GameObject resourceObj = resourceTileMap.GetInstantiatedObject(pos);
 
                         if(resourceObj.CompareTag(resourceType)){
                             return false;
-                        }
+                        }                       
+                      
                         
                     }
                 }
@@ -182,11 +241,11 @@ public class WalkerGenerator : MonoBehaviour
             {
                 for (int searchY = y - distance; searchY <= y + distance; searchY++)
                 {
-                    int xClamp = Mathf.Clamp(searchX, 0,map.gridHandler.GetLength(0)-1);
-                    int yClamp =Mathf.Clamp(searchY, 0,map.gridHandler.GetLength(1)-1);
+                    int xClamp = Mathf.Clamp(searchX, 0,games.data.Last().map.gridHandler.GetLength(0)-1);
+                    int yClamp =Mathf.Clamp(searchY, 0,games.data.Last().map.gridHandler.GetLength(1)-1);
                     
                     float noise = CalcNoise(xClamp,yClamp);
-                    if(map.gridHandler[xClamp, yClamp] != Grid.FLOOR )
+                    if(games.data.Last().map.gridHandler[xClamp, yClamp] != Grid.FLOOR )
                     {
                         Vector3Int pos = new Vector3Int(xClamp,yClamp);
                     
@@ -201,10 +260,10 @@ public class WalkerGenerator : MonoBehaviour
             {
                 for (int searchY = y - distance; searchY <= y + distance; searchY++)
                 {
-                    int xClamp = Mathf.Clamp(searchX, 0,map.gridHandler.GetLength(0)-1);
-                    int yClamp =Mathf.Clamp(searchY, 0,map.gridHandler.GetLength(1)-1);
+                    int xClamp = Mathf.Clamp(searchX, 0,games.data.Last().map.gridHandler.GetLength(0)-1);
+                    int yClamp =Mathf.Clamp(searchY, 0,games.data.Last().map.gridHandler.GetLength(1)-1);
 
-                    if(map.gridHandler[xClamp, yClamp] == Grid.FLOOR )
+                    if(games.data.Last().map.gridHandler[xClamp, yClamp] == Grid.FLOOR )
                     {
                         Vector3Int pos = new Vector3Int(xClamp,yClamp);
                     
@@ -213,7 +272,7 @@ public class WalkerGenerator : MonoBehaviour
                         HillCount++;
 
                         MapTile maptile =  new MapTile(pos,Hill);
-                        map.hillTiles.Add(maptile);
+                        games.data.Last().map.hillTiles.Add(maptile);
                     }
                 }
             }
@@ -223,22 +282,26 @@ public class WalkerGenerator : MonoBehaviour
     }
      private  void DrawHorizontalLine( int startX, int endX, int y )
     {
-        
+        Vector3Int v;
+
         for (int x = startX; x <= endX; x++)
         {
             float noise = CalcNoise(x,y);
             
             SetFloorTile(x,y,noise);
+             v = new Vector3Int(x,y,0);
+
+            AddDecor(v, noise);
+            
+            
         }
     }
 
-       public  void DrawFilledCircle( int xCenter, int yCenter, float radius)
+       public  IEnumerator DrawFilledCircle( int xCenter, int yCenter, float radius)
     {
         int x = (int)radius;
         int y = 0;
         int radiusError = 1 - x;
-
-        
 
         while (x >= y)
         {
@@ -259,15 +322,17 @@ public class WalkerGenerator : MonoBehaviour
                 radiusError += 2 * (y - x + 1);
             }
         }
+    
+        yield return new WaitForSeconds(WaitTime);
     }
      
   
  
     public void SetFloorTile(int x, int y, float noise){
-        int xClamp = Mathf.Clamp(x, 0,map.gridHandler.GetLength(0)-1);
-        int yClamp =Mathf.Clamp(y, 0,map.gridHandler.GetLength(1)-1);
+        int xClamp = Mathf.Clamp(x, 0,games.data.Last().map.gridHandler.GetLength(0)-1);
+        int yClamp =Mathf.Clamp(y, 0,games.data.Last().map.gridHandler.GetLength(1)-1);
 
-        // if(map.gridHandler[xClamp, yClamp] == Grid.EMPTY && map.gridHandler[xClamp, yClamp] != Grid.FLOOR ){
+        // if(games.data.Last().map.gridHandler[xClamp, yClamp] == Grid.EMPTY && games.data.Last().map.gridHandler[xClamp, yClamp] != Grid.FLOOR ){
 
             MapTile maptile;
             Vector3Int curPos = new Vector3Int(xClamp,yClamp,0);
@@ -276,27 +341,25 @@ public class WalkerGenerator : MonoBehaviour
                 
                 tilemap.SetTile(curPos, Floor);
 
-                if(map.gridHandler[xClamp, yClamp] != Grid.FLOOR){
+                if(games.data.Last().map.gridHandler[xClamp, yClamp] != Grid.FLOOR){
                     TileCount++;
                 }            
                 
                 
-                map.gridHandler[curPos.x, curPos.y] = Grid.FLOOR;
+                games.data.Last().map.gridHandler[curPos.x, curPos.y] = Grid.FLOOR;
 
                 
 
                 maptile =  new MapTile(curPos,Floor);
-                map.basetiles.Add(maptile);
+                games.data.Last().map.basetiles.Add(maptile);
             
             
 
              if(noise > LeafyChance){
                 decorTileMap.SetTile(curPos, Leafy);
-        
-                DecorCount++;
 
                 maptile =  new MapTile(curPos,Leafy);
-                map.decorTiles.Add(maptile);
+                games.data.Last().map.decorTiles.Add(maptile);
             }
         // }
         
@@ -307,7 +370,7 @@ public class WalkerGenerator : MonoBehaviour
 
     IEnumerator CreateFloors()
     {
-        while ((float)TileCount / (float)map.gridHandler.Length < FillPercentage)
+        while ((float)TileCount / (float)games.data.Last().map.gridHandler.Length < FillPercentage)
         {
             Vector3Int curPos = new Vector3Int(0,0,0);
             float noise = 0.0f;
@@ -319,25 +382,17 @@ public class WalkerGenerator : MonoBehaviour
                  noise = CalcNoise(curPos.x,curPos.y);
             
 
-                if(map.gridHandler[curPos.x, curPos.y] != Grid.FLOOR  )
+                if(games.data.Last().map.gridHandler[curPos.x, curPos.y] != Grid.FLOOR  )
                 {
                     
                     if(noise > FloorNoise){
                         SetFloorTile(curPos.x,curPos.y,noise);
-                        DrawFilledCircle(curPos.x,curPos.y, FillRadius);
-                        //    FillSurroundingCells(curPos.x,curPos.y, FillRadius);
-                     
                     }
                      hasCreatedFloor = true;
-
                 }
-               
-                // AddHills(curPos, noise);
-               
+                              
             }
            
-            AddDecor(curPos, noise);
-            AddResources(curPos,noise);
             //Walker Methods
             ChanceToRemove();
             ChanceToRedirect();
@@ -346,6 +401,11 @@ public class WalkerGenerator : MonoBehaviour
 
             if (hasCreatedFloor)
             {
+               
+                StartCoroutine(DrawFilledCircle(curPos.x,curPos.y, FillRadius));
+                 AddResources(curPos,noise);
+                
+                //    FillSurroundingCells(curPos.x,curPos.y, FillRadius);
                 yield return new WaitForSeconds(WaitTime);
             }
         }
@@ -356,58 +416,64 @@ public class WalkerGenerator : MonoBehaviour
      public void SaveMap()
         {
             
-            maps.maps.Add(map);
             map = null;
+
+            GameManager.Instance.SetGameData(game);
+            GameObject player = Instantiate(playerPrefab, new Vector3(MapWidth/2, MapHeight/2,0 ), Quaternion.identity);
+
+            GameManager.Instance.GetVirtualCamera().SetFollow(player.transform);
+
+            GameManager.Instance.menu.Close();
+            GameManager.Instance.mapGenerated =true;
+
+            Destroy(renderTextureCamera);
+
+            GameManager.Instance.autoSave.Init();
         }
 
     public void AddDecor( Vector3Int curPos, float noise){
+        // if((float)DecorCount / (float)games.data.Last().map.gridHandler.Length < DecorPercentage){
 
-        // if((float)DecorCount / (float)map.gridHandler.Length < DecorPercentage){
+        int xClamp = Mathf.Clamp(curPos.x, 0,games.data.Last().map.gridHandler.GetLength(0)-1);
+        int yClamp =Mathf.Clamp(curPos.y, 0,games.data.Last().map.gridHandler.GetLength(1)-1);
+        Vector3Int v = new Vector3Int(xClamp,yClamp,0);
 
-            if( noise > 0.8f){
-                decorTileMap.SetTile(curPos, DecorFoliage);
-        
-                DecorCount++;
+        if( noise < DecorPercentage ){
+            decorTileMap.SetTile(v, DecorFoliage);
 
-                MapTile maptile =  new MapTile(curPos,DecorFoliage);
-                map.decorTiles.Add(maptile);
-    
-            }
+            MapTile maptile =  new MapTile(v,DecorFoliage);
+            games.data.Last().map.decorTiles.Add(maptile);
+
+        }
          
-        // }
+        
        
     }
 
     public void AddResources(Vector3Int curPos, float noise){
+        bool canCreateTree = (float)TreeCount / TileCount < TreePercent;
+        bool canCreateRock = (float)RockCount / TileCount < RockPercent;
 
-        if( noise < ResourceNoise){
+         if( noise > ResourcePercent){
+                return;
+            }
 
+      
             foreach (ResourceTile resource in resourceTiles.data){
-
-                    if(resource.resourceType == ResourceNodeType.Rock){
-
-                        if((float)RockCount / TileCount >= RockPercent){
-                            break;
-                        }
-
-                    }
-
-                    if(resource.resourceType == ResourceNodeType.Tree){
-
-                        if((float)TreeCount / TileCount >= TreePercent){
-                            break;
-                        }
-
-                    }
-
+                   if(!canCreateRock && resource.resourceType == ResourceNodeType.Rock){
+                        continue;
+                   }
+                   if(!canCreateTree && resource.resourceType == ResourceNodeType.Tree){
+                        continue;
+                   }
                     string type = resource.resourceType.ToString();
 
                     if(CheckSurroundingCells(curPos.x,curPos.y, type, ResourceRadius)){
-
+                        
                         resourceTileMap.SetTile(curPos,resource.tile);
 
                         MapTile maptile =  new MapTile(curPos,resource.tile);
-                        map.resourceTiles.Add(maptile);
+                        games.data.Last().map.resourceTiles.Add(maptile);
 
                         if(resource.resourceType == ResourceNodeType.Tree){
                             TreeCount++;
@@ -416,16 +482,14 @@ public class WalkerGenerator : MonoBehaviour
                             RockCount++;
                         }
                         
-                         ResourceCount = ResourceCount+ TreeCount+RockCount;
                     }
 
-                   
+                
 
-                }
+                
             }
-        
-        
-        
+  
+       
 
     }
 
@@ -494,22 +558,22 @@ public class WalkerGenerator : MonoBehaviour
         {
             Walker FoundWalker = Walkers[i];
             FoundWalker.Position += FoundWalker.Direction;
-            FoundWalker.Position.x = Mathf.Clamp(FoundWalker.Position.x, 1,map.gridHandler.GetLength(0) - 2);
-            FoundWalker.Position.y = Mathf.Clamp(FoundWalker.Position.y, 1,map.gridHandler.GetLength(1) - 2);
+            FoundWalker.Position.x = Mathf.Clamp(FoundWalker.Position.x, 1,games.data.Last().map.gridHandler.GetLength(0) - 2);
+            FoundWalker.Position.y = Mathf.Clamp(FoundWalker.Position.y, 1,games.data.Last().map.gridHandler.GetLength(1) - 2);
             Walkers[i] = FoundWalker;
         }
     }
 
     // void AddHills(Vector3Int curPos, float noise)
     // {
-    //     if((float)HillCount / (float)map.gridHandler.Length < HillPercent){
+    //     if((float)HillCount / (float)games.data.Last().map.gridHandler.Length < HillPercent){
     //         if( noise > 0.7f  )
     //         {
 
     //             hillTilemap.SetTile(curPos,Hill);
 
     //             MapTile maptile =  new MapTile(curPos,Hill);
-    //             map.hillTiles.Add(maptile);
+    //             games.data.Last().map.hillTiles.Add(maptile);
     //             FillSurroundingCells(curPos.x,curPos.y, 2, "Hill");    
     //             HillCount++;
     //         }
@@ -523,41 +587,41 @@ public class WalkerGenerator : MonoBehaviour
   
     IEnumerator CreateWalls()
     {
-        for (int x = 0; x <map.gridHandler.GetLength(0) - 1; x++)
+        for (int x = 0; x <games.data.Last().map.gridHandler.GetLength(0) - 1; x++)
         {
-            for (int y = 0; y <map.gridHandler.GetLength(1) - 1; y++)
+            for (int y = 0; y <games.data.Last().map.gridHandler.GetLength(1) - 1; y++)
             {
-                int xClamp =Mathf.Clamp(x, 1,map.gridHandler.GetLength(0) - 1);
-                int yClamp = Mathf.Clamp(y, 1,map.gridHandler.GetLength(1) - 1);
+                int xClamp =Mathf.Clamp(x, 1,games.data.Last().map.gridHandler.GetLength(0) - 1);
+                int yClamp = Mathf.Clamp(y, 1,games.data.Last().map.gridHandler.GetLength(1) - 1);
 
                 
-                if(map.gridHandler[xClamp, yClamp] == Grid.FLOOR)
+                if(games.data.Last().map.gridHandler[xClamp, yClamp] == Grid.FLOOR)
                 {
                     
                     bool hasCreatedWall = false;
 
-                    if(map.gridHandler[xClamp + 1, yClamp] == Grid.EMPTY)
+                    if(games.data.Last().map.gridHandler[xClamp + 1, yClamp] == Grid.EMPTY)
                     {
                         tilemap.SetTile(new Vector3Int(xClamp + 1, yClamp, 0), Wall);
-                       map.gridHandler[xClamp + 1, yClamp] = Grid.WALL;
+                       games.data.Last().map.gridHandler[xClamp + 1, yClamp] = Grid.WALL;
                         hasCreatedWall = true;
                     }
-                    if(map.gridHandler[xClamp - 1, yClamp] == Grid.EMPTY)
+                    if(games.data.Last().map.gridHandler[xClamp - 1, yClamp] == Grid.EMPTY)
                     {
                         tilemap.SetTile(new Vector3Int(xClamp - 1, yClamp, 0), Wall);
-                       map.gridHandler[xClamp - 1, yClamp] = Grid.WALL;
+                       games.data.Last().map.gridHandler[xClamp - 1, yClamp] = Grid.WALL;
                         hasCreatedWall = true;
                     }
-                    if(map.gridHandler[xClamp, yClamp + 1] == Grid.EMPTY)
+                    if(games.data.Last().map.gridHandler[xClamp, yClamp + 1] == Grid.EMPTY)
                     {
                         tilemap.SetTile(new Vector3Int(xClamp, yClamp + 1, 0), Wall);
-                       map.gridHandler[xClamp, yClamp + 1] = Grid.WALL;
+                       games.data.Last().map.gridHandler[xClamp, yClamp + 1] = Grid.WALL;
                         hasCreatedWall = true;
                     }
-                    if(map.gridHandler[xClamp, yClamp - 1] == Grid.EMPTY)
+                    if(games.data.Last().map.gridHandler[xClamp, yClamp - 1] == Grid.EMPTY)
                     {
                         tilemap.SetTile(new Vector3Int(xClamp, yClamp - 1, 0), Wall);
-                       map.gridHandler[xClamp, yClamp - 1] = Grid.WALL;
+                       games.data.Last().map.gridHandler[xClamp, yClamp - 1] = Grid.WALL;
                         hasCreatedWall = true;
                     }
 

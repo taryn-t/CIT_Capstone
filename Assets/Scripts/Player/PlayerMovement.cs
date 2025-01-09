@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 lastMotionVector;
     private PlayerData playerData;
 
+
+
     void Start()
     {
         InitializePlayerData();
@@ -52,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
             Animator.SetFloat("lastHorizontal",lastMotionVector.x);
             Animator.SetFloat("lastVertical",lastMotionVector.y);
         }
-
         
     }
 
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
     }
     private void InitializePlayerData(){
-        playerData = GetComponent<PlayerController>().PlayerData;
+        playerData = GameManager.Instance.GetGameData().playerData;
     }
 
 }

@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] PlayerData playerData;
 
-    public PlayerData PlayerData{
-        get{return playerData;}
-    }
     
     void Start()
     {
-
+        GetComponent<InventoryController>().Init();
+        GameManager.Instance.SetPlayer(this.gameObject);
     }
 
     void Update()
