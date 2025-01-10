@@ -30,7 +30,6 @@ public class WalkerGenerator : MonoBehaviour
     [SerializeField] public TileBase Hill;
 
     [SerializeField] public TileBase Leafy;
-    [SerializeField] Camera renderTextureCamera;
 
 
     public int MapWidth = 32;
@@ -90,8 +89,7 @@ public class WalkerGenerator : MonoBehaviour
 
     public void LoadMap(string saveGame){
 
-        Instantiate(renderTextureCamera, new Vector3(MapWidth/2, MapHeight/2,0 ), Quaternion.identity);
-        renderTextureCamera.orthographicSize = (float)MapWidth;
+   
         
         GameManager.Instance.menu.ChangePanel(4);
         key = saveGame;
@@ -116,14 +114,11 @@ public class WalkerGenerator : MonoBehaviour
         GameManager.Instance.mapGenerated =true;
         GameManager.Instance.menu.Close();
         GameManager.Instance.dayTimeController.time = game.gameTime;
-        GameManager.Instance.autoSave.Init();
 
     }
 
    public void StartGeneration(string seed, string gameName, GameObject go)
    {
-        Instantiate(renderTextureCamera, new Vector3(MapWidth/2, MapHeight/2,0 ), Quaternion.identity);
-        renderTextureCamera.orthographicSize = (float)MapWidth;
         
         GameManager.Instance.menu.ChangePanel(4);
         key = gameName;
@@ -234,7 +229,7 @@ public class WalkerGenerator : MonoBehaviour
             return true;
     }
 
-    public void FillSurroundingCells(int x, int y, int distance, string type = "Floor")
+ public void FillSurroundingCells(int x, int y, int distance, string type = "Floor")
     {
         if(type=="Floor"){
             for (int searchX = x - distance; searchX <= x + distance; searchX++)
@@ -287,7 +282,7 @@ public class WalkerGenerator : MonoBehaviour
         for (int x = startX; x <= endX; x++)
         {
             float noise = CalcNoise(x,y);
-            
+        
             SetFloorTile(x,y,noise);
              v = new Vector3Int(x,y,0);
 
@@ -364,11 +359,7 @@ public class WalkerGenerator : MonoBehaviour
         // }
         
     }
-     
-     
-  
-
-    IEnumerator CreateFloors()
+      IEnumerator CreateFloors()
     {
         while ((float)TileCount / (float)games.data.Last().map.gridHandler.Length < FillPercentage)
         {
@@ -413,6 +404,7 @@ public class WalkerGenerator : MonoBehaviour
         SaveMap();
 
     }
+     
      public void SaveMap()
         {
             
@@ -426,9 +418,8 @@ public class WalkerGenerator : MonoBehaviour
             GameManager.Instance.menu.Close();
             GameManager.Instance.mapGenerated =true;
 
-            Destroy(renderTextureCamera);
-
-            GameManager.Instance.autoSave.Init();
+           
+           
         }
 
     public void AddDecor( Vector3Int curPos, float noise){

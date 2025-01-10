@@ -2365,11 +2365,10 @@ GameObject:
   - component: {fileID: 1792865696}
   - component: {fileID: 1792865695}
   - component: {fileID: 1792865697}
-  - component: {fileID: 1792865698}
   - component: {fileID: 1792865699}
   - component: {fileID: 1792865700}
   m_Layer: 0
-  m_Name: MapGen
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2396,7 +2395,6 @@ MonoBehaviour:
   Wall: {fileID: 11400000, guid: bbd7faf9457a56345b76b908e1364ed1, type: 2}
   Hill: {fileID: 11400000, guid: c3d5478ab8e7fb445b6e8a07fe4ee81c, type: 2}
   Leafy: {fileID: 11400000, guid: 50fd1ece46bce9b43b72015e4e961198, type: 2}
-  renderTextureCamera: {fileID: 7192209948834977267, guid: fbbaa7641a7e1164da50f7e9d53a1498, type: 3}
   MapWidth: 256
   MapHeight: 256
   MaximumWalkers: 10
@@ -2460,6 +2458,7 @@ MonoBehaviour:
   gameData:
     name: 
     lastSaved: 
+    gameTime: 0
     map:
       key: 
       MapWidth: 0
@@ -2482,20 +2481,6 @@ MonoBehaviour:
   mapGenerated: 0
   inventoryContainer: {fileID: 11400000, guid: 8c4db9e0a8417ac45ac99995ed8f6ccc, type: 2}
   menu: {fileID: 216220117}
---- !u!114 &1792865698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792865694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a35edeca1f4a946b4bd3546dabc5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  secondsToSave: 60
-  saving: 0
 --- !u!114 &1792865699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,6 +2588,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timeScale: 500
+  AutoSave: {fileID: 3516260758616959680, guid: f4bf1fbffddb1e049af8dc3915168b60, type: 3}
   globalLight: {fileID: 0}
   controllers: []
   days: 1

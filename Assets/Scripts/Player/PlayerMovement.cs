@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+       
         HandleMovementAnimation();
     }
     void FixedUpdate()
@@ -39,9 +40,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void HandleMovementAnimation(){
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
+        
         moveInput = new Vector2(horizontal,vertical);
        
         Animator.SetFloat("horizontal",horizontal);

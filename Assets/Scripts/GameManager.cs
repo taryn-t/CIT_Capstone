@@ -11,12 +11,12 @@ public class GameManager : MonoBehaviour
     public GameData gameData;
     public CineMachineScript virtualCamera;
     public WalkerGenerator mapGenerator;
-    public PlayerController player;
+    public GameObject player;
 
     public DayTimeController dayTimeController;
     public AutoSave autoSave;
     public bool mapGenerated = false;
-
+     public bool saving = false;
 
     private void Awake()
     {
@@ -58,10 +58,10 @@ public class GameManager : MonoBehaviour
         return Instance.menu ;
     }
     public void SetPlayer(GameObject go){
-        Instance.player = go.GetComponent<PlayerController>();
+        Instance.player = go;
     }
     public PlayerController GetPlayer(){
-        return Instance.player ;
+        return Instance.player.GetComponent<PlayerController>();
     }
     public Games GetGames(){
         return Instance.games ;

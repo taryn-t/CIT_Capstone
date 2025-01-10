@@ -16,6 +16,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] AnimationCurve nightTimeCurve;
 
     [SerializeField] float timeScale =500f;
+    [SerializeField] GameObject AutoSave;
     public  Light2D globalLight;
   
       public GameObject[] controllers;
@@ -93,7 +94,10 @@ public class DayTimeController : MonoBehaviour
             // dayLabel.text = "Day " + days;
         
             if(hh %6 ==0){
-                saveAgent.Invoke();
+               
+                if(GameManager.Instance.mapGenerated &&  GameManager.Instance.gameData != null && GameManager.Instance.player != null){
+                     Instantiate(AutoSave);
+                }
             }
 
             if(hh >= 24){
