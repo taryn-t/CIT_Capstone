@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] public Games games;
+    [SerializeField] public GameObject[] EnemyStructures;
     public GameData gameData;
     public CineMachineScript virtualCamera;
     public WalkerGenerator mapGenerator;

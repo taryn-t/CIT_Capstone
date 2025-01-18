@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float moveSpeed = 0.1f;
+    private float moveSpeed = 0.03f;
     private float runSpeed = 0.2f;
     private Animator animator;
     public Animator Animator{
@@ -33,11 +33,9 @@ public class PlayerMovement : MonoBehaviour
     {
        
         HandleMovementAnimation();
+         MovePlayer();
     }
-    void FixedUpdate()
-    {
-        MovePlayer();
-    }
+
 
     public void HandleMovementAnimation(){
 

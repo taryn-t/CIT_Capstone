@@ -23,7 +23,7 @@ public class AutoSave : MonoBehaviour
         
         GameManager.Instance.SetAutoSave(this.gameObject);
 
-        GameManager.Instance.gameData.playerData.lastPosition = GameManager.Instance.player.transform.position;
+        GameManager.Instance.gameData.playerData.lastPosition = Vector3Int.FloorToInt(GameManager.Instance.player.transform.position);
         GameManager.Instance.saving = true;    
         SaveGameTask();
         Destroy(gameObject);
@@ -49,6 +49,7 @@ public class AutoSave : MonoBehaviour
                 GameManager.Instance.games.data.RemoveAt(indx);
                 GameManager.Instance.gameData.lastSaved = DateTime.Now.ToString("g");
                 GameManager.Instance.gameData.gameTime = GameManager.Instance.GetDayTime().time;
+                GameManager.Instance.gameData.daysPlayed =  GameManager.Instance.GetDayTime().days;
                 GameManager.Instance.games.data.Insert(indx, GameManager.Instance.gameData);
             
                 await Task.Delay(1000, cancellationTokenSource.Token);

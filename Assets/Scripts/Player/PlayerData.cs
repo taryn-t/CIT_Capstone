@@ -11,9 +11,9 @@ public class PlayerData
     public int Hunger;
     public int Thirst;
     public int Stamina;
-    public Vector3 lastPosition;
+    public Vector3Int lastPosition;
 
-    public PlayerData(Vector3 center){
+    public PlayerData(Vector3Int center){
         Health = 100;
         Hunger = 0;
         Thirst = 0;
