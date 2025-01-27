@@ -16,6 +16,7 @@ public class GameData{
     public string name;
     public string lastSaved;
     public float gameTime;
+    public int daysPlayed;
 
     public Map map;
 
@@ -24,14 +25,16 @@ public class GameData{
     
 
 
-    public GameData(string name, Map map, DateTime date, Vector3 center ){
+    public GameData(string name, Map map, DateTime date, Vector3Int center, SpellContainer spells ){
 
         this.name = name;
         this.map = map;
-        playerData = new PlayerData(center);
+        playerData = new PlayerData(center, spells);
 
         lastSaved = date.ToString("g");
         gameTime = 28800f;
+
+        daysPlayed = 1;
     }
     
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float moveSpeed = 0.1f;
-    private float runSpeed = 0.2f;
+    private float moveSpeed = 0.08f;
+    private float runSpeed = 2f;
     private Animator animator;
     public Animator Animator{
         get{return animator;}
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         get{return body;}
         set{body=value;}
     }
-    private Vector2 moveInput = Vector2.zero;
+    public Vector2 moveInput = Vector2.zero;
 
     public Vector2 lastMotionVector;
     private PlayerData playerData;
@@ -26,22 +26,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.playerMovement = gameObject;
         InitializePlayerData();
         InitializeMovement();
     }
     void Update()
     {
+       
         HandleMovementAnimation();
+         MovePlayer();
     }
-    void FixedUpdate()
-    {
-        MovePlayer();
-    }
+
 
     public void HandleMovementAnimation(){
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
+        
         moveInput = new Vector2(horizontal,vertical);
        
         Animator.SetFloat("horizontal",horizontal);

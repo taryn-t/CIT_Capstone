@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class DayTimeController : MonoBehaviour
 {
     const float secondsInDay = 86400f; 
+    const float daysInMonth = 28;
+     string[] daysOfTheWeek = {"Sunday", "Monday", "Tuesday", "Wendnesday", "Thursday", "Friday", "Saturday"};
     public  float time;
     const float phaseLength = 1200f; //20 minutes
     const float phasesInDay = 72f; //72 segments of 20 minutes in a day  const float phasesInDay = 72f; //72 segments of 20 minutes in a day
@@ -16,6 +19,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] AnimationCurve nightTimeCurve;
 
     [SerializeField] float timeScale =500f;
+    [SerializeField] GameObject AutoSave;
     public  Light2D globalLight;
   
       public GameObject[] controllers;
@@ -23,6 +27,7 @@ public class DayTimeController : MonoBehaviour
     List<TimeAgent> agents;
     TimeAgent saveAgent;
     [SerializeField] float startAtTime = 28800f;
+
     int oldPhase =-1;
 
     float Hours{
@@ -41,6 +46,7 @@ public class DayTimeController : MonoBehaviour
     }
 
     void Start(){
+        
         GameManager.Instance.SetDayTime(this.gameObject);
 
         time = morningTime;
@@ -55,6 +61,7 @@ public class DayTimeController : MonoBehaviour
         float v = nightTimeCurve.Evaluate(Hours);
         Color c = Color.Lerp(dayLightColor, nightLightColor, v);
         globalLight.color = c;
+
     }
 
 
@@ -88,12 +95,19 @@ public class DayTimeController : MonoBehaviour
             }
             
             globalLight.color = c;
+
+            // timeLabel.text = formattedTime;
+            // dayLabel.text = GetDay();
+            // dayCount.text = "Day " + days;
             
             
             // dayLabel.text = "Day " + days;
         
             if(hh %6 ==0){
-                saveAgent.Invoke();
+               
+                // if(GameManager.Instance.mapGenerated &&  GameManager.Instance.gameData != null && GameManager.Instance.player != null){
+                //      Instantiate(AutoSave);
+                // }
             }
 
             if(hh >= 24){
@@ -116,6 +130,13 @@ public class DayTimeController : MonoBehaviour
       
         }
         
+    }
+
+    private string GetDay(){
+       int dayIndex =  (int)(daysInMonth/(days)) % 7;
+
+    
+       return daysOfTheWeek[dayIndex];
     }
 
     private int CalculatePhase()
