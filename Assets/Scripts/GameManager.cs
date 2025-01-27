@@ -1,21 +1,30 @@
 
 
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] public Games games;
     [SerializeField] public GameObject[] EnemyStructures;
+    [SerializeField] public SpellContainer KnownSpells;
+    [SerializeField] public List<Spell> AllSpells;
+    [SerializeField] public GameObject HUDPrefab;
     public GameData gameData;
     public CineMachineScript virtualCamera;
     public WalkerGenerator mapGenerator;
     public GameObject player;
+    public GameObject playerMovement;
 
     public DayTimeController dayTimeController;
     public AutoSave autoSave;
+    public SpellButton SelectedSpell;
+    public Tilemap baseTilemap;
     public bool mapGenerated = false;
      public bool saving = false;
 
@@ -31,6 +40,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         
+        SelectedSpell = new SpellButton();
         
         DontDestroyOnLoad(gameObject);
     }
@@ -39,7 +49,12 @@ public class GameManager : MonoBehaviour
     public ItemContainer inventoryContainer;
     public Menu menu;
 
-
+    public void SetSpell(GameObject go){
+        Instance.SelectedSpell = go.GetComponent<SpellButton>();
+    }
+    public Spell GetSpell(){
+        return SelectedSpell.spell;
+    }
     public void SetAutoSave(GameObject go){
         Instance.autoSave = go.GetComponent<AutoSave>();
     }
@@ -88,7 +103,65 @@ public class GameManager : MonoBehaviour
         return Instance.virtualCamera;
     }
 
+    public async void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Transform enemyTransform, Vector2 lastMotionVector,CapsuleCollider2D collider){
+        
+        
+        spellPrefab.GetComponent<Animator>().runtimeAnimatorController = spell.animator;
 
+        
+        spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;
+        spellPrefab.GetComponent<CastedSpell>().damage =  spell.damage;
+        spellPrefab.GetComponent<CastedSpell>().knockback =  spell.knockback;
+         
+
+        GetRotation(lastMotionVector, offsetRotation, collider);
+        spellPrefab.GetComponent<CastedSpell>().rotation =  offsetRotation.rotation;
+        
+        Instantiate(spellPrefab, enemyTransform.position + offsetRotation.offset, offsetRotation.rotation);
+        await Task.Yield();
+    }
     
+      public void GetRotation(Vector2 pos, OffsetRotation offsetRotation,CapsuleCollider2D collider){
 
+        
+        string direction = "";
+
+        if(pos == Vector2.left){
+            direction= "left";
+        }
+        else if(pos == Vector2.right){
+            direction= "right";
+        }
+        else if(pos == Vector2.down){
+            direction= "down";
+        }
+        else if(pos == Vector2.up){
+            direction= "up";
+        }
+
+        switch(direction) 
+        {
+        case "left":
+            offsetRotation.rotation = Quaternion.Euler(180, 0, 180 );
+            offsetRotation.offset = new Vector3(-collider.bounds.size.x*4,0,0);
+            break;
+        case "right":
+             offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
+             offsetRotation.offset = new Vector3(collider.bounds.size.x,0,0);
+             break;
+        case "down":
+             offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
+             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,-collider.bounds.size.y,0);
+             break;
+        case "up":
+             offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );
+             offsetRotation.offset = new Vector3(collider.bounds.size.x,collider.bounds.size.y*1.5f,0);
+             break;
+        default:
+            offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
+            break;
+        }
+
+
+    }
 }

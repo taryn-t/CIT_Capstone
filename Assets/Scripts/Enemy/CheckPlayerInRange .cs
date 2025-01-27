@@ -15,6 +15,7 @@ public class CheckPlayerInRange : Node
 
     public override NodeStatus Execute()
     {
+        Debug.Log("Checking if in range");
         float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
         return distance <= detectionRange ? NodeStatus.Success : NodeStatus.Failure;
     }

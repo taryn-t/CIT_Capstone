@@ -25,11 +25,11 @@ public class GameData{
     
 
 
-    public GameData(string name, Map map, DateTime date, Vector3Int center ){
+    public GameData(string name, Map map, DateTime date, Vector3Int center, SpellContainer spells ){
 
         this.name = name;
         this.map = map;
-        playerData = new PlayerData(center);
+        playerData = new PlayerData(center, spells);
 
         lastSaved = date.ToString("g");
         gameTime = 28800f;

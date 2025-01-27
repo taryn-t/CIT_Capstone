@@ -27,9 +27,6 @@ public class DayTimeController : MonoBehaviour
     List<TimeAgent> agents;
     TimeAgent saveAgent;
     [SerializeField] float startAtTime = 28800f;
-    [SerializeField] TextMeshProUGUI dayLabel;
-    [SerializeField] TextMeshProUGUI timeLabel;
-    [SerializeField] TextMeshProUGUI dayCount;
 
     int oldPhase =-1;
 
@@ -99,18 +96,18 @@ public class DayTimeController : MonoBehaviour
             
             globalLight.color = c;
 
-            timeLabel.text = formattedTime;
-            dayLabel.text = GetDay();
-            dayCount.text = "Day " + days;
+            // timeLabel.text = formattedTime;
+            // dayLabel.text = GetDay();
+            // dayCount.text = "Day " + days;
             
             
             // dayLabel.text = "Day " + days;
         
             if(hh %6 ==0){
                
-                if(GameManager.Instance.mapGenerated &&  GameManager.Instance.gameData != null && GameManager.Instance.player != null){
-                     Instantiate(AutoSave);
-                }
+                // if(GameManager.Instance.mapGenerated &&  GameManager.Instance.gameData != null && GameManager.Instance.player != null){
+                //      Instantiate(AutoSave);
+                // }
             }
 
             if(hh >= 24){

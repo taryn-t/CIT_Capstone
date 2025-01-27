@@ -8,17 +8,16 @@ using UnityEngine;
 public class PlayerData 
 {
     public int Health;
-    public int Hunger;
-    public int Thirst;
-    public int Stamina;
+    public int Mana;
+    public SpellContainer KnownSpells;
+
     public Vector3Int lastPosition;
 
-    public PlayerData(Vector3Int center){
+    public PlayerData(Vector3Int center, SpellContainer spells){
         Health = 100;
-        Hunger = 0;
-        Thirst = 0;
-        Stamina = 100;
+        Mana = 100;
         lastPosition = center;
+        KnownSpells = spells;
     }
     
 

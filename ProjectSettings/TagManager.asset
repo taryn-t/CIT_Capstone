@@ -7,11 +7,13 @@ TagManager:
   - Tree
   - Rock
   - Inventory
+  - Spell
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacle
   - Water
   - UI
   - 

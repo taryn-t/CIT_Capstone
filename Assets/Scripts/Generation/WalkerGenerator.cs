@@ -12,9 +12,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using Vector2 = UnityEngine.Vector2;
 public enum Grid{
         FLOOR,
         WALL,
+        STRUCTURE,
         EMPTY
     }
 
@@ -34,6 +36,7 @@ public class WalkerGenerator : MonoBehaviour
     [SerializeField] public TileBase Hill;
 
     [SerializeField] public TileBase Leafy;
+    [SerializeField] PolygonCollider2D CameraConfiner;
 
 
     public int MapWidth = 32;
@@ -95,10 +98,12 @@ public class WalkerGenerator : MonoBehaviour
         // }
         
         GameManager.Instance.SetMapGen(this.gameObject);
+        GameManager.Instance.baseTilemap = tilemap;
     }
 
 
     public void LoadMap(string saveGame){
+        
         GameManager.Instance.menu.ChangePanel(4);
         key = saveGame;
         game = games.data.FirstOrDefault(m=>m.name == saveGame);
@@ -107,9 +112,9 @@ public class WalkerGenerator : MonoBehaviour
          if(game!=null)
         {
             map = game.map;
-            currentChunk = map.GetChunk(game.playerData.lastPosition);
+            currentChunk = map.Chunks.Last();
            
-
+            
             xOrg = currentChunk.ChunkWidth/ 2;
             yOrg = currentChunk.ChunkHeight / 2;
 
@@ -122,6 +127,9 @@ public class WalkerGenerator : MonoBehaviour
                 Instantiate(GameManager.Instance.EnemyStructures[structure.index], structure.pos, UnityEngine.Quaternion.identity, GridGameObject.transform );
                 enemyStructuresGenerated++;
             }
+            Instantiate(GameManager.Instance.HUDPrefab);
+            GameManager.Instance.mapGenerated = true;
+            
             
         }
         
@@ -178,7 +186,7 @@ public class WalkerGenerator : MonoBehaviour
 
        
 
-        game = new GameData(key, map, DateTime.Now, c);
+        game = new GameData(key, map, DateTime.Now, c, GameManager.Instance.KnownSpells);
 
         games.data.Add(game);
         map = null;
@@ -266,7 +274,37 @@ public class WalkerGenerator : MonoBehaviour
             return true;
     }
 
- 
+  public bool CheckCellsForStructure(int x, int y,Chunk chunk, int distance = 25){
+        if(chunk.enemyStructures.Count ==0){
+            return true;
+        }
+       
+         int xClamp = Mathf.Clamp(x, 0,chunk.gridHandler.GetLength(0)-1);
+         int yClamp =Mathf.Clamp(y, 0,chunk.gridHandler.GetLength(1)-1);
+
+         if(chunk.gridHandler[xClamp, yClamp] != Grid.FLOOR  ){
+            return false;
+         }
+
+    
+
+        for (int searchX = x - distance; searchX <= x + distance; searchX++)
+            {
+                for (int searchY = y - distance; searchY <= y + distance; searchY++)
+                {
+                     xClamp = Mathf.Clamp(searchX, 0,chunk.gridHandler.GetLength(0)-1);
+                     yClamp =Mathf.Clamp(searchY, 0,chunk.gridHandler.GetLength(1)-1);
+
+                    
+                    if(chunk.gridHandler[xClamp, yClamp] == Grid.STRUCTURE ){
+                        return false;                     
+                        
+                    }
+                }
+            }
+            return true;
+    }
+
  async void FillSurroundingCells(int x, int y, int distance, Chunk chunk)
     {
         
@@ -299,6 +337,26 @@ public class WalkerGenerator : MonoBehaviour
         
          
         
+        
+    
+    }
+      void SetSurroundingCellStructure(int x,int xMax, int y,int yMax, Chunk chunk)
+    {
+        
+            for (int searchX = x ; searchX <= xMax ; searchX++)
+            {
+                for (int searchY = y ; searchY <= yMax ; searchY++)
+                {
+                    int xClamp = Mathf.Clamp(searchX, 0, chunk.gridHandler.GetLength(0)-1);
+                    int yClamp =Mathf.Clamp(searchY, 0, chunk.gridHandler.GetLength(1)-1);
+                    
+                    chunk.gridHandler[xClamp, yClamp] = Grid.STRUCTURE;
+                    
+                }
+            }
+        
+         
+       
         
     
     }
@@ -383,81 +441,145 @@ public class WalkerGenerator : MonoBehaviour
     }
       public IEnumerator CreateFloors(Chunk chunk)
     {
-        while ((float)TileCount / (float)chunk.gridHandler.Length < FillPercentage)
+       
+        for (int x = 0; x <chunk.gridHandler.GetLength(0) - 1; x+=FillRadius)
         {
-            Vector3Int curPos = new Vector3Int(0,0,0);
-            float noise = 0.0f;
-            bool hasCreatedFloor = false;
-            foreach (Walker curWalker in Walkers)
+            for (int y = 0; y <chunk.gridHandler.GetLength(1) - 1; y+=FillRadius)
             {
-                 curPos = new Vector3Int((int)curWalker.Position.x, (int)curWalker.Position.y, 0);
-                
-                 noise = CalcNoise(curPos.x,curPos.y, FloorScale);
-            
+                Vector3Int curPos = new Vector3Int(x,y,0);
 
                 if(chunk.gridHandler[curPos.x, curPos.y] != Grid.FLOOR  )
                 {
                     // DrawFilledCircle(curPos.x,curPos.y, FillRadius);
                     FillSurroundingCells(curPos.x,curPos.y, FillRadius, chunk);
-                     hasCreatedFloor = true;
-                }
-                
-                           
-            }
-           
-            //Walker Methods
-            // ChanceToRemove();
-            ChanceToRedirect();
-            ChanceToCreate();
-            UpdatePosition(chunk);
 
-            if (hasCreatedFloor)
-            {
-                
-                yield return new WaitForSeconds(WaitTime);
+                      yield return new WaitForSeconds(WaitTime);
+                }
             }
         }
+        // while ((float)TileCount / (float)chunk.gridHandler.Length < FillPercentage)
+        // {
+        //     Vector3Int curPos = new Vector3Int(0,0,0);
+            //  bool hasCreatedFloor = false;
+        //     foreach (Walker curWalker in Walkers)
+        //     {
+        //          curPos = new Vector3Int((int)curWalker.Position.x, (int)curWalker.Position.y, 0);
+                
+                 
+
+                
+                
+                           
+        //     }
+           
+        //     //Walker Methods
+        //     // ChanceToRemove();
+        //     ChanceToRedirect();
+        //     ChanceToCreate();
+        //     UpdatePosition(chunk);
+
+        //     if (hasCreatedFloor)
+        //     {
+                
+        //         yield return new WaitForSeconds(WaitTime);
+        //     }
+        // }
         tilemap.ResizeBounds();
          CreateStructures(chunk);
 
     }
 
-        public async void CreateStructures(Chunk chunk)
+    public async void CreateStructures(Chunk chunk)
     {
-        while (enemyStructuresGenerated  < maxEnemyStructures)
+
+        List<Vector3Int> availablePositions = new List<Vector3Int>();
+
+        foreach (Vector3Int position in tilemap.cellBounds.allPositionsWithin)
         {
-            Vector3Int curPos = new Vector3Int(0,0,0);
-            float noise = 0.0f;
-            bool hasCreatedStructure = false;
-            foreach (Walker curWalker in Walkers)
+            if (Floor == tilemap.GetTile(position))
             {
-                 curPos = new Vector3Int((int)curWalker.Position.x, (int)curWalker.Position.y, 0);
+                float xPow = Mathf.Pow(chunk.ChunkCenter.x-position.x,2f);
+                float yPow = Mathf.Pow(chunk.ChunkCenter.y-position.y,2f);
+                float distanceFromCenter = Mathf.Sqrt(xPow+yPow);
 
-                noise = CalcNoise(curPos.x,curPos.y, 5);
+                if(distanceFromCenter > StructureDistance){
 
-                float rand = UnityEngine.Random.Range(0f, 1f);
+                    if(position.x+StructureDistance < MapWidth && position.x-StructureDistance >0 && position.y+StructureDistance<MapHeight && position.y-StructureDistance>0 ){
+                        if(availablePositions.Count>0)
+                        {
+                            bool tooClose = false;
+                            foreach(Vector3Int pos in availablePositions)
+                            {
+                                xPow = Mathf.Pow(pos.x-position.x,2f);
+                                yPow = Mathf.Pow(pos.y-position.y,2f);
+                                distanceFromCenter = Mathf.Sqrt(xPow+yPow);
+                                tooClose = distanceFromCenter < StructureDistance && tooClose == false;
+                            }
 
-                if( rand < 0.05 && chunk.gridHandler[curPos.x, curPos.y] == Grid.FLOOR)
-                {
-                    hasCreatedStructure=AddEnemyStructure(chunk,curPos);
+                            if(!tooClose)
+                            {
+                                availablePositions.Add(position); 
+                            }
+                        }
+                        else
+                        {
+                            availablePositions.Add(position); 
+                        }
 
-                }
-                
-                           
-            }
+                    }  
+                }                 
+            }               
+        }
+
+        while (enemyStructuresGenerated  < maxEnemyStructures){
+
            
-            //Walker Methods
-            // ChanceToRemove();
-            ChanceToRedirect();
-            ChanceToCreate();
-            UpdatePosition(chunk);
+            int randomIndex = UnityEngine.Random.Range(0, availablePositions.Count);
+            bool hasCreatedStructure = AddEnemyStructure(chunk,availablePositions[randomIndex]);
 
-            if (hasCreatedStructure)
+             if (hasCreatedStructure)
             {
-                
                 await Task.Delay(50);
             }
         }
+        
+
+
+            
+        // while (enemyStructuresGenerated  < maxEnemyStructures)
+        // {
+        //     Vector3Int curPos = new Vector3Int(0,0,0);
+        //     float noise = 0.0f;
+        //     bool hasCreatedStructure = false;
+        //     foreach (Walker curWalker in Walkers)
+        //     {
+        //          curPos = new Vector3Int((int)curWalker.Position.x, (int)curWalker.Position.y, 0);
+
+        //         noise = CalcNoise(curPos.x,curPos.y, 5);
+
+        //         float rand = UnityEngine.Random.Range(0f, 1f);
+
+        //         if( rand < 0.025 && chunk.gridHandler[curPos.x, curPos.y] == Grid.FLOOR)
+        //         {
+        //             
+
+        //         }
+                
+                           
+        //     }
+           
+        //     //Walker Methods
+        //     // ChanceToRemove();
+        //     ChanceToRedirect();
+        //     ChanceToCreate();
+        //     UpdatePosition(chunk);
+
+        //     if (hasCreatedStructure)
+        //     {
+                
+        //         await Task.Delay(50);
+        //     }
+        // }
         
         SaveMap(chunk);
 
@@ -470,13 +592,14 @@ public class WalkerGenerator : MonoBehaviour
 
             GameManager.Instance.SetGameData(game);
             GameObject player = Instantiate(playerPrefab, new UnityEngine.Vector3(chunk.ChunkWidth/2, chunk.ChunkHeight/2,0 ), UnityEngine.Quaternion.identity);
-
+            Vector2[] vector2s =   new Vector2[4];
+            
             GameManager.Instance.GetVirtualCamera().SetFollow(player.transform);
-
+            Instantiate(GameManager.Instance.HUDPrefab);
             GameManager.Instance.menu.Close();
             GameManager.Instance.mapGenerated =true;
 
-           
+            
            
         }
 
@@ -737,6 +860,8 @@ public class WalkerGenerator : MonoBehaviour
         }
          await Task.Yield();
     }
+
+   
     
     public bool AddEnemyStructure(Chunk chunk,Vector3Int pos){
         int rand = UnityEngine.Random.Range(0, GameManager.Instance.EnemyStructures.Length);
@@ -748,48 +873,24 @@ public class WalkerGenerator : MonoBehaviour
         for(int x =structureTilemap.cellBounds.xMin; x<structureTilemap.cellBounds.max.x; x++){
             for(int y =structureTilemap.cellBounds.yMin; y<structureTilemap.cellBounds.max.y; y++){
                 Vector3Int v = new(x,y,0);
+                
 
-                if(!chunkBounds.Contains(v)){
+                if(!chunkBounds.Contains(v) ){
                     return false;
                 }
             }
         }
 
-        if(chunk.enemyStructures.Count >0){
-            foreach(EnemyStructure es in chunk.enemyStructures){
-                Vector3Int vLower = new(
-                        structureTilemap.cellBounds.xMin - StructureDistance,
-                        structureTilemap.cellBounds.yMin - StructureDistance,
-                        0
-                     );
-                Vector3Int vUpper = new(
-                        structureTilemap.cellBounds.xMax + StructureDistance,
-                        structureTilemap.cellBounds.yMax + StructureDistance,
-                        0
-                     );
-
-                Vector3Int vUpperXLowerY = new(
-                        structureTilemap.cellBounds.xMax + StructureDistance,
-                        structureTilemap.cellBounds.yMax - StructureDistance,
-                        0
-                     );
-                    Vector3Int vLowerXUpperY = new(
-                    structureTilemap.cellBounds.xMax + StructureDistance,
-                    structureTilemap.cellBounds.yMax - StructureDistance,
-                    0
-                    );
-
-                if( es.bounds.Contains(vLower) ||
-                    es.bounds.Contains(vUpper) ||
-                    es.bounds.Contains(vUpperXLowerY) ||
-                    es.bounds.Contains(vLowerXUpperY)
-                ){
-                    return false;
-                }
+        
+            if(!CheckCellsForStructure(pos.x,pos.y,chunk, 25)){
+                return false;
             }
-        }
+        
 
         Instantiate(structure, pos, UnityEngine.Quaternion.identity, GridGameObject.transform );
+
+        SetSurroundingCellStructure(structureTilemap.cellBounds.xMin, structureTilemap.cellBounds.xMax, structureTilemap.cellBounds.yMin, structureTilemap.cellBounds.yMax,chunk);
+        chunk.gridHandler[pos.x,pos.y] = Grid.STRUCTURE;
 
         EnemyStructure enemyStructure = new EnemyStructure(pos,rand, structureTilemap.cellBounds);
         chunk.enemyStructures.Add(enemyStructure);
@@ -798,6 +899,9 @@ public class WalkerGenerator : MonoBehaviour
 
         return true;
     }
+
+   
+
 }
 
 [Serializable]

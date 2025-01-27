@@ -1,4 +1,5 @@
 
+using UnityEngine;
 public class Sequence : Node
 {
     private Node[] children;
@@ -13,7 +14,8 @@ public class Sequence : Node
         foreach (Node child in children)
         {
             NodeStatus status = child.Execute();
-            if (status != NodeStatus.Success)
+            
+            if (status == NodeStatus.Failure )
             {
                 return status; // Return failure if any child fails
             }
