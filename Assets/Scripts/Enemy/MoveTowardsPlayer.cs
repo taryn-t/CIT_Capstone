@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -11,12 +12,13 @@ public class MoveTowardsPlayer : Node
      private float detectionRange;
      private NodeStatus status;
      CapsuleCollider2D collider;
-     public float avoidanceForceMultiplier = 2f;
+     public float avoidanceForceMultiplier = 0.5f;
     public float raySpacing = 2f;
     public float maxSpeed = 10f;
     public LayerMask obstacleLayerMask;
+    private CancellationTokenSource cancellationTokenSource;
 
-    public MoveTowardsPlayer(Transform enemy, Transform player, float moveSpeed, Animator animator, Rigidbody2D body, float range, CapsuleCollider2D collider,  LayerMask layer)
+    public MoveTowardsPlayer(Transform enemy, Transform player, float moveSpeed, Animator animator, Rigidbody2D body, float range, CapsuleCollider2D collider,  LayerMask layer,CancellationTokenSource cancellationTokenSource)
     {
         enemyTransform = enemy;
         playerTransform = player;
@@ -26,9 +28,10 @@ public class MoveTowardsPlayer : Node
         detectionRange = range;
         this.collider = collider;
         obstacleLayerMask = layer;
+        this.cancellationTokenSource = cancellationTokenSource;
     }
 
-    public override NodeStatus Execute()
+    public override IEnumerator Execute(MonoBehaviour mono)
     {
         
       
@@ -41,26 +44,29 @@ public class MoveTowardsPlayer : Node
            SmoothMovement(playerTransform.position);
 
           if(status == NodeStatus.Success){
-             return status;
+            yield return status;
           }
         }
         else
         {
-            return NodeStatus.Failure;
+            yield return NodeStatus.Failure;
         }
         
         // enemyTransform.position += (Vector3)direction * speed * Time.deltaTime;
-        return NodeStatus.Running; // This action runs continuously
+        yield return NodeStatus.Running; // This action runs continuously
     }
 
     //maybe make it not async
-      async void SmoothMovement( UnityEngine.Vector2 end)
+    async void SmoothMovement( UnityEngine.Vector2 end)
     {   
-        await Task.Delay(1200);
+        
+        
+      
+         await Task.Delay(3000);
     
         Vector3Int direction = Vector3Int.RoundToInt((end-Body.position).normalized);
         UnityEngine.Vector3 dV3 = direction;
-        Debug.Log("Direction " + direction);
+     
 
         // If you really need a precision down to epsilon
         //while (!Mathf.Approximately(Vector2.Distance(Body.position, end), 0f))
@@ -71,20 +77,20 @@ public class MoveTowardsPlayer : Node
         
         // Calculate avoidance force
        
-        RaycastHit2D[] hits = new RaycastHit2D[1];
+         RaycastHit2D[] hits = new RaycastHit2D[1];
 
             UnityEngine.Vector2 rayStart = enemyTransform.position + ((int) Body.velocity.magnitude) * ((int)Time.deltaTime) * dV3;
             collider.Raycast(dV3, hits, raySpacing, obstacleLayerMask);
             UnityEngine.Vector2 avoidanceForce = UnityEngine.Vector2.zero;
             UnityEngine.Vector2 playerDirectionV =  new UnityEngine.Vector2(dV3.x,dV3.y);
-            
-            
+            Debug.DrawRay(rayStart, dV3 * raySpacing, Color.red);
+
         while(Body.position != end)
         {
-            
+           
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider != null &&!hit.collider.gameObject.CompareTag("Player"))
+                if (hit.collider != null && !hit.collider.gameObject.CompareTag("Player"))
                 {
                     float distanceToObstacle = UnityEngine.Vector2.Distance(enemyTransform.position, hit.collider.transform.position);
                     float distanceToRay =  UnityEngine.Vector2.Distance(rayStart, hit.point);
@@ -100,6 +106,9 @@ public class MoveTowardsPlayer : Node
         }
 
         Body.position = end;
+        
+     
+        
     }
 
 

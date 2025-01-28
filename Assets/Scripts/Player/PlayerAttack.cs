@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     OffsetRotation offsetRotation;
 
     CapsuleCollider2D collider;
+    Rigidbody2D body;
     
     
     
@@ -21,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         offsetRotation = new OffsetRotation();
         collider = GetComponent<CapsuleCollider2D>();
-        
+         body = GetComponent<Rigidbody2D>();
         // if(GameManager.Instance.SelectedSpell == null){
         //     GameManager.Instance.SelectedSpell.spell = GameManager.Instance.gameData.playerData.KnownSpells.slots[0].spell;
         //     SelectedSpell = GameManager.Instance.SelectedSpell.spell;
@@ -34,8 +35,8 @@ public class PlayerAttack : MonoBehaviour
     {
         
         if(GameManager.Instance.GetSpell() != null){
-            if(Input.GetKeyDown(KeyCode.Mouse0)){
-                
+            if(Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1)){
+               
                 CastSpell();
                 
             }
@@ -46,18 +47,19 @@ public class PlayerAttack : MonoBehaviour
         SelectedSpell = GameManager.Instance.SelectedSpell.spell;
         
         
-        spell.GetComponent<Animator>().runtimeAnimatorController = SelectedSpell.animator;
+
 
         
         spell.GetComponent<CastedSpell>().effect =  SelectedSpell.spellEffect;
         spell.GetComponent<CastedSpell>().damage =  SelectedSpell.damage;
         spell.GetComponent<CastedSpell>().knockback =  SelectedSpell.knockback;
-         
-
+         spell.GetComponent<CastedSpell>().caster =  gameObject.tag;
+         spell.GetComponent<CastedSpell>().spell = SelectedSpell;
         GetRotation(playerMovement.lastMotionVector);
         spell.GetComponent<CastedSpell>().rotation =  offsetRotation.rotation;
+        Vector3 pos = new(body.position.x,body.position.y,0);
         
-        Instantiate(spell, transform.position + offsetRotation.offset, offsetRotation.rotation);
+        Instantiate(spell, pos + offsetRotation.offset, offsetRotation.rotation);
 
     }
 
@@ -83,15 +85,15 @@ public class PlayerAttack : MonoBehaviour
         {
         case "left":
             offsetRotation.rotation = Quaternion.Euler(180, 0, 180 );
-            offsetRotation.offset = new Vector3(-collider.bounds.size.x*4,0,0);
+            offsetRotation.offset = new Vector3(-collider.bounds.size.x*2,0,0);
             break;
         case "right":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x,0,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,0,0);
              break;
         case "down":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,-collider.bounds.size.y,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x,-collider.bounds.size.y,0);
              break;
         case "up":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );

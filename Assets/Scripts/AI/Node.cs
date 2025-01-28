@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Node
 {
     public Animator animator;
-    public abstract NodeStatus Execute();
+    public NodeStatus currentStatus;
+    public abstract IEnumerator Execute(MonoBehaviour mono);
 }
 
 public enum NodeStatus

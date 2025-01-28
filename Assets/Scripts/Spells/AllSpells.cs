@@ -11,6 +11,7 @@ public class Spell : ScriptableObject
     [SerializeField] public SpellEffect spellEffect;
     [SerializeField] public AnimatorController animator;
     [SerializeField] public Sprite Icon;
+    [SerializeField] public Sprite[] frames;
 
 }
 

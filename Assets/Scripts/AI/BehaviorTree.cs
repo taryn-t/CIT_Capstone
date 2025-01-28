@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class BehaviorTree
 {
     private Node root;
@@ -7,9 +9,9 @@ public class BehaviorTree
         root = node;
     }
 
-    public virtual void Tick()
+    public virtual void Tick(MonoBehaviour mono)
     {
-         root?.Execute();
+         mono.StartCoroutine(root?.Execute(mono));
                    
     }
     

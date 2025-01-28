@@ -103,22 +103,24 @@ public class GameManager : MonoBehaviour
         return Instance.virtualCamera;
     }
 
-    public async void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Transform enemyTransform, Vector2 lastMotionVector,CapsuleCollider2D collider){
+    public void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider){
         
         
-        spellPrefab.GetComponent<Animator>().runtimeAnimatorController = spell.animator;
 
         
         spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;
         spellPrefab.GetComponent<CastedSpell>().damage =  spell.damage;
         spellPrefab.GetComponent<CastedSpell>().knockback =  spell.knockback;
+         spellPrefab.GetComponent<CastedSpell>().caster =  "Enemy";
          
 
         GetRotation(lastMotionVector, offsetRotation, collider);
         spellPrefab.GetComponent<CastedSpell>().rotation =  offsetRotation.rotation;
+
+        Vector3 pos = new(enemyBody.position.x,enemyBody.position.y,0);
         
-        Instantiate(spellPrefab, enemyTransform.position + offsetRotation.offset, offsetRotation.rotation);
-        await Task.Yield();
+        Instantiate(spellPrefab, pos + offsetRotation.offset, offsetRotation.rotation);
+        
     }
     
       public void GetRotation(Vector2 pos, OffsetRotation offsetRotation,CapsuleCollider2D collider){
@@ -147,11 +149,11 @@ public class GameManager : MonoBehaviour
             break;
         case "right":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x,0,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,0,0);
              break;
         case "down":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,-collider.bounds.size.y,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x,-collider.bounds.size.y,0);
              break;
         case "up":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );

@@ -23,7 +23,7 @@ public class StartPanel : MenuPanel
 
     public void NewGame()
     {
-        Debug.Log("New");
+        
         GameManager.Instance.GetMenu().ChangePanel(1);
     }
 
