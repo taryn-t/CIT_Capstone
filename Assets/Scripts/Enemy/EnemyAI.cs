@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEditor.Rendering;
@@ -28,7 +29,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool damaged = false;
    
-    private CancellationTokenSource cancellationTokenSource;
+    public CancellationTokenSource cancellationTokenSource;
     public void InitializeBehaviorTree()
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
@@ -39,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
         Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, animator, Body, detectionRange, collider, obstacleLayerMask, cancellationTokenSource);
 
-        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, collider, damaged, cancellationTokenSource);
+        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, collider, damaged);
 
         Node patrol = new Patrol(transform,moveSpeed,patrolRange, animator, Body, collider, obstacleLayerMask,cancellationTokenSource);
 
@@ -50,7 +51,7 @@ public class EnemyAI : MonoBehaviour
         behaviorTree.SetRoot(behaviorTreeRoot);
     }
 
-    public async void Movement(){
+    public void  Movement(){
        
         float horizontal = Body.velocity.x;
         float vertical = Body.velocity.y;
@@ -72,12 +73,18 @@ public class EnemyAI : MonoBehaviour
             animator.SetFloat("lastVertical",lastMotionVector.y);
         }
         body.velocity = smoothDeltaPosition / Time.deltaTime *0.01f;
-        await Task.Yield();
+       
        
 
         
        
     }
+     private void OnDestroy()
+    {
+        StopAllCoroutines();
+        cancellationTokenSource?.Cancel();
+    }
+
     
 
   

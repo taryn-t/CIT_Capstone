@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public AutoSave autoSave;
     public SpellButton SelectedSpell;
     public Tilemap baseTilemap;
+    public CursorController changeCursor;
     public bool mapGenerated = false;
      public bool saving = false;
 
@@ -103,16 +104,16 @@ public class GameManager : MonoBehaviour
         return Instance.virtualCamera;
     }
 
-    public void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider){
+    public void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider, Rigidbody2D target){
         
         
-
+       
         
         spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;
         spellPrefab.GetComponent<CastedSpell>().damage =  spell.damage;
         spellPrefab.GetComponent<CastedSpell>().knockback =  spell.knockback;
          spellPrefab.GetComponent<CastedSpell>().caster =  "Enemy";
-         
+         spellPrefab.GetComponent<CastedSpell>().target = target;
 
         GetRotation(lastMotionVector, offsetRotation, collider);
         spellPrefab.GetComponent<CastedSpell>().rotation =  offsetRotation.rotation;
@@ -120,6 +121,7 @@ public class GameManager : MonoBehaviour
         Vector3 pos = new(enemyBody.position.x,enemyBody.position.y,0);
         
         Instantiate(spellPrefab, pos + offsetRotation.offset, offsetRotation.rotation);
+        
         
     }
     
@@ -141,23 +143,23 @@ public class GameManager : MonoBehaviour
             direction= "up";
         }
 
-        switch(direction) 
+         switch(direction) 
         {
         case "left":
             offsetRotation.rotation = Quaternion.Euler(180, 0, 180 );
-            offsetRotation.offset = new Vector3(-collider.bounds.size.x*4,0,0);
+            offsetRotation.offset = new Vector3(-collider.bounds.size.x*1.5f,0,0);
             break;
         case "right":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,0,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x*1.5f,0,0);
              break;
         case "down":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x,-collider.bounds.size.y,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y,0);
              break;
         case "up":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x,collider.bounds.size.y*1.5f,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),collider.bounds.size.y*1.5f,0);
              break;
         default:
             offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );

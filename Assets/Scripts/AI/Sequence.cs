@@ -15,12 +15,15 @@ public class Sequence : Node
         foreach (Node child in children)
         {
             CoroutineWithData cd = new CoroutineWithData(mono, child.Execute( mono) );
-            NodeStatus status = (NodeStatus)cd.result;
+            var status = cd.result;
             
-            if (status == NodeStatus.Failure )
-            {
-               yield return status; // Return failure if any child fails
+            if(status is NodeStatus){
+                 if ((NodeStatus)status == NodeStatus.Failure )
+                {
+                    yield return status; // Return failure if any child fails
+                }
             }
+           
         }
         yield return NodeStatus.Success; // All children succeeded
     }

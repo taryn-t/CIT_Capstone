@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Enemy : EnemyAI{
 
@@ -35,11 +38,17 @@ public class Enemy : EnemyAI{
     private Color startColor;
     private SpriteRenderer renderer;
     Collider2D[] results ={};
+    Light2D damageGlow;
 
     ContactFilter2D cf;
     
+    void Awake(){
+        damageGlow= GetComponentInChildren<Light2D>();
+        damageGlow.intensity = 0;
+    }
 
     void Start(){
+        
          Body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         behaviorTree = new BehaviorTree();
@@ -55,16 +64,23 @@ public class Enemy : EnemyAI{
     }
 
     void DestroyEnemy(){
-        Destroy(this);
+        animator.SetBool("damage",true);
+        Destroy(gameObject,1f);  
     }
      void Update()
     {
+        if(Health==0){
+            DestroyEnemy();
+        }
+
+         
+
         
         
        
     }
     void FixedUpdate(){
-
+        
          behaviorTree.Tick(this);
 
          Movement();
@@ -73,24 +89,48 @@ public class Enemy : EnemyAI{
 
 
 
-    public async void TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect){
-        damaged = true;
-        Health -= damage;
-        DamageEffect(spellEffect);
+    public async void  TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect){
+        cancellationTokenSource = new CancellationTokenSource();
+        try
+        {
+            damaged = true;
+            Health -= damage;
+            DamageEffect(spellEffect);
+
+            if(!animator.GetBool("damage")){
+                animator.SetBool("damage",true);
+                damageGlow.intensity = 1f;
+            }
+            
+            GetComponent<Rigidbody2D>().AddForce(direction*knockback);
+
+            // if(damaged && Health % healthSprites.Length-1 == 0 && Health > 0){ 
+            //     healthIndex++;
+            //     healthMeter.sprite = healthSprites[healthIndex];
+            // }
+            startTime = Time.time;
+            
+            await Task.Delay(1000,cancellationTokenSource.Token);
+            
+            animator.SetBool("damage",false); 
+            damageGlow.intensity = 0;
+            damaged=false;
+                
+            
+            await Task.Yield();
+            
+        }
+        catch
+        {
+            
+            return;
+        }
+        finally
+        {
+            cancellationTokenSource.Dispose();
+            cancellationTokenSource = null;
+        }
         
-        GetComponent<Rigidbody2D>().AddForce(direction*knockback);
-
-        if(Health % healthSprites.Length == 0){
-            healthIndex++;
-            healthMeter.sprite = healthSprites[healthIndex];
-       }
-       startTime = Time.time;
-
-       await DamageColor();
-
-       damaged=true;
-
-       await Task.Yield();
     }
 
     public void DamageEffect(SpellEffect spellEffect){
@@ -119,45 +159,9 @@ public class Enemy : EnemyAI{
         Health -= 2;
     }
 
-    public async Task DamageColor(){
-        
-        int duration = 5;
-        float t1 = Mathf.PingPong(Time.time - startTime, 1) / duration;
-        float t2 = (Mathf.Cos( ( (Time.time - startTime) + duration ) * Mathf.PI / duration ) + 1 ) * 0.5f;
-
-    // Use t2 instead of t1 if you want smoother interpolation
-    
-        
-        renderer.color = Color.Lerp(startColor, endColor, t2);
-        
-        await Task.Delay(1500);
-        
-
-
-        
-    }
+ 
 
  
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Spell");
-        //  if(collision.gameObject.CompareTag("Enemy"))
-        // {
-        //     Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        //     CastedSpell spell = collision.gameObject.GetComponent<CastedSpell>();
-        //     enemy.TakeDamage(spell.damage,spell.knockback,spell.direction,spell.effect);
-        //     Debug.Log(enemy.Health);
-        //     Destroy(collision.gameObject);
-        // }
-        
-        // if(collision.gameObject.CompareTag("Player"))
-        // {
-        //     PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-        //     CastedSpell spell = collision.gameObject.GetComponent<CastedSpell>();
-        //     player.TakeDamage(spell.damage,spell.knockback,spell.direction,spell.effect);
-        //     Debug.Log(player.Health);
-        //     Destroy(collision.gameObject);
-        // }
-    }
+  
 }
