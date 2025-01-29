@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CheckPlayerInRange : Node
@@ -13,10 +14,10 @@ public class CheckPlayerInRange : Node
         detectionRange = range;
     }
 
-    public override NodeStatus Execute()
+    public override IEnumerator Execute(MonoBehaviour mono)
     {
         Debug.Log("Checking if in range");
         float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
-        return distance <= detectionRange ? NodeStatus.Success : NodeStatus.Failure;
+        yield return distance <= detectionRange ? NodeStatus.Success : NodeStatus.Failure;
     }
 }

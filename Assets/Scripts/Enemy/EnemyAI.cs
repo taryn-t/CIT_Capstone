@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -7,9 +9,9 @@ public class EnemyAI : MonoBehaviour
     public BehaviorTree behaviorTree;
 
     public float attackRange = 1f;
-    public float patrolRange = 1f;
-    public float detectionRange = 5f;
-    public float moveSpeed = 1f;
+    public float patrolRange = 0.5f;
+    public float detectionRange = 2f;
+    public float moveSpeed = 0.2f;
     public Animator animator;
 
     [SerializeField] public Spell spellAttack;
@@ -25,31 +27,32 @@ public class EnemyAI : MonoBehaviour
     public bool moving;
     public CapsuleCollider2D collider;
 
-    
+    public bool damaged = false;
    
-
+    public CancellationTokenSource cancellationTokenSource;
     public void InitializeBehaviorTree()
     {
+        Rigidbody2D body = GetComponent<Rigidbody2D>();
         Transform playerTransform = GameManager.Instance.player.transform;
-       
+        Rigidbody2D playerbody = GameManager.Instance.player.GetComponent<Rigidbody2D>();
 
         Node checkPlayerInRange = new CheckPlayerInRange(transform, playerTransform, detectionRange);
 
-        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, animator, Body, detectionRange, collider, obstacleLayerMask);
+        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, animator, Body, detectionRange, collider, obstacleLayerMask, cancellationTokenSource);
 
-        Node attackPlayer = new AttackPlayer(transform,playerTransform,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, collider);
+        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, collider, damaged);
 
-        Node patrol = new Patrol(transform,moveSpeed,patrolRange, animator, Body, collider, obstacleLayerMask);
+        Node patrol = new Patrol(transform,moveSpeed,patrolRange, animator, Body, collider, obstacleLayerMask,cancellationTokenSource);
 
-        Node[] sequenceNodes = { patrol, moveTowardsPlayer, attackPlayer };
+        Node[] sequenceNodes = {  moveTowardsPlayer, attackPlayer,patrol };
         
         Node behaviorTreeRoot = new Sequence(sequenceNodes);
         
         behaviorTree.SetRoot(behaviorTreeRoot);
     }
 
-    public async void Movement(){
-        
+    public void  Movement(){
+       
         float horizontal = Body.velocity.x;
         float vertical = Body.velocity.y;
         
@@ -70,8 +73,19 @@ public class EnemyAI : MonoBehaviour
             animator.SetFloat("lastVertical",lastMotionVector.y);
         }
         body.velocity = smoothDeltaPosition / Time.deltaTime *0.01f;
-        await Task.Yield();
+       
+       
+
+        
+       
     }
+     private void OnDestroy()
+    {
+        StopAllCoroutines();
+        cancellationTokenSource?.Cancel();
+    }
+
+    
 
   
 }

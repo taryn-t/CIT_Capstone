@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     
     void Update(){
         if(Health==0){
-            DestroyPlayer();
+            // DestroyPlayer();
         }
     }
 
@@ -64,4 +64,6 @@ public class PlayerController : MonoBehaviour
    public void Poison(){
         Health -= 2;
     }
+
+   
 }

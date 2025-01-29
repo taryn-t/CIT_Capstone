@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 public class Sequence : Node
 {
@@ -9,17 +10,21 @@ public class Sequence : Node
         children = nodes;
     }
 
-    public override NodeStatus Execute()
+    public override IEnumerator Execute(MonoBehaviour mono)
     {
         foreach (Node child in children)
         {
-            NodeStatus status = child.Execute();
+            CoroutineWithData cd = new CoroutineWithData(mono, child.Execute( mono) );
+            var status = cd.result;
             
-            if (status == NodeStatus.Failure )
-            {
-                return status; // Return failure if any child fails
+            if(status is NodeStatus){
+                 if ((NodeStatus)status == NodeStatus.Failure )
+                {
+                    yield return status; // Return failure if any child fails
+                }
             }
+           
         }
-        return NodeStatus.Success; // All children succeeded
+        yield return NodeStatus.Success; // All children succeeded
     }
 }

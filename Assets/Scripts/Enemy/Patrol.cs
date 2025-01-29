@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Numerics;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -15,12 +16,14 @@ public class Patrol : Node
     public float walkPointRange;
     Rigidbody2D Body;
     CapsuleCollider2D collider ;
-    public float avoidanceForceMultiplier = 2f;
+    public float avoidanceForceMultiplier = 0.5f;
     public float raySpacing = 2f;
     public float maxSpeed = 10f;
     public LayerMask obstacleLayerMask;
+    private CancellationTokenSource cancellationTokenSource;
+    Vector3Int lastDirection;
 
-    public Patrol(Transform enemy, float moveSpeed, float range, Animator animator, Rigidbody2D body, CapsuleCollider2D collider, LayerMask layer )
+    public Patrol(Transform enemy, float moveSpeed, float range, Animator animator, Rigidbody2D body, CapsuleCollider2D collider, LayerMask layer, CancellationTokenSource cancellationTokenSource )
     {
         enemyTransform = enemy;
        
@@ -30,18 +33,20 @@ public class Patrol : Node
         Body = body;
         this.collider = collider;
         obstacleLayerMask = layer;
+        this.cancellationTokenSource = cancellationTokenSource;
         
     }
 
-    public override NodeStatus Execute()
+    public override IEnumerator Execute(MonoBehaviour mono)
     {
-        Debug.Log("Patrol");
-        if (!walkPointSet){ SearchWalkPoint(); }
+        cancellationTokenSource = new CancellationTokenSource();
+   
+        if (!walkPointSet){ SearchWalkPoint(cancellationTokenSource); }
 
         if (walkPointSet){
-            Debug.Log("Walk point "+walkPoint);
+            
            
-            SmoothMovement(walkPoint);
+            SmoothMovement(walkPoint,cancellationTokenSource);
 
             // enemyTransform.position += speed * Time.deltaTime * (Vector3)direction;
         }
@@ -49,32 +54,36 @@ public class Patrol : Node
 
           if (distanceToWalkPoint.magnitude < 1f){
                 walkPointSet = false;   
-                return NodeStatus.Success;
+                yield return NodeStatus.Success;
           }
             
-        return NodeStatus.Running; // This action runs continuously
+        yield return NodeStatus.Running; // This action runs continuously
     }
 
     
 
-     async void SmoothMovement( UnityEngine.Vector2 end)
+     async void SmoothMovement( UnityEngine.Vector2 end, CancellationTokenSource cancellation)
     {   
-        await Task.Delay(1200);
+        
+
+        try
+        {
+           await Task.Delay(3000, cancellation.Token);
     
-        Vector3Int direction = Vector3Int.RoundToInt((end-Body.position).normalized);
-        UnityEngine.Vector3 dV3 = direction;
-        Debug.Log("Direction " + direction);
-
-        // If you really need a precision down to epsilon
-        //while (!Mathf.Approximately(Vector2.Distance(Body.position, end), 0f))
-        // otherwise for most use cases in physics the default precision of 
-        // 0.00001f should actually be enough
-
+            Vector3Int direction = Vector3Int.RoundToInt((end-Body.position).normalized);
+            UnityEngine.Vector3 dV3 = direction;
         
+
+            // If you really need a precision down to epsilon
+            //while (!Mathf.Approximately(Vector2.Distance(Body.position, end), 0f))
+            // otherwise for most use cases in physics the default precision of 
+            // 0.00001f should actually be enough
+
+            
+            
+            // Calculate avoidance force
         
-        // Calculate avoidance force
-       
-         RaycastHit2D[] hits = new RaycastHit2D[1];
+            RaycastHit2D[] hits = new RaycastHit2D[1];
 
             UnityEngine.Vector2 rayStart = enemyTransform.position + ((int) Body.velocity.magnitude) * ((int)Time.deltaTime) * dV3;
             collider.Raycast(dV3, hits, raySpacing, obstacleLayerMask);
@@ -82,57 +91,98 @@ public class Patrol : Node
             UnityEngine.Vector2 playerDirectionV =  new UnityEngine.Vector2(dV3.x,dV3.y);
             Debug.DrawRay(rayStart, dV3 * raySpacing, Color.red);
 
-        while(Body.position != end)
-        {
-           
-            foreach (RaycastHit2D hit in hits)
+            while(Body.position != end)
             {
-                if (hit.collider != null && !hit.collider.gameObject.CompareTag("Player"))
+            
+                foreach (RaycastHit2D hit in hits)
                 {
-                    float distanceToObstacle = UnityEngine.Vector2.Distance(enemyTransform.position, hit.collider.transform.position);
-                    float distanceToRay =  UnityEngine.Vector2.Distance(rayStart, hit.point);
-                    avoidanceForce +=  UnityEngine.Vector2.Lerp(playerDirectionV, hit.normal, distanceToRay / distanceToObstacle) * avoidanceForceMultiplier;
+                    if (hit.collider != null && !hit.collider.gameObject.CompareTag("Player"))
+                    {
+                        float distanceToObstacle = UnityEngine.Vector2.Distance(enemyTransform.position, hit.collider.transform.position);
+                        float distanceToRay =  UnityEngine.Vector2.Distance(rayStart, hit.point);
+                        avoidanceForce +=  UnityEngine.Vector2.Lerp(playerDirectionV, hit.normal, distanceToRay / distanceToObstacle) * avoidanceForceMultiplier;
+                    }
                 }
+
+                Body.AddForce(avoidanceForce);
+
+                Body.AddForce(dV3 * speed, ForceMode2D.Impulse);
+            
+                await Task.Delay(1200, cancellation.Token);
             }
-
-            Body.AddForce(avoidanceForce);
-
-            Body.AddForce(dV3 * speed, ForceMode2D.Impulse);
-           
-            await Task.Delay(1200);
+            lastDirection = direction;
+            Body.position = end;
+        
         }
-
-        Body.position = end;
+        catch
+        {
+            
+            return;
+        }
+        finally
+        {
+            cancellation.Dispose();
+            cancellation = null;
+        }
+        
     }
 
-     private async void SearchWalkPoint()
+     private async void SearchWalkPoint(CancellationTokenSource cancellation)
     {
-        System.Random rnd = new();
-        // Calculate random point in range
-        float randomY = rnd.Next((int)-walkPointRange, (int)walkPointRange);
-        float randomX = rnd.Next((int)-walkPointRange,(int) walkPointRange);
-
-        int maxX = GameManager.Instance.baseTilemap.cellBounds.xMax;
-        int maxY = GameManager.Instance.baseTilemap.cellBounds.yMax;
-        int minX = GameManager.Instance.baseTilemap.cellBounds.xMin;
-        int minY = GameManager.Instance.baseTilemap.cellBounds.yMin;
-
-        UnityEngine.Vector3Int maxCell = new UnityEngine.Vector3Int(maxX,maxY);
-        UnityEngine.Vector3Int minCell = new UnityEngine.Vector3Int(minX,minY);
-        
-        UnityEngine.Vector3 maxWorld = GameManager.Instance.baseTilemap.CellToWorld(maxCell);
-        UnityEngine.Vector3 minWorld = GameManager.Instance.baseTilemap.CellToWorld(minCell);
-
-        int xClamp = (int)Mathf.Clamp(Body.position.x + randomX, minWorld.x+10, maxWorld.x-10);
-        int yClamp =(int)Mathf.Clamp(Body.position.y + randomY, minWorld.y+10,maxWorld.y-10);
 
         
+          try
+        {
+            await Task.Delay(500, cancellation.Token);
 
-        walkPoint = new UnityEngine.Vector2(xClamp, yClamp);
+
+            System.Random rnd = new();
+            // Calculate random point in range
+            float randomY = rnd.Next((int)-walkPointRange, (int)walkPointRange);
+            float randomX = rnd.Next((int)-walkPointRange,(int) walkPointRange);
+
+            int maxX = GameManager.Instance.baseTilemap.cellBounds.xMax;
+            int maxY = GameManager.Instance.baseTilemap.cellBounds.yMax;
+            int minX = GameManager.Instance.baseTilemap.cellBounds.xMin;
+            int minY = GameManager.Instance.baseTilemap.cellBounds.yMin;
+
+            UnityEngine.Vector3Int maxCell = new UnityEngine.Vector3Int(maxX,maxY);
+            UnityEngine.Vector3Int minCell = new UnityEngine.Vector3Int(minX,minY);
+            
+            UnityEngine.Vector3 maxWorld = GameManager.Instance.baseTilemap.CellToWorld(maxCell);
+            UnityEngine.Vector3 minWorld = GameManager.Instance.baseTilemap.CellToWorld(minCell);
+
+            int xClamp = (int)Mathf.Clamp(Body.position.x + randomX, minWorld.x+10, maxWorld.x-10);
+            int yClamp =(int)Mathf.Clamp(Body.position.y + randomY, minWorld.y+10,maxWorld.y-10);
+
+            
+
+            walkPoint = new UnityEngine.Vector2(xClamp, yClamp);
+            
+            Vector3Int direction = Vector3Int.RoundToInt((walkPoint-Body.position).normalized);
+
+            if(direction != lastDirection){
+                walkPointSet = IsGround();
+                
+            }
+            else{
+                walkPointSet=false;
+            }
+
+            await Task.Yield();
+            
+        }
+        catch
+        {
+           
+            return;
+        }
+        finally
+        {
+            cancellation.Dispose();
+            cancellation = null;
+        }
         
-        
-        walkPointSet = IsGround();
-        await Task.Yield();
     }
 
     private bool IsGround(){

@@ -103,7 +103,7 @@ public class WalkerGenerator : MonoBehaviour
 
 
     public void LoadMap(string saveGame){
-        
+        GameManager.Instance.changeCursor.Loading();
         GameManager.Instance.menu.ChangePanel(4);
         key = saveGame;
         game = games.data.FirstOrDefault(m=>m.name == saveGame);
@@ -144,12 +144,13 @@ public class WalkerGenerator : MonoBehaviour
         GameManager.Instance.menu.Close();
         GameManager.Instance.dayTimeController.time = game.gameTime;
         GameManager.Instance.dayTimeController.days = game.daysPlayed;
+        GameManager.Instance.changeCursor.Default();
 
     }
 
    public void StartGeneration(string seed, string gameName, GameObject go)
    {
-        
+        GameManager.Instance.changeCursor.Default();
         GameManager.Instance.menu.ChangePanel(4);
         key = gameName;
         
@@ -598,6 +599,7 @@ public class WalkerGenerator : MonoBehaviour
             Instantiate(GameManager.Instance.HUDPrefab);
             GameManager.Instance.menu.Close();
             GameManager.Instance.mapGenerated =true;
+            GameManager.Instance.changeCursor.Default();
 
             
            
@@ -1010,7 +1012,7 @@ public class Chunk{
         }
        
         
-        AddColliders(baseTilemap);
+        
         
          
       }
@@ -1026,9 +1028,6 @@ public class Chunk{
                 if(gridHandler[xClamp, yClamp] == Grid.EMPTY){
                     Vector3Int pos = new Vector3Int(xClamp,yClamp,0);
                     tilemap.SetColliderType( pos, Tile.ColliderType.Grid); 
-                }else{
-                    Vector3Int pos = new Vector3Int(xClamp,yClamp,0);
-                    tilemap.SetColliderType( pos, Tile.ColliderType.None); 
                 }
                
             }

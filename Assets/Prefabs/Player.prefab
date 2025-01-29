@@ -75,7 +75,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &5380652331008239894
 MonoBehaviour:
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e76c12b19094846acced01e2546e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0.1
   moving: 0
   moveInput: {x: 0, y: 0}
   lastMotionVector: {x: 0, y: 0}
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65fb4d3b60f8cb46af72559081cf475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedSpell: {fileID: 0}
+  SelectedSpell: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
   spell: {fileID: 5517673009184086772, guid: 0b938f1c75886bd4080f15524824e771, type: 3}
 --- !u!70 &1266603835986966416
 CapsuleCollider2D:

@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,763 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14256ee550124ad4781a21459ba312f4
+      internalID: -1700536870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 271
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce4c7a0180c1594f9ae35984c088f98
+      internalID: 554553156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_5
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 270
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7004b405eab1f6b4c9ebf18df4db0834
+      internalID: -1695033658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_6
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 274
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf77ca2828e4e3e42afa11106b2417b2
+      internalID: -1570187447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_7
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 274
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f066edcc7630ff48a56760a0378eef3
+      internalID: -1269332946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 274
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16f8298b35ef96c43b478bf6798ac128
+      internalID: -517119354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a29894e2a00f742bedaf391a7dd9f5
+      internalID: 1426130624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_10
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5aba68ab70b0c14aaae83da52021828
+      internalID: 1988471427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_11
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9db488c76b1f124fa67c4d922a406ed
+      internalID: 49735917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8086b916f4a5e884f93ae5be0a75db54
+      internalID: 1001564468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_15
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85190e4e9b77f134d951ef41db60830e
+      internalID: -658357203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_16
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffa336d8f2ced845b3a4bf5b4bd2012
+      internalID: 595549774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_18
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 188
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48e6ccddb0491aa428e212d64843ad85
+      internalID: 493276921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_20
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 189
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83b5d88be61dd64cbeff927eedf5349
+      internalID: -499478426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_21
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 189
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf857aff5b5fb3d488e45a9120d79ab0
+      internalID: 40303360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 191
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f09907598ce570840808a83df4d1ae51
+      internalID: -1545058036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_23
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 191
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cf1c1ec710a240409088cb54a69e46e
+      internalID: 159304632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_24
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487427d0e4e234b448075d0fbebb1886
+      internalID: -1430699947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5536d78932c8e964a9d15917e1dcb41c
+      internalID: -1412991090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_31
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3224791b47c8a6f41bb0c2e9749a9337
+      internalID: -1750706135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_32
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 944b1ce8bba3bf04dbe623c476bb71fb
+      internalID: -2058563608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_34
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9f819a836a85e4dab4d823bc92760d
+      internalID: 1164559360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_36
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b594ea49f689b4a9448ab5a424c9a1
+      internalID: -966767434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_38
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955d8361ede22284896d36826427da16
+      internalID: 331679389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_39
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ce23c978443b34e8224d51e51b4ccf
+      internalID: 1560380942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_40
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 751c7dfc507f09b439c833deec4d6131
+      internalID: 1162499983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_41
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d4481ab257ce042b907eea53afaf36
+      internalID: -508859120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_43
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfcf653d7f3b7f46a2a2365bf376204
+      internalID: 1641627080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_44
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2643c70356bd7f4381651464272e024
+      internalID: 731934850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_45
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3eb40d3a947bff41b78339c8b73a5db
+      internalID: 979215212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_46
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64208c5d78b08484f995e5cce668168e
+      internalID: -397950708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_48
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86fb20a36b6016f4c9bb917c78cb09b4
+      internalID: -1032971851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_50
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656daf3b9af1033498e4a3be91fe069a
+      internalID: 1654187395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_52
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64094bf626c0802489768fa82ab65bea
+      internalID: 1198188214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_53
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84e44f432ad6694d857a94e63bc6285
+      internalID: -758932202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Odderf Attack (One Hand Weapons)_54
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d68cd7c7de958a408300c835b314093
+      internalID: 2143149758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +862,62 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Odderf Attack (One Hand Weapons)_0: -1683018037
+      Odderf Attack (One Hand Weapons)_1: 2043581853
+      Odderf Attack (One Hand Weapons)_10: 1988471427
+      Odderf Attack (One Hand Weapons)_11: 49735917
+      Odderf Attack (One Hand Weapons)_12: 2058433244
+      Odderf Attack (One Hand Weapons)_13: -180082135
+      Odderf Attack (One Hand Weapons)_14: 1001564468
+      Odderf Attack (One Hand Weapons)_15: -658357203
+      Odderf Attack (One Hand Weapons)_16: 595549774
+      Odderf Attack (One Hand Weapons)_17: -623737934
+      Odderf Attack (One Hand Weapons)_18: 493276921
+      Odderf Attack (One Hand Weapons)_19: 1681250947
+      Odderf Attack (One Hand Weapons)_2: 1550683733
+      Odderf Attack (One Hand Weapons)_20: -499478426
+      Odderf Attack (One Hand Weapons)_21: 40303360
+      Odderf Attack (One Hand Weapons)_22: -1545058036
+      Odderf Attack (One Hand Weapons)_23: 159304632
+      Odderf Attack (One Hand Weapons)_24: -1430699947
+      Odderf Attack (One Hand Weapons)_25: 1174583216
+      Odderf Attack (One Hand Weapons)_26: 1939740637
+      Odderf Attack (One Hand Weapons)_27: 451809662
+      Odderf Attack (One Hand Weapons)_28: 445084901
+      Odderf Attack (One Hand Weapons)_29: -679221809
+      Odderf Attack (One Hand Weapons)_3: -1700536870
+      Odderf Attack (One Hand Weapons)_30: -1412991090
+      Odderf Attack (One Hand Weapons)_31: -1750706135
+      Odderf Attack (One Hand Weapons)_32: -2058563608
+      Odderf Attack (One Hand Weapons)_33: 1479706692
+      Odderf Attack (One Hand Weapons)_34: 1164559360
+      Odderf Attack (One Hand Weapons)_35: -2045794939
+      Odderf Attack (One Hand Weapons)_36: -966767434
+      Odderf Attack (One Hand Weapons)_37: 1522461728
+      Odderf Attack (One Hand Weapons)_38: 331679389
+      Odderf Attack (One Hand Weapons)_39: 1560380942
+      Odderf Attack (One Hand Weapons)_4: 554553156
+      Odderf Attack (One Hand Weapons)_40: 1162499983
+      Odderf Attack (One Hand Weapons)_41: -508859120
+      Odderf Attack (One Hand Weapons)_42: -649224507
+      Odderf Attack (One Hand Weapons)_43: 1641627080
+      Odderf Attack (One Hand Weapons)_44: 731934850
+      Odderf Attack (One Hand Weapons)_45: 979215212
+      Odderf Attack (One Hand Weapons)_46: -397950708
+      Odderf Attack (One Hand Weapons)_47: 366354841
+      Odderf Attack (One Hand Weapons)_48: -1032971851
+      Odderf Attack (One Hand Weapons)_49: 1121930969
+      Odderf Attack (One Hand Weapons)_5: -1695033658
+      Odderf Attack (One Hand Weapons)_50: 1654187395
+      Odderf Attack (One Hand Weapons)_51: 187897175
+      Odderf Attack (One Hand Weapons)_52: 1198188214
+      Odderf Attack (One Hand Weapons)_53: -758932202
+      Odderf Attack (One Hand Weapons)_54: 2143149758
+      Odderf Attack (One Hand Weapons)_6: -1570187447
+      Odderf Attack (One Hand Weapons)_7: -1269332946
+      Odderf Attack (One Hand Weapons)_8: -517119354
+      Odderf Attack (One Hand Weapons)_9: 1426130624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

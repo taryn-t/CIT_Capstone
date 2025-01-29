@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class AttackPlayer : Node
 {
-    private Transform enemyTransform;
-    private Transform playerTransform;
+    private Rigidbody2D enemyBody;
+    private Rigidbody2D playerBody;
     private float attackRange;
 
     private Spell spell;
@@ -12,11 +15,15 @@ public class AttackPlayer : Node
     CapsuleCollider2D collider;
     GameObject spellPrefab;
     Vector2 lastMotionVector;
+    bool damaged;
+    bool attack;
 
-    public AttackPlayer(Transform enemy, Transform player, float range, Animator animator, Spell spell, GameObject spellPrefab, Vector2 lastMotionVector, CapsuleCollider2D collider)
+   
+    
+    public AttackPlayer(Rigidbody2D enemy, Rigidbody2D player, float range, Animator animator, Spell spell, GameObject spellPrefab, Vector2 lastMotionVector, CapsuleCollider2D collider, bool damaged)
     {
-        enemyTransform = enemy;
-        playerTransform = player;
+        enemyBody = enemy;
+        playerBody = player;
         attackRange = range;
         this.animator = animator;
         this.spell = spell;
@@ -24,67 +31,35 @@ public class AttackPlayer : Node
         this.lastMotionVector = lastMotionVector;
         this.collider = collider;
         offsetRotation = new OffsetRotation();
+        this.damaged = damaged;
+
+       
 
     }
 
-    public override NodeStatus Execute()
+    public override IEnumerator Execute(MonoBehaviour mono)
     {
+  
         
-        float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
-        if (distance <= attackRange)
+        float distance = Vector2.Distance(enemyBody.position, playerBody.position);
+        if (distance <= attackRange && !attack)
         {
-            Debug.Log("Attacking player");
-            // Implement attack logic here
-            GameManager.Instance.CastSpellEnemy(spellPrefab,spell,offsetRotation,enemyTransform,lastMotionVector,collider);
+
+            if(!animator.GetBool("attack")){
+                animator.SetBool("attack",true);
+            }
             
-            return NodeStatus.Success;
+            // Implement attack logic here
+            GameManager.Instance.CastSpellEnemy(spellPrefab,spell,offsetRotation,enemyBody,lastMotionVector,collider,playerBody);
+            attack=true;
+            yield return new WaitForSeconds(1f);
+            
+            animator.SetBool("attack",false);
+            attack=false;
+            yield return NodeStatus.Success;
         }
 
-        return NodeStatus.Failure;
+        yield return NodeStatus.Failure;
     }
 
-
-    public void GetRotation(Vector2 pos){
-
-        
-        string direction = "";
-
-        if(pos == Vector2.left){
-            direction= "left";
-        }
-        else if(pos == Vector2.right){
-            direction= "right";
-        }
-        else if(pos == Vector2.down){
-            direction= "down";
-        }
-        else if(pos == Vector2.up){
-            direction= "up";
-        }
-
-        switch(direction) 
-        {
-        case "left":
-            offsetRotation.rotation = Quaternion.Euler(180, 0, 180 );
-            offsetRotation.offset = new Vector3(-collider.bounds.size.x*4,0,0);
-            break;
-        case "right":
-             offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x,0,0);
-             break;
-        case "down":
-             offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x*2,-collider.bounds.size.y,0);
-             break;
-        case "up":
-             offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x,collider.bounds.size.y*1.5f,0);
-             break;
-        default:
-            offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
-            break;
-        }
-
-
-    }
 }

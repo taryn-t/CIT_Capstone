@@ -16,7 +16,7 @@ public class SpellButton : MonoBehaviour
     void Start(){
        foreach(Transform transform in transform){
          icon = transform.gameObject.GetComponent<Image>();
-         Debug.Log(icon);
+         
        }
     }
 
