@@ -42,6 +42,8 @@ public class Enemy : EnemyAI{
 
     ContactFilter2D cf;
     
+   CancellationTokenSource damageCancellation;
+    
     void Awake(){
         damageGlow= GetComponentInChildren<Light2D>();
         damageGlow.intensity = 0;
@@ -53,7 +55,7 @@ public class Enemy : EnemyAI{
         animator = GetComponent<Animator>();
         behaviorTree = new BehaviorTree();
         lastMotionVector = Body.position.normalized;
-        collider = GetComponent<CapsuleCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
         renderer = GetComponent<SpriteRenderer>();
         startColor = renderer.color;
 
@@ -62,10 +64,20 @@ public class Enemy : EnemyAI{
         InitializeBehaviorTree();
         
     }
+      private void OnDestroy()
+    {
+        
+        damageCancellation?.Cancel();
+    }
 
     void DestroyEnemy(){
+
         animator.SetBool("damage",true);
-        Destroy(gameObject,1f);  
+        
+        GameManager.Instance.totalEnemies--;
+        
+        Destroy(gameObject);  
+
     }
      void Update()
     {
@@ -90,7 +102,7 @@ public class Enemy : EnemyAI{
 
 
     public async void  TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect){
-        cancellationTokenSource = new CancellationTokenSource();
+        damageCancellation = new CancellationTokenSource();
         try
         {
             damaged = true;
@@ -102,7 +114,7 @@ public class Enemy : EnemyAI{
                 damageGlow.intensity = 1f;
             }
             
-            GetComponent<Rigidbody2D>().AddForce(direction*knockback);
+            Body.AddForce(direction*knockback, ForceMode2D.Impulse);
 
             // if(damaged && Health % healthSprites.Length-1 == 0 && Health > 0){ 
             //     healthIndex++;
@@ -110,14 +122,14 @@ public class Enemy : EnemyAI{
             // }
             startTime = Time.time;
             
-            await Task.Delay(1000,cancellationTokenSource.Token);
+            await Task.Delay(1000,damageCancellation.Token);
             
             animator.SetBool("damage",false); 
             damageGlow.intensity = 0;
             damaged=false;
                 
             
-            await Task.Yield();
+           await Task.Delay(500,damageCancellation.Token);
             
         }
         catch
@@ -127,8 +139,11 @@ public class Enemy : EnemyAI{
         }
         finally
         {
-            cancellationTokenSource.Dispose();
-            cancellationTokenSource = null;
+            if(damageCancellation != null){
+                damageCancellation.Dispose();
+                damageCancellation = null;
+            }
+            
         }
         
     }

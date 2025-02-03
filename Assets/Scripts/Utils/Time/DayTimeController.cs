@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class DayTimeController : MonoBehaviour
 {
-    const float secondsInDay = 86400f; 
-    const float daysInMonth = 28;
-     string[] daysOfTheWeek = {"Sunday", "Monday", "Tuesday", "Wendnesday", "Thursday", "Friday", "Saturday"};
+    // const float secondsInDay = 86400f; 
+    // const float daysInMonth = 28;
+    //  string[] daysOfTheWeek = {"Sunday", "Monday", "Tuesday", "Wendnesday", "Thursday", "Friday", "Saturday"};
     public  float time;
-    const float phaseLength = 1200f; //20 minutes
-    const float phasesInDay = 72f; //72 segments of 20 minutes in a day  const float phasesInDay = 72f; //72 segments of 20 minutes in a day
-    [SerializeField] float morningTime = 28800f;
+    [SerializeField] private float phaseLength = 60f; //20 minutes
+    // const float phasesInDay = 72f; //72 segments of 20 minutes in a day  const float phasesInDay = 72f; //72 segments of 20 minutes in a day
+    // [SerializeField] float morningTime = 28800f;
     [SerializeField] Color nightLightColor;
     [SerializeField] Color dayLightColor = Color.white;
     [SerializeField] AnimationCurve nightTimeCurve;
 
-    [SerializeField] float timeScale =500f;
+    private float timeScale = 60f;
     [SerializeField] GameObject AutoSave;
     public  Light2D globalLight;
   
@@ -26,7 +26,7 @@ public class DayTimeController : MonoBehaviour
     public  int days =1;
     List<TimeAgent> agents;
     TimeAgent saveAgent;
-    [SerializeField] float startAtTime = 28800f;
+    private float startAtTime = 0f;
 
     int oldPhase =-1;
 
@@ -49,7 +49,7 @@ public class DayTimeController : MonoBehaviour
         
         GameManager.Instance.SetDayTime(this.gameObject);
 
-        time = morningTime;
+        time = startAtTime;
                     
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -69,21 +69,21 @@ public class DayTimeController : MonoBehaviour
      void Update(){
       
         if(GameManager.Instance.mapGenerated){
-            time+= Time.deltaTime *timeScale;
+            time+= Time.deltaTime ;
             int hh = (int) Hours;
             int mm = (int)Minutes;
         
-            var (h, amPmDesignator) = hh switch
-                {
-                    0 => (12, "AM"),
-                    12 => (12, "PM"),
-                    > 12 => (hh - 12, "PM"),
-                    _ => (hh, "AM"),
-                };
+            // var (h, amPmDesignator) = hh switch
+            //     {
+            //         0 => (12, "AM"),
+            //         12 => (12, "PM"),
+            //         > 12 => (hh - 12, "PM"),
+            //         _ => (hh, "AM"),
+            //     };
 
-                if(mm%15 ==0){
-                    formattedTime = $"{h}:{mm:00} {amPmDesignator}";
-                }
+            //     if(mm%15 ==0){
+            //         formattedTime = $"{h}:{mm:00} {amPmDesignator}";
+            //     }
         
             // timeLabel.text = formattedTime;
             
@@ -103,52 +103,62 @@ public class DayTimeController : MonoBehaviour
             
             // dayLabel.text = "Day " + days;
         
-            if(hh %6 ==0){
+            // if(hh %6 ==0){
                
                 // if(GameManager.Instance.mapGenerated &&  GameManager.Instance.gameData != null && GameManager.Instance.player != null){
                 //      Instantiate(AutoSave);
                 // }
-            }
+            // }
 
-            if(hh >= 24){
-                NextDay();
-            }
+            // if(hh >= 24){
+            //     NextDay();
+            // }
             
 
-            if(oldPhase == -1){
-                oldPhase = CalculatePhase();
-            }
+            // if(oldPhase == -1){
+            //     oldPhase = CalculatePhase();
+            // }
+            
+            
+            
+            
             int phase = CalculatePhase();
 
 
             while(oldPhase <phase){
+                GameManager.Instance.hudController.NextWave();
+                GameManager.Instance.hudController.ResetTime();
                 oldPhase+=1;
                 for (int i =0; i<agents.Count;i++){
                         agents[i].Invoke();
                     }
+
+                
+                
             }
+            GameManager.Instance.hudController.UpdateTime((int)time);
       
         }
         
     }
 
-    private string GetDay(){
-       int dayIndex =  (int)(daysInMonth/(days)) % 7;
+    // private string GetDay(){
+    //    int dayIndex =  (int)(daysInMonth/(days)) % 7;
 
     
-       return daysOfTheWeek[dayIndex];
-    }
+    //    return daysOfTheWeek[dayIndex];
+    // }
 
     private int CalculatePhase()
     {
-        return (int)(time /phaseLength) +(int)(days*phasesInDay) ;
+        return (int)(time / phaseLength) ;
     }
 
-    private void NextDay(){
-        time -= secondsInDay;
-        days += 1;
+    // private void NextDay(){
+    //     time -= secondsInDay;
+    //     days += 1;
       
-    }
+    // }
    
     public void Subscribe(TimeAgent timeAgent){
         agents.Add(timeAgent);
@@ -167,18 +177,18 @@ public class DayTimeController : MonoBehaviour
 
     }
 
-    public void SkipToMorning()
-    {
-        float secondsToSkip =0f;
-        if(time > morningTime){
-            secondsToSkip += secondsInDay -time +morningTime;
-        }
-        else{
-            secondsToSkip += morningTime -time;
-        }
+    // public void SkipToMorning()
+    // {
+    //     float secondsToSkip =0f;
+    //     if(time > morningTime){
+    //         secondsToSkip += secondsInDay -time +morningTime;
+    //     }
+    //     else{
+    //         secondsToSkip += morningTime -time;
+    //     }
 
-        SkipTime(secondsToSkip);
-    }
+    //     SkipTime(secondsToSkip);
+    // }
 
     public void SubscribeSave(TimeAgent timeAgent){
         saveAgent = timeAgent;

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public SpellContainer KnownSpells;
     [SerializeField] public List<Spell> AllSpells;
     [SerializeField] public GameObject HUDPrefab;
+    public HUDController hudController;
     public GameData gameData;
     public CineMachineScript virtualCamera;
     public WalkerGenerator mapGenerator;
@@ -25,9 +26,12 @@ public class GameManager : MonoBehaviour
     public AutoSave autoSave;
     public SpellButton SelectedSpell;
     public Tilemap baseTilemap;
+
     public CursorController changeCursor;
     public bool mapGenerated = false;
      public bool saving = false;
+     public int totalEnemies = default;
+    
 
     private void Awake()
     {
@@ -106,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider, Rigidbody2D target){
         
-        
+        enemyBody.AddForce(lastMotionVector);
        
         
         spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;

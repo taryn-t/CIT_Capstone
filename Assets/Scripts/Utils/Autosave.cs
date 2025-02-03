@@ -40,7 +40,7 @@ public class AutoSave : MonoBehaviour
             
             cancellationTokenSource = new CancellationTokenSource();
 
-             Debug.Log("Async Task Started on: " + gameObject);
+             
              try
             {
                 
@@ -57,7 +57,7 @@ public class AutoSave : MonoBehaviour
             }
             catch
             {
-                Debug.Log("Task was cancelled!");
+               
                 return;
             }
             finally

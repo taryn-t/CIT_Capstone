@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class Spawner : TimeAgent
+public abstract class Spawner : MonoBehaviour
 {
     
     [SerializeField] protected GameObject[] spawnPrefabs;
@@ -9,35 +11,54 @@ public abstract class Spawner : TimeAgent
     
     
     [SerializeField] protected List<GameObject> spawnedObjects;
-    private int amountSpawned = default;
+    public int amountSpawned = default;
     [SerializeField] protected int maxAmount;
-    [SerializeField] private float cullDistance = 16f;
+   
+   
+    protected CancellationTokenSource cancellationTokenSource;
+    
+    
+
     private void Start(){    
         spawnedObjects = new List<GameObject>();
-         onTimeTick += Spawn;
-         Init();
+        
     }
-    protected virtual void Spawn()
+ 
+     private void OnDestroy()
     {
-        if(GameManager.Instance.player !=null){
-            Transform playerTransform = GameManager.Instance.player.transform;
-            float distance = Vector2.Distance(transform.position, playerTransform.position);
-            
-            if(distance<cullDistance)
-            {
-                if(amountSpawned <= maxAmount){
-                    int randomIndex = UnityEngine.Random.Range(0, spawnPrefabs.Length);
+        cancellationTokenSource?.Cancel();
+    }
 
-                    GameObject go = Instantiate(spawnPrefabs[randomIndex],transform.position, Quaternion.identity); 
-                    spawnedObjects.Add(go);
-                    amountSpawned++;
-                }
-            } 
+    protected virtual async void Spawn()
+    {   
+         cancellationTokenSource = new CancellationTokenSource();
+
+
+         try{
+            int randomIndex = UnityEngine.Random.Range(0, spawnPrefabs.Length);
+
+            GameObject go = Instantiate(spawnPrefabs[randomIndex],transform.position, Quaternion.identity); 
+            spawnedObjects.Add(go);
+            await Task.Delay(500,cancellationTokenSource.Token);
         }
-        
+        catch{
+            return;
+        }
+        finally{
+            
+            cancellationTokenSource?.Cancel();
+            cancellationTokenSource = null;
+        }
 
         
-         
+        
+
         // spawnedObject.transform.position = spawnPosition;
+    }
+
+    protected  void DestroySpawns(){
+        foreach(GameObject go in spawnedObjects){
+            Destroy(go);
+        }
     }
 }

@@ -1,23 +1,57 @@
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 public class EnemySpawner : Spawner
 {
     [SerializeField] private Color spawnColor;
-    [SerializeField] private int spawnAmount;
+    
 
+    protected int currentWave = 0;
+    
 
+    private void Start(){    
+    
+        
 
+    }
+   
+   private void Update(){
+       
+        if(GameManager.Instance.totalEnemies <= maxAmount &&  GameManager.Instance.hudController != null){
+            Spawn();
+        }  
+
+   }
     
     //Overriding base class method
-    protected override void Spawn(){
-       
-        for(var i = 0; i < spawnAmount; i++)
-            {
-                
-                //Calling base class method without override
-                base.Spawn();
-                // var enemyRenderer = spawnedObject.GetComponent<Renderer>();
-                // enemyRenderer.material.color = spawnColor;
-            }
+    protected override async void Spawn(){
+
+        cancellationTokenSource = new CancellationTokenSource();
+
         
+        if(currentWave< GameManager.Instance.hudController.wave){
+            currentWave =  GameManager.Instance.hudController.wave;
+       
+            maxAmount =  GameManager.Instance.hudController.wave == 1 ? 3 :  (int)(GameManager.Instance.hudController.wave*1.5f);
+        }
+
+        try{
+                   
+                base.Spawn();
+                
+                amountSpawned++;
+                GameManager.Instance.totalEnemies++;
+                await Task.Delay(500,cancellationTokenSource.Token);
+   
+        }
+        catch{
+            return;
+        }
+        finally{
+            cancellationTokenSource?.Dispose();
+            cancellationTokenSource = null;
+        }
+         
     }
 }

@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator CastSpell(){
         attack=true;
-        if(!playerMovement.Animator.GetBool("damage")){
+        if(!playerMovement.Animator.GetBool("attack")){
                 playerMovement.Animator.SetBool("attack",true);
             }
         

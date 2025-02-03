@@ -16,7 +16,7 @@ public class CheckPlayerInRange : Node
 
     public override IEnumerator Execute(MonoBehaviour mono)
     {
-        Debug.Log("Checking if in range");
+        
         float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
         yield return distance <= detectionRange ? NodeStatus.Success : NodeStatus.Failure;
     }
