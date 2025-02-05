@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 2065820738850964780}
   - component: {fileID: 4917456574789126064}
   - component: {fileID: 5360209094616850134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   lastMotionVector: {x: 0, y: 0}
   smoothDeltaPosition: {x: 0, y: 0}
   moving: 0
-  collider: {fileID: 0}
+  col: {fileID: 0}
   damaged: 0
   speed: 0.02
   healthSprites:

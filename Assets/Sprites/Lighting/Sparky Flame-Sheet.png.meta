@@ -1,0 +1,457 @@
+fileFormatVersion: 2
+guid: 3d6c2c27d244fa0459513e5551339471
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 338
+        width: 55
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bb75c51d539884c81617c5c13a07c7
+      internalID: 1697764673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 338
+        width: 60
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c37dadcc209daa342926c962eb31b32e
+      internalID: 1384060010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 340
+        width: 46
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69287e47cbcbbf6438d4f1f45447b386
+      internalID: 1041397536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 340
+        width: 50
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e48b4dcecbc9140a5683bbeea6655a
+      internalID: -1399102238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 339
+        width: 55
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7c1c5ac2b94694aaf6e248665f5980
+      internalID: -755515646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 190
+        width: 57
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 637952110159fb04b827967069541e78
+      internalID: -1920007249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 190
+        width: 42
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd3536e362f5334c9250a50d65a9345
+      internalID: -2117255334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 190
+        width: 49
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd8eab749d9800e48938f8a39ad47464
+      internalID: -1400979785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 188
+        width: 45
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f045e0e65fc77b4e96246e6ea5d83f0
+      internalID: -52171984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 188
+        width: 40
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e1b076a01887d247a1470e6e236fe50
+      internalID: 1563222191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 38
+        width: 48
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fae362f0a8cc3340881b9975157b5f7
+      internalID: 733751414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 37
+        width: 39
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1445420ecc0540469fae2e7765afee8
+      internalID: -1073194530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 41
+        width: 42
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 480b677ef885f764a9c0ba3a219505a9
+      internalID: 310588211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 40
+        width: 41
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e41aafc75c5a0549b3a1d83782b75ed
+      internalID: -1003844346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sparky Flame-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 38
+        width: 45
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34ef11da33353d45a23d63e99eef97b
+      internalID: 985977414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Sparky Flame-Sheet_0: 1697764673
+      Sparky Flame-Sheet_1: 1384060010
+      Sparky Flame-Sheet_10: 1687500350
+      Sparky Flame-Sheet_11: -1400979785
+      Sparky Flame-Sheet_12: 1398607634
+      Sparky Flame-Sheet_13: 199950912
+      Sparky Flame-Sheet_14: -52171984
+      Sparky Flame-Sheet_15: 492521121
+      Sparky Flame-Sheet_16: -1988644572
+      Sparky Flame-Sheet_17: 1563222191
+      Sparky Flame-Sheet_18: -2143190791
+      Sparky Flame-Sheet_19: -998647884
+      Sparky Flame-Sheet_2: 1041397536
+      Sparky Flame-Sheet_20: -1314985272
+      Sparky Flame-Sheet_21: 1481893390
+      Sparky Flame-Sheet_22: 733751414
+      Sparky Flame-Sheet_23: -1073194530
+      Sparky Flame-Sheet_24: 310588211
+      Sparky Flame-Sheet_25: -1003844346
+      Sparky Flame-Sheet_26: 985977414
+      Sparky Flame-Sheet_27: -433920064
+      Sparky Flame-Sheet_3: 582177946
+      Sparky Flame-Sheet_4: -1399102238
+      Sparky Flame-Sheet_5: -755515646
+      Sparky Flame-Sheet_6: -1193763364
+      Sparky Flame-Sheet_7: 777553092
+      Sparky Flame-Sheet_8: -1920007249
+      Sparky Flame-Sheet_9: -2117255334
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

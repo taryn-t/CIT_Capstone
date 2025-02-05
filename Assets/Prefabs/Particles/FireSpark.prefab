@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1014717994082573793}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.01, z: 0.12854227}
+  m_LocalPosition: {x: -0.17, y: -1.03, z: 0.12854227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70,8 +70,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1.34
-  m_PointLightOuterRadius: 5.79
+  m_PointLightInnerRadius: 1.4919418
+  m_PointLightOuterRadius: 4.46
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8520157513102352266}
   - component: {fileID: 150886229054963273}
   m_Layer: 0
-  m_Name: FireLight
+  m_Name: FireSpark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 5549760701415563942}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cda4d34eb8d330b4eab6dd5e0d96cbb4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 88bec9eb409064644a505a2d425b45ee, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -178,7 +178,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -298238559, guid: ba1eb0a5c206c3944b8ae63b6f92194d, type: 3}
+  m_Sprite: {fileID: 1745716495, guid: 9c6d62ad4f9511145b337cc64ed1a32e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

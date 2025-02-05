@@ -8,10 +8,10 @@ public class EnemyAI : MonoBehaviour
 {
     public BehaviorTree behaviorTree;
 
-    public float attackRange = 1f;
-    public float patrolRange = 0.5f;
+    public float attackRange =0.5f;
+    public float patrolRange = 5f;
     public float detectionRange = 2f;
-    public float moveSpeed = 0.2f;
+    public float moveSpeed = 0.01f;
     public Animator animator;
 
     [SerializeField] public Spell spellAttack;
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
     }
     public Vector2 smoothDeltaPosition = Vector2.zero;
     public bool moving;
-    public CapsuleCollider2D collider;
+    public CapsuleCollider2D col;
 
     public bool damaged = false;
    
@@ -36,15 +36,15 @@ public class EnemyAI : MonoBehaviour
         Transform playerTransform = GameManager.Instance.player.transform;
         Rigidbody2D playerbody = GameManager.Instance.player.GetComponent<Rigidbody2D>();
 
-        Node checkPlayerInRange = new CheckPlayerInRange(transform, playerTransform, detectionRange);
+        // Node checkPlayerInRange = new CheckPlayerInRange(transform, playerTransform, detectionRange);
 
-        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, animator, Body, detectionRange, collider, obstacleLayerMask, cancellationTokenSource);
+        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, animator, Body, detectionRange, col, obstacleLayerMask, cancellationTokenSource);
 
-        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, collider, damaged);
+        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged);
 
-        Node patrol = new Patrol(transform,moveSpeed,patrolRange, animator, Body, collider, obstacleLayerMask,cancellationTokenSource);
+        Node patrol = new Patrol(transform,moveSpeed,patrolRange, animator, Body, col, obstacleLayerMask,cancellationTokenSource);
 
-        Node[] sequenceNodes = {  moveTowardsPlayer, attackPlayer,patrol };
+        Node[] sequenceNodes = {  moveTowardsPlayer, attackPlayer, patrol };
         
         Node behaviorTreeRoot = new Sequence(sequenceNodes);
         

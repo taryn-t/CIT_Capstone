@@ -78,7 +78,7 @@ public class CastedSpell: MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Spell");
+        
         if(collision.gameObject.CompareTag(caster)){
             return;
         }
@@ -103,6 +103,8 @@ public class CastedSpell: MonoBehaviour
             
             Destroy(gameObject);
         }
+
+        Destroy(gameObject,0.5f);
     }
 
      async void SmoothMovement( )
