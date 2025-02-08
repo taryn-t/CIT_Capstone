@@ -51,7 +51,7 @@ public class Enemy : EnemyAI{
 
     void Start(){
         
-         Body = GetComponent<Rigidbody2D>();
+        Body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         behaviorTree = new BehaviorTree();
         lastMotionVector = Body.position.normalized;
@@ -93,7 +93,7 @@ public class Enemy : EnemyAI{
     }
     void FixedUpdate(){
         
-         behaviorTree.Tick(this);
+         behaviorTree.Tick();
 
          Movement();
          

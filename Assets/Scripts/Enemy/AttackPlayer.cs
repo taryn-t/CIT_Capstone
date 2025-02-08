@@ -37,7 +37,7 @@ public class AttackPlayer : Node
 
     }
 
-    public override IEnumerator Execute(MonoBehaviour mono)
+    public override NodeStatus Execute( )
     {
   
         
@@ -52,14 +52,22 @@ public class AttackPlayer : Node
             // Implement attack logic here
             GameManager.Instance.CastSpellEnemy(spellPrefab,spell,offsetRotation,enemyBody,lastMotionVector,collider,playerBody);
             attack=true;
-            yield return new WaitForSeconds(1f);
             
-            animator.SetBool("attack",false);
-            attack=false;
-            yield return NodeStatus.Success;
+            AttackCooldown();
+            
+            
+            return NodeStatus.Running;
         }
 
-        yield return NodeStatus.Failure;
+         return NodeStatus.Failure;
+    }
+
+    async void AttackCooldown(){
+        animator.SetBool("attack",false);
+        await Task.Delay(1000);
+        
+        attack=false;
+        await Task.Yield();
     }
 
 }

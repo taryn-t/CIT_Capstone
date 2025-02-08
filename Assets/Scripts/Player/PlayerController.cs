@@ -17,9 +17,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private float _mana = 100;
+
+    public bool visible = true;
+    public float maxHealth;
     
     void Start()
     {
+        maxHealth=Health;
         GetComponent<InventoryController>().Init();
         GameManager.Instance.SetPlayer(this.gameObject);
         Health = GameManager.Instance.gameData.playerData.Health;

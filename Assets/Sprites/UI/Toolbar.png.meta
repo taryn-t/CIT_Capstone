@@ -462,7 +462,7 @@ TextureImporter:
         width: 24
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -470,6 +470,27 @@ TextureImporter:
       bones: []
       spriteID: 14cb79ee010900840a9f2d00444a2aeb
       internalID: -677016191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toolbar_18
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 82
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fda0fd35fa7f7064b803c510ce91d7aa
+      internalID: -645101193
       vertices: []
       indices: 
       edges: []
@@ -495,6 +516,7 @@ TextureImporter:
       Toolbar_15: -132932541
       Toolbar_16: -200300315
       Toolbar_17: -677016191
+      Toolbar_18: -645101193
       Toolbar_2: -1971895704
       Toolbar_3: 1159410904
       Toolbar_4: -1244620530

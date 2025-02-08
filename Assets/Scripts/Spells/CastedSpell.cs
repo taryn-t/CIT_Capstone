@@ -89,8 +89,7 @@ public class CastedSpell: MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             
             enemy.TakeDamage(damage,knockback,direction,effect);
-            Destroy(gameObject);
-        
+
         }
         
         if(collision.gameObject.CompareTag("Player"))
@@ -98,13 +97,12 @@ public class CastedSpell: MonoBehaviour
             PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
             
             player.TakeDamage(damage,knockback,direction,effect);
-           
 
-            
-            Destroy(gameObject);
         }
-
-        Destroy(gameObject,0.5f);
+        
+          Destroy(gameObject);  
+        
+        
     }
 
      async void SmoothMovement( )

@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 3212758}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.673317, y: 6, z: -10}
+  m_LocalPosition: {x: 10.659213, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3121,8 +3121,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1792865696}
-  - component: {fileID: 1792865695}
   - component: {fileID: 1792865697}
+  - component: {fileID: 1792865695}
   - component: {fileID: 1792865699}
   - component: {fileID: 1792865700}
   - component: {fileID: 1792865701}
@@ -3215,8 +3215,7 @@ MonoBehaviour:
   - {fileID: 3208382105464481910, guid: b60760c9e797f584a905d41d726c8d92, type: 3}
   - {fileID: 3208382105464481910, guid: f6dddf81296df76428b9e57be42a59ad, type: 3}
   KnownSpells: {fileID: 11400000, guid: 6367fc606390a304a8e21802e2454e27, type: 2}
-  AllSpells:
-  - {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
+  availablePotions: {fileID: 11400000, guid: 16c7c7025d2bb4b4eaa92786762fc6fd, type: 2}
   HUDPrefab: {fileID: 6659274848228791678, guid: ff188b6155dbc254485ebeb823f722d2, type: 3}
   hudController: {fileID: 0}
   gameData:
@@ -3239,7 +3238,9 @@ MonoBehaviour:
   dayTimeController: {fileID: 1792865700}
   autoSave: {fileID: 8971298528284919104, guid: f4bf1fbffddb1e049af8dc3915168b60, type: 3}
   SelectedSpell: {fileID: 3460519517827276040, guid: 65a474aaf91c5444ab9a5f5227f05f53, type: 3}
+  potionButton: {fileID: 0}
   baseTilemap: {fileID: 0}
+  heartsContainer: {fileID: 0}
   changeCursor: {fileID: 0}
   mapGenerated: 0
   saving: 0

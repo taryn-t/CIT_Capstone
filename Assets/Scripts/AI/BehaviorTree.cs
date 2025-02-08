@@ -9,9 +9,9 @@ public class BehaviorTree
         root = node;
     }
 
-    public virtual void Tick(MonoBehaviour mono)
+    public virtual void Tick( )
     {
-         mono.StartCoroutine(root?.Execute(mono));
+         root?.Execute();
                    
     }
     

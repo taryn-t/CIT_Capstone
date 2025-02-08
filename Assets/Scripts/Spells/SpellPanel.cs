@@ -7,7 +7,7 @@ using UnityEngine;
 public class SpellPanel : MonoBehaviour
 {
     private SpellContainer spells;
-    [SerializeField] List<SpellButton> buttons;
+    [SerializeField] SpellButton button;
 
     private void Start(){
         spells = GameManager.Instance.gameData.playerData.KnownSpells;
@@ -18,9 +18,9 @@ public class SpellPanel : MonoBehaviour
 
     private void SetIndex()
     {
-        for (int i =0; i<spells.slots.Count; i++){
-            buttons[i].SetIndex(i);
-        }
+        
+            button.SetIndex(0);
+        
        
     }
 
@@ -29,14 +29,9 @@ public class SpellPanel : MonoBehaviour
         
         
 
-        for(int i = 0; i<spells.slots.Count; i++){
         
+            button.Set(spells.slots[0]);
             
-            if(spells.slots[i].spell ==null){
-                buttons[i].Clean();
-            }else{
-                buttons[i].Set(spells.slots[i]);
-            }
-        }
+        
     }
 }
