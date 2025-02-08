@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Cinemachine;
 using UnityEngine;
@@ -13,24 +14,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Games games;
     [SerializeField] public GameObject[] EnemyStructures;
     [SerializeField] public SpellContainer KnownSpells;
-    [SerializeField] public List<Spell> AllSpells;
+    [SerializeField] public PotionContainer availablePotions;
     [SerializeField] public GameObject HUDPrefab;
     public HUDController hudController;
     public GameData gameData;
     public CineMachineScript virtualCamera;
     public WalkerGenerator mapGenerator;
     public GameObject player;
-    public GameObject playerMovement;
+    public PlayerMovement playerMovement;
 
     public DayTimeController dayTimeController;
     public AutoSave autoSave;
     public SpellButton SelectedSpell;
+    public PotionButton potionButton;
     public Tilemap baseTilemap;
+    public HeartsContainer heartsContainer;
 
     public CursorController changeCursor;
     public bool mapGenerated = false;
      public bool saving = false;
      public int totalEnemies = default;
+     public WorldBounds worldBounds;
     
 
     private void Awake()
@@ -59,6 +63,12 @@ public class GameManager : MonoBehaviour
     }
     public Spell GetSpell(){
         return SelectedSpell.spell;
+    }
+    public void SetPotion(PotionButton potion){
+        Instance.potionButton = potion;
+    }
+    public PotionButton GetPotion(){
+        return potionButton;
     }
     public void SetAutoSave(GameObject go){
         Instance.autoSave = go.GetComponent<AutoSave>();
@@ -110,7 +120,7 @@ public class GameManager : MonoBehaviour
 
     public void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider, Rigidbody2D target){
         
-        enemyBody.AddForce(lastMotionVector);
+        
        
         
         spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;
@@ -172,4 +182,5 @@ public class GameManager : MonoBehaviour
 
 
     }
+
 }

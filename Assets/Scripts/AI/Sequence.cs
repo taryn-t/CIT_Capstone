@@ -10,21 +10,25 @@ public class Sequence : Node
         children = nodes;
     }
 
-    public override IEnumerator Execute(MonoBehaviour mono)
+    public override NodeStatus Execute()
     {
         foreach (Node child in children)
         {
-            CoroutineWithData cd = new CoroutineWithData(mono, child.Execute( mono) );
-            var status = cd.result;
+            try{
+               NodeStatus status = child.Execute( );  
             
-            if(status is NodeStatus){
-                 if ((NodeStatus)status == NodeStatus.Failure )
+                if (status == NodeStatus.Failure)
                 {
-                    yield return status; // Return failure if any child fails
-                }
+                    return status; // Return failure if any child fails
+                } 
             }
+            catch{
+                return NodeStatus.Failure;
+            }
+            
+           
            
         }
-        yield return NodeStatus.Success; // All children succeeded
+        return NodeStatus.Success; // All children succeeded
     }
 }

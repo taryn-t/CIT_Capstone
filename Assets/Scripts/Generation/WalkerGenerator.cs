@@ -594,9 +594,10 @@ public class WalkerGenerator : MonoBehaviour
             GameManager.Instance.menu.Close();
             GameManager.Instance.mapGenerated =true;
             GameManager.Instance.changeCursor.Default();
-
+            tilemap.CompressBounds();
             
-           
+           WorldBounds worldBounds = new WorldBounds(tilemap);
+           GameManager.Instance.worldBounds = worldBounds;
         }
 
     async Task AddDecor( Vector3Int curPos, Chunk chunk){

@@ -15,6 +15,13 @@ public class EnemySpawner : Spawner
         
 
     }
+
+    private void OnDestroy()
+    {
+        
+        cancellationTokenSource?.Cancel();
+    }
+
    
    private void Update(){
        

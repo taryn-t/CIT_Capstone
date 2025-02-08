@@ -16,7 +16,7 @@ public class SpellButton : MonoBehaviour
     void Start(){
        foreach(Transform transform in transform){
          icon = transform.gameObject.GetComponent<Image>();
-         
+         break;
        }
     }
 
@@ -33,6 +33,7 @@ public class SpellButton : MonoBehaviour
     public void Set(SpellSlot slot){
         foreach(Transform transform in transform){
             transform.gameObject.GetComponent<Image>().sprite = slot.spell.Icon;
+            break;
         }
         
         spell = slot.spell;

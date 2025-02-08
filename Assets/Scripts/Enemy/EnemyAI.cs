@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     public float attackRange =0.5f;
     public float patrolRange = 5f;
     public float detectionRange = 2f;
-    public float moveSpeed = 0.01f;
+    private float moveSpeed = 20f;
     public Animator animator;
 
     [SerializeField] public Spell spellAttack;
@@ -36,15 +36,15 @@ public class EnemyAI : MonoBehaviour
         Transform playerTransform = GameManager.Instance.player.transform;
         Rigidbody2D playerbody = GameManager.Instance.player.GetComponent<Rigidbody2D>();
 
-        // Node checkPlayerInRange = new CheckPlayerInRange(transform, playerTransform, detectionRange);
+        Node checkPlayerInRange = new CheckPlayerInRange(transform, playerTransform, detectionRange);
 
-        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, animator, Body, detectionRange, col, obstacleLayerMask, cancellationTokenSource);
+        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, Body);
 
         Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged);
 
-        Node patrol = new Patrol(transform,moveSpeed,patrolRange, animator, Body, col, obstacleLayerMask,cancellationTokenSource);
+        Node patrol = new Patrol(transform,moveSpeed,patrolRange, Body, col, obstacleLayerMask);
 
-        Node[] sequenceNodes = {  moveTowardsPlayer, attackPlayer, patrol };
+        Node[] sequenceNodes = {  patrol, checkPlayerInRange, moveTowardsPlayer, attackPlayer };
         
         Node behaviorTreeRoot = new Sequence(sequenceNodes);
         
@@ -72,7 +72,6 @@ public class EnemyAI : MonoBehaviour
             animator.SetFloat("lastHorizontal",lastMotionVector.x);
             animator.SetFloat("lastVertical",lastMotionVector.y);
         }
-        body.velocity = smoothDeltaPosition / Time.deltaTime *0.01f;
        
        
 
