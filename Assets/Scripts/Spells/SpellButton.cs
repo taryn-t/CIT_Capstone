@@ -43,6 +43,7 @@ public class SpellButton : MonoBehaviour
         foreach(Transform transform in transform){
             transform.gameObject.GetComponent<Image>().sprite = null;
             transform.gameObject.SetActive(false);
+            break;
         }
         spell = null;
     }

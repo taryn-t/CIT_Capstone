@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public AutoSave autoSave;
     public SpellButton SelectedSpell;
     public PotionButton potionButton;
+    public GameObject potionButtonGO;
     public Tilemap baseTilemap;
     public HeartsContainer heartsContainer;
 

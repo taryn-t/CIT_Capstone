@@ -25,7 +25,7 @@ public class EnemySpawner : Spawner
    
    private void Update(){
        
-        if(GameManager.Instance.totalEnemies <= maxAmount &&  GameManager.Instance.hudController != null){
+        if(GameManager.Instance.totalEnemies <= maxAmount &&  GameManager.Instance.hudController != null ){
             Spawn();
         }  
 
@@ -37,10 +37,10 @@ public class EnemySpawner : Spawner
         cancellationTokenSource = new CancellationTokenSource();
 
         
-        if(currentWave< GameManager.Instance.hudController.wave){
+        if(currentWave < GameManager.Instance.hudController.wave){
             currentWave =  GameManager.Instance.hudController.wave;
        
-            maxAmount =  GameManager.Instance.hudController.wave == 1 ? 3 :  (int)(GameManager.Instance.hudController.wave*1.5f);
+            maxAmount =  GameManager.Instance.hudController.wave == 1 ? 3 :  (int)(GameManager.Instance.hudController.wave*3f);
         }
 
         try{
