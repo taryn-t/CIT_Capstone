@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
         
         
        
-        
+        spellPrefab.GetComponent<CastedSpell>().spell = spell;
         spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;
         spellPrefab.GetComponent<CastedSpell>().damage =  spell.damage;
         spellPrefab.GetComponent<CastedSpell>().knockback =  spell.knockback;
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
              break;
         case "down":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y*1.5f,0);
              break;
         case "up":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );

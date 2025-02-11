@@ -102,11 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
-  damage: 15
-  knockback: 5
+  damage: 8
+  knockback: 1
   effect: 0
-  caster: Player
-  spell: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
+  caster: Enemy
+  spell: {fileID: 0}
   casterAnimator: {fileID: 0}
   target: {fileID: 0}
 --- !u!50 &5957162492570905044

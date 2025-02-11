@@ -9,7 +9,7 @@ TagManager:
   - Inventory
   - Spell
   - Enemy
-  - PotionImage
+  - PotionButton
   layers:
   - Default
   - TransparentFX

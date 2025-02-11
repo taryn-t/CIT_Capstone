@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa0e19cd11b9f643a8a945ba90332f1, type: 3}
+  m_Name: DarkOrb
+  m_EditorClassIdentifier: 
+  Name: Dark Orb
+  damage: 8
+  knockback: 1
+  spellEffect: 2
+  animator: {fileID: 9100000, guid: 522fa06fd0515484d8cf8222e13b5395, type: 2}
+  Icon: {fileID: 699911009, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  frames:
+  - {fileID: 1388997316, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: 699911009, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: -1955497623, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: -66793595, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: 587161927, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: -440273057, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: 600198827, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: -1277274166, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  - {fileID: 589140547, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa0e19cd11b9f643a8a945ba90332f1, type: 3}
+  m_Name: PoisonSmoke
+  m_EditorClassIdentifier: 
+  Name: Poison Smoke
+  damage: 8
+  knockback: 1
+  spellEffect: 1
+  animator: {fileID: 9100000, guid: 89876d6d7c50fb744a9eb71667a33dc9, type: 2}
+  Icon: {fileID: 1652888562, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  frames:
+  - {fileID: -746890964, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: 1652888562, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: -1543233056, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: -53676895, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: -1193174904, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: 187962415, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: 1569435124, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  - {fileID: 2059560198, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
