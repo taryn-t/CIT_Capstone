@@ -162,7 +162,10 @@ public class Enemy : EnemyAI{
             DestroyEnemy();
         }
 
-         CheckForHealthChange(Health);
+        
+        CheckForHealthChange(Health); 
+        
+         
 
         
         
@@ -255,7 +258,7 @@ public class Enemy : EnemyAI{
 
         int idx = (int) (difference / HealthInterval);
         
-           if(idx != currentHealthIndex){
+           if(idx != currentHealthIndex && idx < healthSprites.Length){
             currentHealthIndex = idx;
             healthMeter.sprite  = healthSprites[currentHealthIndex];
         }

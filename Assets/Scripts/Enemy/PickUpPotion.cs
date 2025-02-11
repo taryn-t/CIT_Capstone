@@ -13,6 +13,7 @@ public class PickUpPotion : MonoBehaviour
     [SerializeField] float pickUpDistance = 0.01f;
     [SerializeField] float ttl = 90f;
     [SerializeField] public Potion potion;
+    private string goTag = "PotionButton";
     
     void Start()
     {
@@ -53,7 +54,7 @@ public class PickUpPotion : MonoBehaviour
         if(distance < 0.1f){
             
             if(GameManager.Instance.potionButton.potion == null){
-                Debug.Log("Adding potion");
+               
                 GameManager.Instance.potionButton.Set(potion);
                 Destroy(gameObject);
             }

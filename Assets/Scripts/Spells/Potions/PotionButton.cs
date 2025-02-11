@@ -5,7 +5,7 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Image = UnityEngine.UI.Image;
 public class PotionButton : MonoBehaviour
 {
     [SerializeField] Image icon;
@@ -16,10 +16,7 @@ public class PotionButton : MonoBehaviour
     void Start(){
         GameManager.Instance.potionButton = this;
         GameManager.Instance.potionButtonGO = gameObject;
-       foreach(Transform transform in transform){
-         icon = transform.gameObject.GetComponent<Image>();
-         
-       }
+       
     }
 
 
@@ -36,8 +33,12 @@ public class PotionButton : MonoBehaviour
     }
 
     public void Set(Potion slot){
-        transform.GetChild(0).gameObject.GetComponent<Image>().sprite = slot.icon;
+        if(!transform.GetChild(0).gameObject.activeSelf){
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
         
+        icon.sprite = slot.icon;
+    
         potion = slot;
     }
 
