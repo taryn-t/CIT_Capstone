@@ -38,7 +38,7 @@ public class HeartsContainer : MonoBehaviour
         float max = GameManager.Instance.GetPlayer().Health;
 
         foreach(Transform child in transform.GetChild(0).transform){
-            Debug.Log(child.gameObject.name);
+            
             child.gameObject.GetComponent<Heart>().maxHeartHealth = max;
             max -= heartHealthInterval;
 
@@ -83,7 +83,7 @@ public class HeartsContainer : MonoBehaviour
         if(idx != currentHeartIndex){
 
             int heartIndexDifference = idx - currentHeartIndex;
-
+            
             if(heartIndexDifference > 1 ){
                 for(int i = currentHeartIndex-heartIndexDifference; i < currentHeartIndex; i++){
                     hearts[i].SetSprite(heartSprites.Last());

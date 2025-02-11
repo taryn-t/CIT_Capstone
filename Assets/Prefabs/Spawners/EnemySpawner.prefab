@@ -46,8 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPrefabs:
   - {fileID: 3734557985186141035, guid: bc0e0bac18c3a1246b856faf6b304a73, type: 3}
+  - {fileID: 3734557985186141035, guid: c5f81a7b4551a784a986e6b8677d7ac1, type: 3}
+  - {fileID: 3734557985186141035, guid: e3cd3611c4f467040a19482b42c6c440, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
-  spawnedObject: {fileID: 0}
+  spawnedObjects: []
+  amountSpawned: 0
   maxAmount: 5
   spawnColor: {r: 0, g: 0, b: 0, a: 0}
-  spawnAmount: 1

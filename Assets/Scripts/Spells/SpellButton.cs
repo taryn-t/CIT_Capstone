@@ -31,19 +31,21 @@ public class SpellButton : MonoBehaviour
     }
 
     public void Set(SpellSlot slot){
-        foreach(Transform transform in transform){
-            transform.gameObject.GetComponent<Image>().sprite = slot.spell.Icon;
-            break;
+
+        if(!transform.GetChild(0).gameObject.activeSelf){
+            transform.GetChild(0).gameObject.SetActive(true);
         }
+        
+        
+        transform.GetChild(0).gameObject.GetComponent<Image>().sprite = slot.spell.Icon;
+        
         
         spell = slot.spell;
     }
 
     public void Clean(){
-        foreach(Transform transform in transform){
-            transform.gameObject.GetComponent<Image>().sprite = null;
-            transform.gameObject.SetActive(false);
-        }
+        transform.GetChild(0).GetComponent<Image>().sprite = null;
+        transform.GetChild(0).gameObject.SetActive(false);
         spell = null;
     }
 

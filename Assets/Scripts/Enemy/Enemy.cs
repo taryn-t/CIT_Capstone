@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class Enemy : EnemyAI{
 
@@ -12,15 +13,15 @@ public class Enemy : EnemyAI{
     public float Health
     {
         get { return _health; }
-        set { _health = Mathf.Clamp(value, 0, 100); }
+        set { _health = Mathf.Clamp(value, 0, 52); }
     }
 
-    private float _health = 100;
-
+    private float _health = 52;
+    private float maxHealth;
      public float Mana
     {
         get { return _mana; }
-        set { _mana = Mathf.Clamp(value, 0, 100); }
+        set { _mana = Mathf.Clamp(value, 0, 52); }
     }
 
     private float _mana = 100;
@@ -29,11 +30,11 @@ public class Enemy : EnemyAI{
     [SerializeField] protected Sprite[] healthSprites;
 
     [SerializeField] protected SpriteRenderer healthMeter;
-    private int healthIndex = default;
     float startTime;
 
     [SerializeField] Color burnColor;
     [SerializeField] Color poisonColor;
+    
     private Color endColor;
     private Color startColor;
     private SpriteRenderer renderer;
@@ -43,14 +44,34 @@ public class Enemy : EnemyAI{
     ContactFilter2D cf;
     
    CancellationTokenSource damageCancellation;
-    
+    private int dropCount = 1;
+    private float spread = 1f;
+    [SerializeField] GameObject[] potionDrops;
+    [SerializeField] GameObject[] scrollDrops;
+    private float _scrollDropChance = 0.01f;
+     public float ScrollDropChance
+    {
+        get { return _scrollDropChance; }
+        set { _scrollDropChance = Mathf.Clamp(value, 0.01f, 0.1f); }
+    }
+    private float _potionDropChance = 0.3f;
+     public float PotionDropChance
+    {
+        get { return _potionDropChance; }
+        set { _potionDropChance = Mathf.Clamp(value, 0.3f, 0.5f); }
+    }
+    private int HealthInterval;
+    private int currentHealthIndex = 0;
+
+
+
     void Awake(){
         damageGlow= GetComponentInChildren<Light2D>();
         damageGlow.intensity = 0;
     }
 
     void Start(){
-        
+        maxHealth = Health;
         Body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         behaviorTree = new BehaviorTree();
@@ -58,7 +79,7 @@ public class Enemy : EnemyAI{
         col = GetComponent<CapsuleCollider2D>();
         renderer = GetComponent<SpriteRenderer>();
         startColor = renderer.color;
-
+        HealthInterval = (int) maxHealth/healthSprites.Length;
 
         cf = new ContactFilter2D();
         InitializeBehaviorTree();
@@ -70,7 +91,42 @@ public class Enemy : EnemyAI{
         damageCancellation?.Cancel();
     }
 
+
     void DestroyEnemy(){
+        
+
+        float dropChance = UnityEngine.Random.Range(0f,1f);
+
+        Vector3 position = transform.position;
+        position.x += spread * UnityEngine.Random.value - spread/2;
+        position.y += spread * UnityEngine.Random.value - spread/2;
+        Debug.Log(dropChance);
+
+         if (dropChance <= PotionDropChance && dropChance > ScrollDropChance){
+            
+            int randomPotionIdx =  UnityEngine.Random.Range(0, potionDrops.Length);
+            GameObject go =Instantiate(potionDrops[randomPotionIdx]);
+            go.transform.position = position;
+            ResetPotionChance();
+        }
+        else{
+            IncreasePotionChance();
+        }
+
+        if(dropChance <= ScrollDropChance){
+
+            int randomScrollIdx =  UnityEngine.Random.Range(0, scrollDrops.Length);
+            GameObject go =Instantiate(scrollDrops[randomScrollIdx]);
+            go.transform.position = position;
+            ResetScrollChance();
+
+        }
+        else{
+            IncreaseScrollChance();
+        }
+
+
+       
 
         animator.SetBool("damage",true);
         
@@ -79,12 +135,36 @@ public class Enemy : EnemyAI{
         Destroy(gameObject);  
 
     }
-     void Update()
+
+    void ResetPotionChance()
     {
+        PotionDropChance = 0.1f;
+    }
+    void ResetScrollChance()
+    {
+        ScrollDropChance = 0.01f;
+    }
+     void IncreasePotionChance()
+    {
+        PotionDropChance += 0.02f;
+    }
+    void IncreaseScrollChance()
+    {
+        ScrollDropChance += 0.01f;
+    }
+
+    void Update()
+    {
+
+        
+
         if(Health==0){
             DestroyEnemy();
         }
 
+        
+        CheckForHealthChange(Health); 
+        
          
 
         
@@ -114,8 +194,6 @@ public class Enemy : EnemyAI{
                 damageGlow.intensity = 1f;
             }
             
-            Body.AddForce(direction*knockback, ForceMode2D.Impulse);
-
             // if(damaged && Health % healthSprites.Length-1 == 0 && Health > 0){ 
             //     healthIndex++;
             //     healthMeter.sprite = healthSprites[healthIndex];
@@ -174,6 +252,17 @@ public class Enemy : EnemyAI{
         Health -= 2;
     }
 
+    
+     public void CheckForHealthChange(float currentHealth){
+        float difference = maxHealth - currentHealth;
+
+        int idx = (int) (difference / HealthInterval);
+        
+           if(idx != currentHealthIndex && idx < healthSprites.Length){
+            currentHealthIndex = idx;
+            healthMeter.sprite  = healthSprites[currentHealthIndex];
+        }
+    }
  
 
  

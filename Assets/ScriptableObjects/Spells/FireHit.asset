@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireHit
   m_EditorClassIdentifier: 
   Name: Fire Hit
-  damage: 4
+  damage: 8
   knockback: 1
   spellEffect: 0
   animator: {fileID: 9100000, guid: 778e11b28affbe449ada4502ecbe1cb5, type: 2}

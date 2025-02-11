@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 3212758}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.659213, y: 6, z: -10}
+  m_LocalPosition: {x: 10.941168, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3239,6 +3239,7 @@ MonoBehaviour:
   autoSave: {fileID: 8971298528284919104, guid: f4bf1fbffddb1e049af8dc3915168b60, type: 3}
   SelectedSpell: {fileID: 3460519517827276040, guid: 65a474aaf91c5444ab9a5f5227f05f53, type: 3}
   potionButton: {fileID: 0}
+  potionButtonGO: {fileID: 0}
   baseTilemap: {fileID: 0}
   heartsContainer: {fileID: 0}
   changeCursor: {fileID: 0}

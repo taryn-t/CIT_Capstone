@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots:
   - spell: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
-  - spell: {fileID: 0}
-  - spell: {fileID: 0}
-  - spell: {fileID: 0}
+  - spell: {fileID: 11400000, guid: 88702307b27e5e844b738a19517c7076, type: 2}
   - spell: {fileID: 0}

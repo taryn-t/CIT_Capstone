@@ -219,7 +219,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -305,7 +305,6 @@ MonoBehaviour:
   attackRange: 3
   patrolRange: 5
   detectionRange: 5
-  moveSpeed: 2
   animator: {fileID: 0}
   spellAttack: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
   spellPrefab: {fileID: 5517673009184086772, guid: 0b938f1c75886bd4080f15524824e771, type: 3}
@@ -335,6 +334,12 @@ MonoBehaviour:
   healthMeter: {fileID: 7264928285615049819}
   burnColor: {r: 0, g: 0, b: 0, a: 0}
   poisonColor: {r: 0, g: 0, b: 0, a: 0}
+  potionDrops:
+  - {fileID: 8856206373406490797, guid: a578d9d9fa2024c45b2932b427dfb4fa, type: 3}
+  - {fileID: 8856206373406490797, guid: d66266603111aeb4d941aee294d167cf, type: 3}
+  - {fileID: 8856206373406490797, guid: 020165e742528734c8af9d66a5ce1b7a, type: 3}
+  scrollDrops:
+  - {fileID: 8856206373406490797, guid: 2bbbcf0af527b7541a3e06bf2d66e030, type: 3}
 --- !u!212 &5360209094616850134
 SpriteRenderer:
   m_ObjectHideFlags: 0
