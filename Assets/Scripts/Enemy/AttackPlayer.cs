@@ -67,7 +67,7 @@ public class AttackPlayer : Node
         await Task.Delay(1000);
         
         attack=false;
-        await Task.Yield();
+        
     }
 
 }
