@@ -32,10 +32,12 @@ public class SpeedBoost : PotionEffect
         
         int durMilli = duration * 1000;
         GameManager.Instance.playerMovement.moveSpeed = newSpeed;
+        SetStatusUI();
 
         await Task.Delay(durMilli);
 
         GameManager.Instance.playerMovement.moveSpeed = oldSpeed;
+        CleanStatusUI();
 
        
     }

@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4de0d49026a8f24b86c0bc076fd0161, type: 3}
   m_Name: Speed Boost
   m_EditorClassIdentifier: 
+  effectColor: {r: 0.8352942, g: 0.87843144, b: 0.29411766, a: 1}
+  label: Speed

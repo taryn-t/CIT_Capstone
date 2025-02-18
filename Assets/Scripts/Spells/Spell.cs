@@ -8,6 +8,7 @@ public class Spell : ScriptableObject
     [SerializeField] public string Name;
     [SerializeField] public int damage;
     [SerializeField] public float knockback;
+    [SerializeField] public int manaCost;
     [SerializeField] public SpellEffect spellEffect;
     [SerializeField] public AnimatorController animator;
     [SerializeField] public Sprite Icon;
@@ -21,5 +22,6 @@ public class Spell : ScriptableObject
 public enum SpellEffect{
     Burn,
     Poison,
-    Slow
+    Slow,
+    None
 }

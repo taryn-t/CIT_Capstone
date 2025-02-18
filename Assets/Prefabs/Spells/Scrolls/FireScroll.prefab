@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c347a272f3490847b8681d6791eb586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
-  pickUpDistance: 0.01
-  ttl: 90
+  speed: 2
+  pickUpDistance: 0.1
+  ttl: 10
   spell:
     spell: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}

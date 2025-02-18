@@ -49,12 +49,19 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public IEnumerator CastSpell(){
+        
+
+        
         attack=true;
         if(!playerMovement.Animator.GetBool("attack")){
                 playerMovement.Animator.SetBool("attack",true);
             }
         
         SelectedSpell = GameManager.Instance.SelectedSpell.spell;
+        
+        if(GameManager.Instance.GetPlayer().Mana < SelectedSpell.manaCost){
+            yield return null;
+        }
         
         CastedSpell castedSpell = spell.GetComponent<CastedSpell>();
 
@@ -72,9 +79,11 @@ public class PlayerAttack : MonoBehaviour
 
         castedSpell.rotation =  offsetRotation.rotation;
         Vector3 pos = new(body.position.x,body.position.y,0);
-        
+
         Instantiate(spell, pos + offsetRotation.offset, offsetRotation.rotation);
         
+        GameManager.Instance.GetPlayer().Mana -= SelectedSpell.manaCost;
+
         yield return new WaitForSeconds(0.5f);
         
         playerMovement.Animator.SetBool("attack",false);

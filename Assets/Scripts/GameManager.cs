@@ -30,12 +30,14 @@ public class GameManager : MonoBehaviour
     public GameObject potionButtonGO;
     public Tilemap baseTilemap;
     public HeartsContainer heartsContainer;
-
+    public ManaContainer manaContainer;
     public CursorController changeCursor;
     public bool mapGenerated = false;
      public bool saving = false;
      public int totalEnemies = default;
      public WorldBounds worldBounds;
+
+     public StatusUI statusUI;
     
 
     private void Awake()
@@ -170,14 +172,14 @@ public class GameManager : MonoBehaviour
              break;
         case "down":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, -90 );
-             offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y*1.5f,0);
+             offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y,0);
              break;
         case "up":
              offsetRotation.rotation =  Quaternion.Euler(0, 0, 90 );
              offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),collider.bounds.size.y*1.5f,0);
              break;
         default:
-            offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
+            offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y,0);
             break;
         }
 

@@ -36,11 +36,28 @@ public class Patrol : Node
     public override NodeStatus Execute( )
     {
 
-     
-        Vector2 walkPoint = SearchWalkPoint();
+        ContactPoint2D[] contacts = new ContactPoint2D[10];
+        
+        collider.GetContacts(contacts);
+         Vector2 walkPoint = SearchWalkPoint();
+
+        Vector2 avoidanceForce = Vector2.zero;
+        
+        foreach(ContactPoint2D contact in contacts){
+            avoidanceForce += contact.normal;
+        }
 
         Vector2 direction = (walkPoint - Body.position).normalized;
         Body.AddForce(speed * Time.deltaTime * (Vector3)direction);
+
+        if(avoidanceForce != Vector2.zero){
+            Body.velocity = Vector2.zero;
+            Body.AddForce(speed/2 * Time.deltaTime * (Vector3)avoidanceForce, ForceMode2D.Impulse);
+        }
+
+        
+        
+        
                
              
         return NodeStatus.Running;

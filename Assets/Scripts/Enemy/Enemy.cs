@@ -48,6 +48,7 @@ public class Enemy : EnemyAI{
     private float spread = 1f;
     [SerializeField] GameObject[] potionDrops;
     [SerializeField] GameObject[] scrollDrops;
+    [SerializeField] GameObject babySlime;
     private float _scrollDropChance = 0.01f;
      public float ScrollDropChance
     {
@@ -58,10 +59,13 @@ public class Enemy : EnemyAI{
      public float PotionDropChance
     {
         get { return _potionDropChance; }
-        set { _potionDropChance = Mathf.Clamp(value, 0.3f, 0.5f); }
+        set { _potionDropChance = Mathf.Clamp(value, 0.1f, 0.25f); }
     }
     private int HealthInterval;
     private int currentHealthIndex = 0;
+    
+
+
 
 
 
@@ -100,7 +104,7 @@ public class Enemy : EnemyAI{
         Vector3 position = transform.position;
         position.x += spread * UnityEngine.Random.value - spread/2;
         position.y += spread * UnityEngine.Random.value - spread/2;
-        Debug.Log(dropChance);
+    
 
          if (dropChance <= PotionDropChance && dropChance > ScrollDropChance){
             
@@ -136,6 +140,36 @@ public class Enemy : EnemyAI{
 
     }
 
+      void DestroyEnemySlime(){
+        
+
+        float babyAmount = UnityEngine.Random.Range(2,4);
+
+        Vector3 position = transform.position;
+        position.x += spread * UnityEngine.Random.value - spread/2;
+        position.y += spread * UnityEngine.Random.value - spread/2;
+   
+
+        for(int i = 0; i< babyAmount; i++){
+            GameObject go = Instantiate(babySlime);
+            go.transform.position = position;
+            
+        }
+            
+        
+        
+
+
+       
+
+        animator.SetBool("damage",true);
+        
+        GameManager.Instance.totalEnemies--;
+        
+        Destroy(gameObject);  
+
+    }
+
     void ResetPotionChance()
     {
         PotionDropChance = 0.1f;
@@ -159,7 +193,12 @@ public class Enemy : EnemyAI{
         
 
         if(Health==0){
-            DestroyEnemy();
+            if(!parent){
+               DestroyEnemy(); 
+            }else{
+                DestroyEnemySlime();
+            }
+            
         }
 
         
@@ -261,6 +300,15 @@ public class Enemy : EnemyAI{
            if(idx != currentHealthIndex && idx < healthSprites.Length){
             currentHealthIndex = idx;
             healthMeter.sprite  = healthSprites[currentHealthIndex];
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision){
+
+        if(collision.gameObject.CompareTag("Player")){
+            PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
+            Vector2 direction = Vector2.zero;
+            player.TakeDamage(8,2,direction);
         }
     }
  

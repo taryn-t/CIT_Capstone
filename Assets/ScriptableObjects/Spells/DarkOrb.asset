@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Dark Orb
   damage: 8
   knockback: 1
+  manaCost: 4
   spellEffect: 2
   animator: {fileID: 9100000, guid: 522fa06fd0515484d8cf8222e13b5395, type: 2}
   Icon: {fileID: 699911009, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}

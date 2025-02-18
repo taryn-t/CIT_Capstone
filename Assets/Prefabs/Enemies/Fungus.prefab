@@ -157,7 +157,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1318831634, guid: fa86d7e4bffd6c14a815d50f8bafc849, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -219,7 +219,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -316,6 +316,8 @@ MonoBehaviour:
   moving: 0
   col: {fileID: 0}
   damaged: 0
+  parent: 0
+  baby: 0
   speed: 0.02
   healthSprites:
   - {fileID: -1318831634, guid: fa86d7e4bffd6c14a815d50f8bafc849, type: 3}
@@ -339,7 +341,8 @@ MonoBehaviour:
   - {fileID: 8856206373406490797, guid: d66266603111aeb4d941aee294d167cf, type: 3}
   - {fileID: 8856206373406490797, guid: 020165e742528734c8af9d66a5ce1b7a, type: 3}
   scrollDrops:
-  - {fileID: 8856206373406490797, guid: 2bbbcf0af527b7541a3e06bf2d66e030, type: 3}
+  - {fileID: 8856206373406490797, guid: 609c475da895e274a96d57b854e4523e, type: 3}
+  babySlime: {fileID: 0}
 --- !u!212 &5360209094616850134
 SpriteRenderer:
   m_ObjectHideFlags: 0

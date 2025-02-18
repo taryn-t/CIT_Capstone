@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  pickUpDistance: 0.01
-  ttl: 90
+  pickUpDistance: 0.1
+  ttl: 10
   potion: {fileID: 11400000, guid: c615ad6bea6432d4cbf08127c25eea86, type: 2}
 --- !u!212 &6088636485700953581
 SpriteRenderer:

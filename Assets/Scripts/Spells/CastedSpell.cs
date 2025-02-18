@@ -80,6 +80,7 @@ public class CastedSpell: MonoBehaviour
     {
         
         if(collision.gameObject.CompareTag(caster)){
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             return;
         }
         
@@ -89,7 +90,7 @@ public class CastedSpell: MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             
             enemy.TakeDamage(damage,knockback,direction,effect);
-
+            enemy.Body.velocity=Vector2.zero;
         }
         
         if(collision.gameObject.CompareTag("Player"))

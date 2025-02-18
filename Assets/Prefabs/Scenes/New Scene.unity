@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 3212758}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.941168, y: 6, z: -10}
+  m_LocalPosition: {x: 10.6618185, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3246,6 +3246,7 @@ MonoBehaviour:
   mapGenerated: 0
   saving: 0
   totalEnemies: 0
+  statusUI: {fileID: 0}
   inventoryContainer: {fileID: 11400000, guid: 8c4db9e0a8417ac45ac99995ed8f6ccc, type: 2}
   menu: {fileID: 216220117}
 --- !u!114 &1792865699
@@ -3274,8 +3275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   phaseLength: 60
-  nightLightColor: {r: 0.10980393, g: 0.10196079, b: 0.13333334, a: 0.5882353}
-  dayLightColor: {r: 0.10967996, g: 0.10142401, b: 0.13207549, a: 0.5882353}
+  nightLightColor: {r: 0.10980393, g: 0.10196079, b: 0.13333334, a: 0.39215687}
+  dayLightColor: {r: 0.10967996, g: 0.10142401, b: 0.13207549, a: 0.39215687}
   nightTimeCurve:
     serializedVersion: 2
     m_Curve:

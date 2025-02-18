@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e6b98bd2d943645a65dfeafcdc0e02, type: 3}
   m_Name: Healing
   m_EditorClassIdentifier: 
+  effectColor: {r: 0.96470594, g: 0.5058824, b: 0.5058824, a: 1}
+  label: Healing

@@ -17,9 +17,10 @@ public class Invisibility : PotionEffect
         if(potion == null){
             return false;
         }
+        
         base.OnApply(potion);
         
-        Color newColor = new Color(225,225,25);
+        Color newColor = new Vector4(225,225,50);
         Color oldColor = GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color;
         
 
@@ -36,11 +37,14 @@ public class Invisibility : PotionEffect
 
         GameManager.Instance.GetPlayer().visible = false;
         GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color = newColor;
+
+        SetStatusUI();
         
         await Task.Delay(durMilli);
 
         GameManager.Instance.GetPlayer().visible = true;
         GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color = oldColor;
+        CleanStatusUI();
        
         
     }

@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Poison Smoke
   damage: 8
   knockback: 1
+  manaCost: 4
   spellEffect: 1
   animator: {fileID: 9100000, guid: 89876d6d7c50fb744a9eb71667a33dc9, type: 2}
   Icon: {fileID: 1652888562, guid: 7b79c35c6a932604881243b365553ceb, type: 3}

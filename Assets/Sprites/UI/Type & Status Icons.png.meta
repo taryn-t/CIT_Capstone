@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,1624 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Type & Status Icons_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 369
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c997987bde97b0f409f8d1f1cab72d9e
+      internalID: 1094033493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_1
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 369
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5015e8dd69391534ca7fb3929a81b2df
+      internalID: -155958094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_2
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 369
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30334a1ccb961094bb30bd3535ae76b9
+      internalID: 1075192135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 369
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1d7eb692514fb4ab59991e8a15edf8
+      internalID: -767799995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 353
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b87102daa5cb845927ed3e8d822f05
+      internalID: 2020468585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_5
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 353
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce06fbdd9d1ed86438427e64f333ba74
+      internalID: 1914783813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_6
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 353
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7798d6fb10ac7a4aa40d63a25dccf3f
+      internalID: 133989381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_7
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 353
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6379cdf5adadf40bda3fe8811ab4a4
+      internalID: 132796927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 337
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d219eb94947cf4e8df4f3d4076124e
+      internalID: 2103395787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_9
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 337
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8fea0eda07f1941be61489b3952740
+      internalID: 1962278927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_10
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 337
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78176875457aaa94aaab6ca2559d5b04
+      internalID: -1204560384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_11
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 337
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da537e96af5ba24291566a52583eb71
+      internalID: 677700462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 321
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6971b07761ce64dad2e72b27338572
+      internalID: 1213771500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 321
+        width: 35
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc017ede4ddc2004aba1d54336f1b4c9
+      internalID: -555387612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_14
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 321
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850ae8437f4d29b44993b8bf79ae336c
+      internalID: 1779743868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_15
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 321
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb5930cb23eb9e4093876612711ce62
+      internalID: 2064418772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_16
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 305
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1301a15aed83f4eb95a11472a8c1b9
+      internalID: -795720016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_17
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 305
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6e6f20e2be5804a9743b7f4a2a7dd0
+      internalID: -322461449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_18
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 305
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83c458b1d0d3a5c4fb3fb49b83f71ec5
+      internalID: -800610258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_19
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 305
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f9ee5566f27e446ab0497dd3100aa9
+      internalID: -1624586474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 273
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 611af94d2253d594d99663d9c0922078
+      internalID: 1405626321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_21
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 273
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08b85c425b074d4b9ae8f446f76248d
+      internalID: 1297866677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_22
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 273
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d4493a3dd6db549a4f9b831aac9224
+      internalID: 607920337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_23
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 273
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf1b12e1b170374d8960ff178dc7e40
+      internalID: -912268890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 257
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ba04ff9519a744cbac934a8bdea120
+      internalID: -236400551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_25
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 225
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e4dac94851d6bd4e81b5b9765334a33
+      internalID: -423431694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_26
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 225
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10bae20e5ce4a3646989ef433d92b0e4
+      internalID: 71491829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_27
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 225
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2220c07d26bdf3542a0e4115339afe3e
+      internalID: 1333467041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_28
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 225
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db5269bdc5c28646bc22b2834a846cb
+      internalID: 952027835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_29
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 209
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d500d595d9803a2499682935e21490e4
+      internalID: 2005855431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_30
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 209
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f580b44ccea0dca44949ce4e45bce350
+      internalID: -998837073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_31
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 209
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a88a34eb75053a4cba2f9f29a07a18d
+      internalID: 1866305606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_32
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 209
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d51169b5db088645813612c24443cbf
+      internalID: -1093815562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_33
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 193
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e12d5135dc47c5443a86620b81dfa604
+      internalID: -632153884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_34
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 161
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c85c647b28c08f439a5bc88bcd94db9
+      internalID: -1348873087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_35
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 161
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444b464165fba67458c1b8771f4154d6
+      internalID: 563973954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_36
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 161
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2140ecceacfddf488351b1d968d0f3d
+      internalID: -1704188546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_37
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 161
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d7c73270d04514980eac96ee9f4a99
+      internalID: -1471187734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_38
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 145
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a6622adceee29469f820ba68ebe639
+      internalID: -513192127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_39
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 145
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac2945d4dccde94da9e5d1d60eeefe8
+      internalID: 141798758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_40
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 145
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e21b7f11ebf74447b8bd8753f6af7c3
+      internalID: -551266175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_41
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 145
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0921bf21e1c4e064090d6282e3a5a402
+      internalID: 1019357456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_42
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 129
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f7214f71fb6db54db750d891517f8c6
+      internalID: 548278795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_43
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 129
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6222e30479fdb67469e57b17b21c7c60
+      internalID: -73649604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_44
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 129
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e60ee6f99bbf4e64daf3bd34a886d041
+      internalID: -2033188228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_45
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 129
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef48137f2a3050241b761134aa10c214
+      internalID: 1815083051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_46
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 113
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d8d4f03ec8f554b95cb05b0483cc51
+      internalID: 1893198156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_47
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 113
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fc74cb143bcb3643aad64a20ae8960e
+      internalID: 1913357879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_48
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 113
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0871b5fab60958348850168c5fe4620f
+      internalID: 1268735182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_49
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 113
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a8b556495693144815355e7f3fa805
+      internalID: -631033132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_50
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 97
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3dda1c85417e9045a3ef3d702448240
+      internalID: 1026401904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_51
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 97
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94497f3de9db294da8777b54168275e
+      internalID: 1166976180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_52
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 97
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf187a253e077f142b8a6e2b149e81a5
+      internalID: 307974620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_53
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 97
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76cdadaa123512d41bb1bb365c7cdefb
+      internalID: 631207234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_54
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 81
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0129cdb1c287f34a92f4bdac78f9739
+      internalID: 164881339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_55
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 81
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f464cae1fa156349b59da3858a9fe28
+      internalID: 259349284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_56
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 49
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47eeb415bc31a824687405990721995d
+      internalID: -1221031983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_57
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 49
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2eb5c6aa5f3805418be6b11904f794b
+      internalID: 2069815069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_58
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 49
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45e62ce8ff9a7b044bffe5e5804f9235
+      internalID: -1361832633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_59
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 49
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed980587c9cec8e47ac2ecfe83d40b54
+      internalID: -2102623607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_60
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 49
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417de64dc6b2a0f4d93d46fac0e75415
+      internalID: 1978056029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_61
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 49
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61f15b2e82899774093582c8287ae2bf
+      internalID: 387182036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_62
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c389745b9670a74cafa20317116a835
+      internalID: 847048695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_63
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83417c9a3f7282341b6a7285cbb395a3
+      internalID: -1855095750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_64
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e7671992d8e4c4daae6f819497b2a1
+      internalID: -1123533489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_65
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5e552e9d009c2478127cfde4b68747
+      internalID: -1701078177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_66
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2717f42da54b59448a1e7a6154c9b838
+      internalID: -515318307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_67
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ecd49d65f0bdc458f6f5cd1ea50eb6
+      internalID: -1641554975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_68
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 17
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8ba50c681f6bc49bbd7309f760a54e
+      internalID: -124286917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_69
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 17
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27a8abce883e5f48bd0d363786bcd1a
+      internalID: -1961871219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_70
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 17
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c201c9299f3040468d0d8d6d939f075
+      internalID: 415026850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_71
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 17
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d579676ff9d701e45aca3044f61d374f
+      internalID: -2106404704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_72
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 17
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 305b2cbfd16d56342950ba3627a722ff
+      internalID: 2125524754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_73
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 17
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a735af341b8de48913755542d80806
+      internalID: -1265904868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_74
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35af32c898319b446b5c0f73b4f6dc2e
+      internalID: 1918167067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_75
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 1
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f82ff13041b5bb04eaf1379b9505628e
+      internalID: 822915032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Type & Status Icons_76
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 1
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa37c83e3b21ba4e8d3173fa3612f33
+      internalID: -1625478204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +1723,84 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Type & Status Icons_0: 1094033493
+      Type & Status Icons_1: -155958094
+      Type & Status Icons_10: -1204560384
+      Type & Status Icons_11: 677700462
+      Type & Status Icons_12: 1213771500
+      Type & Status Icons_13: -555387612
+      Type & Status Icons_14: 1779743868
+      Type & Status Icons_15: 2064418772
+      Type & Status Icons_16: -795720016
+      Type & Status Icons_17: -322461449
+      Type & Status Icons_18: -800610258
+      Type & Status Icons_19: -1624586474
+      Type & Status Icons_2: 1075192135
+      Type & Status Icons_20: 1405626321
+      Type & Status Icons_21: 1297866677
+      Type & Status Icons_22: 607920337
+      Type & Status Icons_23: -912268890
+      Type & Status Icons_24: -236400551
+      Type & Status Icons_25: -423431694
+      Type & Status Icons_26: 71491829
+      Type & Status Icons_27: 1333467041
+      Type & Status Icons_28: 952027835
+      Type & Status Icons_29: 2005855431
+      Type & Status Icons_3: -767799995
+      Type & Status Icons_30: -998837073
+      Type & Status Icons_31: 1866305606
+      Type & Status Icons_32: -1093815562
+      Type & Status Icons_33: -632153884
+      Type & Status Icons_34: -1348873087
+      Type & Status Icons_35: 563973954
+      Type & Status Icons_36: -1704188546
+      Type & Status Icons_37: -1471187734
+      Type & Status Icons_38: -513192127
+      Type & Status Icons_39: 141798758
+      Type & Status Icons_4: 2020468585
+      Type & Status Icons_40: -551266175
+      Type & Status Icons_41: 1019357456
+      Type & Status Icons_42: 548278795
+      Type & Status Icons_43: -73649604
+      Type & Status Icons_44: -2033188228
+      Type & Status Icons_45: 1815083051
+      Type & Status Icons_46: 1893198156
+      Type & Status Icons_47: 1913357879
+      Type & Status Icons_48: 1268735182
+      Type & Status Icons_49: -631033132
+      Type & Status Icons_5: 1914783813
+      Type & Status Icons_50: 1026401904
+      Type & Status Icons_51: 1166976180
+      Type & Status Icons_52: 307974620
+      Type & Status Icons_53: 631207234
+      Type & Status Icons_54: 164881339
+      Type & Status Icons_55: 259349284
+      Type & Status Icons_56: -1221031983
+      Type & Status Icons_57: 2069815069
+      Type & Status Icons_58: -1361832633
+      Type & Status Icons_59: -2102623607
+      Type & Status Icons_6: 133989381
+      Type & Status Icons_60: 1978056029
+      Type & Status Icons_61: 387182036
+      Type & Status Icons_62: 847048695
+      Type & Status Icons_63: -1855095750
+      Type & Status Icons_64: -1123533489
+      Type & Status Icons_65: -1701078177
+      Type & Status Icons_66: -515318307
+      Type & Status Icons_67: -1641554975
+      Type & Status Icons_68: -124286917
+      Type & Status Icons_69: -1961871219
+      Type & Status Icons_7: 132796927
+      Type & Status Icons_70: 415026850
+      Type & Status Icons_71: -2106404704
+      Type & Status Icons_72: 2125524754
+      Type & Status Icons_73: -1265904868
+      Type & Status Icons_74: 1918167067
+      Type & Status Icons_75: 822915032
+      Type & Status Icons_76: -1625478204
+      Type & Status Icons_8: 2103395787
+      Type & Status Icons_9: 1962278927
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

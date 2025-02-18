@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2337d824319507843a859ae0514983f6, type: 3}
   m_Name: Invisibility
   m_EditorClassIdentifier: 
+  effectColor: {r: 0.65882355, g: 0.5176471, b: 0.95294124, a: 1}
+  label: Invisibility

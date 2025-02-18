@@ -15,5 +15,5 @@ MonoBehaviour:
   Name: Potion of Minor Healing
   icon: {fileID: -273252920, guid: 1e30888636987bd4c9876d5f60c3628d, type: 3}
   potionEffect: {fileID: 11400000, guid: ec7a4a4aa5b5ea5489edc4c760d37c38, type: 2}
-  effectStrength: 10
+  effectStrength: 16
   duration: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8794858726498081589}
   - component: {fileID: 3528092659008131008}
   - component: {fileID: 7795043509984971236}
+  - component: {fileID: 6172681330959046658}
   m_Layer: 5
   m_Name: HeartContainer
   m_TagString: Untagged
@@ -65,19 +66,43 @@ MonoBehaviour:
   - {fileID: -376970028, guid: 20db944169729f843aed6b34de7fa4d5, type: 3}
   - {fileID: 249441468, guid: 20db944169729f843aed6b34de7fa4d5, type: 3}
   - {fileID: -1284455651, guid: 20db944169729f843aed6b34de7fa4d5, type: 3}
-  healthLabel: {fileID: 0}
+  healthLabel: {fileID: 6318898404320134795}
   hearts:
   - {fileID: 4275203581353367606}
   - {fileID: 9028004579677085149}
   - {fileID: 2288521550406246035}
   - {fileID: 6934097505769998925}
   - {fileID: 1806971244280342853}
-  currentHeart: {fileID: 0}
+  currentHeart: {fileID: 4275203581353367606}
   currentHeartIndex: 0
   currentSpriteIndex: 0
   heartHealthInterval: 0
   spriteInterval: 0
   maxPlayerHealth: 0
+--- !u!114 &6172681330959046658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857892382226401196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 240, y: 48}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &3667243117141909300
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,10 +135,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8794858726498081589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -16}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3682032368221231430
 CanvasRenderer:
@@ -170,15 +195,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 2048
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -617,10 +642,10 @@ RectTransform:
   - {fileID: 7873403573413173394}
   m_Father: {fileID: 8794858726498081589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32, y: -32}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2730792479646754154
 CanvasRenderer:
@@ -650,7 +675,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 64, y: 64}
+  m_CellSize: {x: 48, y: 48}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

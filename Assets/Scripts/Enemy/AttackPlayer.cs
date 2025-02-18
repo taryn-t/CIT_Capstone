@@ -17,10 +17,11 @@ public class AttackPlayer : Node
     Vector2 lastMotionVector;
     bool damaged;
     bool attack;
+    bool slime;
 
    
     
-    public AttackPlayer(Rigidbody2D enemy, Rigidbody2D player, float range, Animator animator, Spell spell, GameObject spellPrefab, Vector2 lastMotionVector, CapsuleCollider2D collider, bool damaged)
+    public AttackPlayer(Rigidbody2D enemy, Rigidbody2D player, float range, Animator animator, Spell spell, GameObject spellPrefab, Vector2 lastMotionVector, CapsuleCollider2D collider, bool damaged, bool slime)
     {
         enemyBody = enemy;
         playerBody = player;
@@ -32,6 +33,7 @@ public class AttackPlayer : Node
         this.collider = collider;
         offsetRotation = new OffsetRotation();
         this.damaged = damaged;
+        this.slime = slime;
 
        
 
@@ -49,8 +51,18 @@ public class AttackPlayer : Node
                 animator.SetBool("attack",true);
             }
             
-            // Implement attack logic here
-            GameManager.Instance.CastSpellEnemy(spellPrefab,spell,offsetRotation,enemyBody,lastMotionVector,collider,playerBody);
+            if(!slime){
+              
+                GameManager.Instance.CastSpellEnemy(spellPrefab,spell,offsetRotation,enemyBody,lastMotionVector,collider,playerBody);
+            }
+            else{
+            
+                Vector2 direction = (playerBody.position - enemyBody.position).normalized;
+                enemyBody.AddForce((Vector3)direction * 10f * Time.deltaTime, ForceMode2D.Impulse);
+
+                return NodeStatus.Running; // This action runs continuously 
+            }
+            
             attack=true;
             
             AttackCooldown();

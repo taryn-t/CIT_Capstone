@@ -30,6 +30,8 @@ public class EnemyAI : MonoBehaviour
     public bool damaged = false;
    
     public CancellationTokenSource cancellationTokenSource;
+    public bool parent = false;
+    public bool baby = false;
     public void InitializeBehaviorTree()
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
@@ -40,7 +42,7 @@ public class EnemyAI : MonoBehaviour
 
         Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, Body);
 
-        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged);
+        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged, baby);
 
         Node patrol = new Patrol(transform,moveSpeed,patrolRange, Body, col, obstacleLayerMask);
 
@@ -84,6 +86,7 @@ public class EnemyAI : MonoBehaviour
         cancellationTokenSource?.Cancel();
     }
 
+    
     
 
   

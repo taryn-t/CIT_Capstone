@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Health
+    public int Health
     {
         get { return _health; }
         set { _health = Mathf.Clamp(value, 0, 100); }
     }
-    private float _health = 100;
-     public float Mana
+    private int _health = 100;
+     public int Mana
     {
         get { return _mana; }
-        set { _mana = Mathf.Clamp(value, 0, 100); }
+        set { _mana = Mathf.Clamp(value, 0, 50); }
     }
 
-    private float _mana = 100;
+    private int _mana = 50;
 
     public bool visible = true;
-    public float maxHealth;
+    public int maxHealth;
+
+    public int maxMana;
+
+    public bool manaRegenerating = false;
+    public int manaRegenAmount = 4;
     
     void Start()
     {
-        maxHealth=Health;
+        maxHealth = Health;
+        maxMana = Mana;
         GetComponent<InventoryController>().Init();
         GameManager.Instance.SetPlayer(this.gameObject);
         Health = GameManager.Instance.gameData.playerData.Health;
@@ -36,12 +42,16 @@ public class PlayerController : MonoBehaviour
         if(Health==0){
             // DestroyPlayer();
         }
+
+        if(!manaRegenerating && Mana < maxMana){
+            StartCoroutine(ManaRegen());
+        }
     }
 
     void DestroyPlayer(){
         Destroy(this);
     }
-    public void TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect){
+    public void TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect=SpellEffect.None){
         Health -= damage;
         DamageEffect(spellEffect);
         
@@ -67,6 +77,18 @@ public class PlayerController : MonoBehaviour
     }
    public void Poison(){
         Health -= 2;
+    }
+
+    public IEnumerator ManaRegen(){
+        manaRegenerating = true;
+
+       
+
+        yield return new WaitForSeconds(1f);
+         Mana += manaRegenAmount;
+
+        manaRegenerating = false;
+
     }
 
    
