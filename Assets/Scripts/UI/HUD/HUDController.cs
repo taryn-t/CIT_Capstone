@@ -14,7 +14,6 @@ public class HUDController : MonoBehaviour{
     public int wave = default;
     public int waveTime = 60;
     public bool counting = false;
-    public bool procederal = true;
     private WalkerGenerator MapGen;
     public void Start(){
         GameManager.Instance.hudController = this;
@@ -58,7 +57,7 @@ public class HUDController : MonoBehaviour{
             yield return new WaitForSeconds(1f);
        }
 
-       if(procederal && wave != 1){
+       if(GameManager.Instance.procederalWaves && wave != 1){
             RegenerateMap();
        }
         

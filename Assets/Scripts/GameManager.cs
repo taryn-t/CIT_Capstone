@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     public string genSeed;
     public string gameName;
     public bool regenerating = false;
+    public bool procederalWaves = true;
+
 
     private void Awake()
     {
