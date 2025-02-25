@@ -42,6 +42,7 @@ public class WalkerGenerator : MonoBehaviour
     [SerializeField] public TileBase Leafy;
     [SerializeField] PolygonCollider2D CameraConfiner;
     [SerializeField] public Sprite InnerHillSprite;
+    public bool regenerating = false;
 
 
     public int MapWidth = 32;
@@ -153,8 +154,9 @@ public class WalkerGenerator : MonoBehaviour
 
     }
 
-   public void StartGeneration(string seed, string gameName, GameObject go)
+   public void StartGeneration(string seed, string gameName)
    {
+
         GameManager.Instance.changeCursor.Default();
         GameManager.Instance.menu.ChangePanel(4);
         key = gameName;
@@ -177,9 +179,44 @@ public class WalkerGenerator : MonoBehaviour
 
    }
 
+    public void RegenerateMap(string seed, string gameName)
+   {
+
+        GameManager.Instance.regenerating = true;
+
+        GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
+        
+
+        foreach(GameObject structure in structures){
+            Destroy(structure);
+            enemyStructuresGenerated--;
+        }
+        System.Random rnd = new System.Random();
+        int randInt =rnd.Next();
+        key = gameName + randInt.ToString();
+        
+
+        char[] chars = seed.ToCharArray();
+        int seedInt = 0;
+        foreach(char character in chars){
+            seedInt += character -'0';
+        }
+
+        Seed = seedInt + randInt;
+
+        hillTileMap.ClearAllTiles();
+        decorTileMap.ClearAllTiles();
+        leafyTilemap.ClearAllTiles();
+        resourceTileMap.ClearAllTiles();
+        hillFloorTileMap.ClearAllTiles();
+        
+        InitializeGrid();
+
+   }
+
     void InitializeGrid()
     {
-
+        
         Grid[,] grid = new Grid[MapWidth, MapHeight];
 
         map = new Map(key);
@@ -224,7 +261,8 @@ public class WalkerGenerator : MonoBehaviour
     }
     UnityEngine.Vector2 GetDirection()
     {
-        int choice = Mathf.FloorToInt(UnityEngine.Random.value * 3.99f);
+        System.Random rnd = new System.Random();
+        int choice = Mathf.FloorToInt(rnd.Next() * 3.99f);
 
         switch (choice)
         {
@@ -481,9 +519,9 @@ public class WalkerGenerator : MonoBehaviour
         }
         
         tilemap.ResizeBounds();
-        CreateStructures(chunk);
 
         DecorateHills(chunk);
+        CreateStructures(chunk);
 
         SaveMap(chunk);
     }
@@ -517,13 +555,14 @@ public class WalkerGenerator : MonoBehaviour
         await Task.Yield();
     }
 
-    public async void CreateStructures(Chunk chunk)
+    public void CreateStructures(Chunk chunk)
     {
-
+        
         List<Vector3Int> availablePositions = new List<Vector3Int>();
 
         foreach (Vector3Int position in tilemap.cellBounds.allPositionsWithin)
         {
+            Debug.Log("Generating structures");
             if (Floor == tilemap.GetTile(position))
             {
                 float xPow = Mathf.Pow(chunk.ChunkCenter.x-position.x,2f);
@@ -546,14 +585,14 @@ public class WalkerGenerator : MonoBehaviour
 
                             if(!tooClose)
                             {
-                                if(!hillTileMap.HasTile(position)){
+                                if(!hillTileMap.HasTile(position) && !hillFloorTileMap.HasTile(position) ){
                                     availablePositions.Add(position); 
                                 }
                             }
                         }
                         else
                         {
-                            if(!hillTileMap.HasTile(position)){
+                            if(!hillTileMap.HasTile(position) && !hillFloorTileMap.HasTile(position)  ){
                                 availablePositions.Add(position); 
                             }
                             
@@ -570,10 +609,7 @@ public class WalkerGenerator : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, availablePositions.Count);
             bool hasCreatedStructure = AddEnemyStructure(chunk,availablePositions[randomIndex]);
 
-             if (hasCreatedStructure)
-            {
-                await Task.Delay(50);
-            }
+            
         }
 
         
@@ -582,22 +618,26 @@ public class WalkerGenerator : MonoBehaviour
      
      public void SaveMap(Chunk chunk)
         {
-            // AddColliders(chunk);
-            map = null;
+            if(!GameManager.Instance.regenerating){
+                map = null;
 
-            GameManager.Instance.SetGameData(game);
-            GameObject player = Instantiate(playerPrefab, new UnityEngine.Vector3(chunk.ChunkWidth/2, chunk.ChunkHeight/2,0 ), UnityEngine.Quaternion.identity);
-            Vector2[] vector2s =   new Vector2[4];
-            
-            GameManager.Instance.GetVirtualCamera().SetFollow(player.transform);
-            Instantiate(GameManager.Instance.HUDPrefab);
-            GameManager.Instance.menu.Close();
-            GameManager.Instance.mapGenerated =true;
-            GameManager.Instance.changeCursor.Default();
-            tilemap.CompressBounds();
-            
-           WorldBounds worldBounds = new WorldBounds(tilemap);
-           GameManager.Instance.worldBounds = worldBounds;
+                GameManager.Instance.SetGameData(game);
+                GameObject player = Instantiate(playerPrefab, new UnityEngine.Vector3(chunk.ChunkWidth/2, chunk.ChunkHeight/2,0 ), UnityEngine.Quaternion.identity);
+                Vector2[] vector2s =   new Vector2[4];
+                
+                GameManager.Instance.GetVirtualCamera().SetFollow(player.transform);
+                Instantiate(GameManager.Instance.HUDPrefab);
+                GameManager.Instance.menu.Close();
+                GameManager.Instance.mapGenerated =true;
+                GameManager.Instance.changeCursor.Default();
+                tilemap.CompressBounds();
+                    
+                WorldBounds worldBounds = new WorldBounds(tilemap);
+                GameManager.Instance.worldBounds = worldBounds; 
+            }else{
+                GameManager.Instance.regenerating =false;
+            }
+           
         }
 
     async Task AddDecor( Vector3Int curPos, Chunk chunk){

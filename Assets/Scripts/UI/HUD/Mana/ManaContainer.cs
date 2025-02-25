@@ -31,7 +31,7 @@ public class ManaContainer : MonoBehaviour
         currentManaIndex = 0;
         currentMana = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Mana>();
         maxPlayerMana = GameManager.Instance.GetPlayer().maxMana;
-        manaInterval = GameManager.Instance.GetPlayer().Mana/mana.Count;
+        manaInterval = GameManager.Instance.GetPlayer().Mana/(mana.Count+1);
         manaSpriteInterval = manaInterval/manaSprites.Count;
 
         float min = GameManager.Instance.GetPlayer().Mana - manaInterval;
@@ -52,7 +52,7 @@ public class ManaContainer : MonoBehaviour
 
     }
 
-    void Update(){
+    void FixedUpdate(){
 
         CheckForManaChange(GameManager.Instance.GetPlayer().Mana);
 
@@ -62,15 +62,25 @@ public class ManaContainer : MonoBehaviour
     }
 
     public void CheckForManaSpriteChange(float currentManaAmount){
- 
-        float difference = currentMana.maxManaAmount - currentManaAmount;
-        
-        int idx = (int) (difference / manaSpriteInterval);
-        
-        if(idx != currentManaSpriteIndex){
-            currentManaSpriteIndex = idx;
-            currentMana.SetSprite(manaSprites[currentManaSpriteIndex]);
+        if(currentManaAmount >= currentMana.maxManaAmount){
+            mana[currentManaIndex-1].SetSprite(manaSprites[0]);
+            // currentMana.SetSprite(manaSprites[0]);
         }
+        else if (currentManaAmount <= currentMana.minManaAmount){
+            mana[currentManaIndex+1].SetSprite(manaSprites.Last());
+            // currentMana.SetSprite(manaSprites.Last());
+        }
+        else{
+            float difference = currentMana.maxManaAmount - currentManaAmount;
+        
+            int difIndex = (int) (difference / manaSpriteInterval);
+            int idx = Mathf.Clamp(difIndex, 0, manaSprites.Count-1);
+            if(idx != currentManaSpriteIndex){
+                currentManaSpriteIndex = idx;
+                currentMana.SetSprite(manaSprites[currentManaSpriteIndex]);
+            } 
+        }
+       
         
           manaLabel.text = $"{currentManaAmount}/{maxPlayerMana}";
     }
@@ -78,8 +88,10 @@ public class ManaContainer : MonoBehaviour
     public void CheckForManaChange(float currentManaAmount){
         float difference = maxPlayerMana - currentManaAmount;
 
-        int idx = (int) (difference / manaInterval);
+        int difIndex = (int) (difference / manaInterval);
         
+        int idx = Mathf.Clamp(difIndex, 0, mana.Count-1);
+
         if(idx != currentManaIndex  ){
 
             int manaIndexDifference = idx - currentManaIndex;

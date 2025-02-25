@@ -10,6 +10,7 @@ TagManager:
   - Spell
   - Enemy
   - PotionButton
+  - Structure
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class NewGamePanel : MenuPanel
 {
 
-    private static int index = 1;
+    public static int index = 1;
     private WalkerGenerator MapGen;
 
     [SerializeField] Button GenerateBtn;
@@ -17,14 +17,19 @@ public class NewGamePanel : MenuPanel
 
     string seedVal = "";
     string nameVal = "";
+    public void Start()
+    {
+        GameManager.Instance.GetMenu().currentMenuIndex = index;
+    }
 
     public void GenerateMap()
     {
         
-
+        GameManager.Instance.genSeed = Seed.text;
+        GameManager.Instance.gameName = GameName.text;
         MapGen = GameManager.Instance.GetMapGenerator();
         
-        MapGen.StartGeneration(Seed.text,GameName.text, gameObject);
+        MapGen.StartGeneration(Seed.text,GameName.text);
         
         
     }

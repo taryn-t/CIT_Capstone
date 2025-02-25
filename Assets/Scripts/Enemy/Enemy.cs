@@ -135,6 +135,7 @@ public class Enemy : EnemyAI{
         animator.SetBool("damage",true);
         
         GameManager.Instance.totalEnemies--;
+        GameManager.Instance.enemiesDefeated++;
         
         Destroy(gameObject);  
 

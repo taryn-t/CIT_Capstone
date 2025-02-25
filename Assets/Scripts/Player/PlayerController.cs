@@ -24,14 +24,18 @@ public class PlayerController : MonoBehaviour
     public int maxMana;
 
     public bool manaRegenerating = false;
-    public int manaRegenAmount = 4;
-    
+    public int manaRegenAmount = 2;
+
+
+    void Awake()
+    {
+        GameManager.Instance.player = this.gameObject;
+    }
     void Start()
     {
         maxHealth = Health;
         maxMana = Mana;
         GetComponent<InventoryController>().Init();
-        GameManager.Instance.SetPlayer(this.gameObject);
         Health = GameManager.Instance.gameData.playerData.Health;
         Mana = GameManager.Instance.gameData.playerData.Mana;
 

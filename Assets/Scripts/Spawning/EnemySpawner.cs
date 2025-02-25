@@ -13,7 +13,7 @@ public class EnemySpawner : Spawner
     private void Start(){    
     
         
-
+        maxAmount =  GameManager.Instance.hudController.wave == 1 ? 3 :  (int)(GameManager.Instance.hudController.wave*3f);
     }
 
     private void OnDestroy()

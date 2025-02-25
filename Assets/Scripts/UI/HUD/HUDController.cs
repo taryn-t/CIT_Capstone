@@ -1,6 +1,7 @@
 
 
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class HUDController : MonoBehaviour{
     public int wave = default;
     public int waveTime = 60;
     public bool counting = false;
+    public bool procederal = true;
+    private WalkerGenerator MapGen;
     public void Start(){
         GameManager.Instance.hudController = this;
 
@@ -23,6 +26,7 @@ public class HUDController : MonoBehaviour{
     public void NextWave(){
         wave++;
         waveLabel.text = (wave-1).ToString();
+        GameManager.Instance.wavesSurvived++;
     }
 
      public void UpdateTime(int time){
@@ -32,13 +36,14 @@ public class HUDController : MonoBehaviour{
     
         // timeLabel.text = seconds.ToString();
     }
-    public void ResetTime(){
-        seconds = 0;
-    }
+    // public void ResetTime(){
+    //     seconds = 0;
+    // }
     void Update()
     {
-        if(!counting){
-             StartCoroutine(Countdown());
+        if(!counting && GameManager.Instance.GetPlayer().Health >0 && !GameManager.Instance.regenerating){
+            StartCoroutine(Countdown());
+            
         }
        
     }
@@ -47,13 +52,41 @@ public class HUDController : MonoBehaviour{
     public IEnumerator Countdown(){
         counting = true;
        while(seconds > 0){
+            GameManager.Instance.totalTime++;
             seconds--;
             timeLabel.text = seconds.ToString();
             yield return new WaitForSeconds(1f);
        }
+
+       if(procederal && wave != 1){
+            RegenerateMap();
+       }
+        
+        NextWave();
+       
+
        seconds = 60;
        counting = false;
+       
         
+    }
+
+    public  void RegenerateMap(){
+        
+
+        
+        
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies){
+            Destroy(enemy);
+        }
+        MapGen = GameManager.Instance.GetMapGenerator();
+        
+        MapGen.RegenerateMap(GameManager.Instance.genSeed, GameManager.Instance.gameName);
+
+        
+        
+
     }
 
 

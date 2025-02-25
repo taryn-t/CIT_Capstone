@@ -52,6 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visible: 1
   maxHealth: 0
+  maxMana: 0
+  manaRegenerating: 0
+  manaRegenAmount: 5
 --- !u!50 &4630086955347441013
 Rigidbody2D:
   serializedVersion: 4

@@ -1,0 +1,2292 @@
+fileFormatVersion: 2
+guid: 8878537d2247f4640b6c917c95e47013
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8029f2587dc31b04ebef46eb4eea2b91
+      internalID: -293310387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea4b96353a5de3478938a8624e721c8
+      internalID: 1218595262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10c4239d53dcb54499cdc63d85b487a0
+      internalID: -1901960427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_3
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf342671830fa643b844bfc475f4bd0
+      internalID: 173854662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2e0157af0c902a42aa38d0377da88c8
+      internalID: 96355980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_5
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d791a157fd8e0ba4884465be282fbdaf
+      internalID: 965877900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_6
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 79
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd2479d9bd10f45479b7800e933e1d51
+      internalID: 138331454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465aab419e7b8574d8422ab951b9e190
+      internalID: -1956576047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9301e9ea2e5fc44bb0b8ae75994a0c8
+      internalID: 1637306121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cda6925ec7fcaf479603ba6ab0d939c
+      internalID: 1931410513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_10
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 381a57d0cae7c924ea9d733fe5a1c9ff
+      internalID: -1159928461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14bc3b0aa260524e8c6d753473faadd
+      internalID: -1320851813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771ee67cacef07945a8864ac4b6c1300
+      internalID: 1802139388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b0072603c8b77142a9f22f3235380d8
+      internalID: 300912793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_14
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 73
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aa1083cfb00b2a48b8bc7eee6fc896b
+      internalID: 1013296648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e75189a953737a4ca371f8178f469c3
+      internalID: 1578809829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2c8032d93344d479a5521e7bf08859
+      internalID: -1986599555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_17
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70753027a830c984cbcbee30d47ebe69
+      internalID: -1097225888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_18
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2ebac20e405264cb093d6263968de7
+      internalID: -953700523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_19
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5b9d49d8baf0c47bca6ff5930fa190
+      internalID: -2042384573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_20
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31866c03699ce0c49ac1cd5cc405276e
+      internalID: -220869320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_21
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 67
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e20a01f364f31744aa0ebabb9d62342
+      internalID: -246097160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 285dc7e6bc9c6c74a9eea69fa3a02071
+      internalID: -1329359135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_23
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b83f1d2892d6a4ab68eddf299c54a4
+      internalID: -418593500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6774c02f1f9e1324aad83e4fa9cd46b0
+      internalID: 758366159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_25
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa19cfd85fe5664fbfdc6192b74013c
+      internalID: -61515662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_26
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 906cbeb6ba4ffa44f8036231f6fa4a20
+      internalID: -455341478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_27
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6c582a0d487274295cf991b7721060
+      internalID: 664595777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_28
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 61
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f2f654b2fab01349a605270a8b911fb
+      internalID: -1323336739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13f83c27d40d26546b50d2f55fe8f736
+      internalID: 1138339195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_30
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a209e143f591dc469b1bcf277a5526b
+      internalID: 1685685466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_31
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bfa8100dae858941acfc95df0b01439
+      internalID: -2061235974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_32
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de61edf2fafdb542afbfb6792442ec5
+      internalID: 870636113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb5bea5653ca8a44bea96e842b2cb1b
+      internalID: -1506526313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_34
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8a78cd763c3264cb128c7bb0182914
+      internalID: -1530225668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_35
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 55
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d8fa2f48b31e274fbc7dccee7db8ac4
+      internalID: 2144115344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8404ccefebdf0994497b7d9a81f95ad5
+      internalID: -1433236966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_37
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 876aebfa858455f47a737310b7303318
+      internalID: 940132672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_38
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e98d550515124944bf6f2bc1fd74936
+      internalID: -1353833538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_39
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e6980ae39525a468491c25c07f7d45
+      internalID: 2050275960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_40
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec55e5906015a4349814a7c0a1d02d3a
+      internalID: 1536285311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_41
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879c260d3a330b246bf23b5fc8e05351
+      internalID: -653924935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_42
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 49
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da8bee13af6c0440838554d74764e2f
+      internalID: 1619540692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7688a34a450d0044c9a5adaa9e25c15d
+      internalID: 945712730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_44
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7146b651f3204f9458d0c16d9eecb204
+      internalID: 857812580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_45
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9eee18c36d45742b37cac90cb2ea29
+      internalID: 1169884467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_46
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 371b91bfafeba82409acda84046317db
+      internalID: -791371323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_47
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8527e1db516f8dd4c9135f5a0304deea
+      internalID: -831782111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_48
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc467fa3fb7112d488745b12160ba3b9
+      internalID: 1363146681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_49
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 43
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b494a3780ba58da47ab08a2f0e7ce380
+      internalID: 1358944804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0960430762f474db3587696184d999
+      internalID: 1403412514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_51
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8124f891702f616499bd6d276ce455ec
+      internalID: -1997991708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_52
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c74b97ea160df4e941112b782304cf
+      internalID: 1904657258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_53
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9929509b306cd8a44ba40226d5090608
+      internalID: 168005807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_54
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18e4299ceaa75634b8e765ca1bb03b1d
+      internalID: 215457901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_55
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea434be295ab6b43b15452b4b3425ee
+      internalID: -2144027818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_56
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 37
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a345b56005e1d54cbf26ad4bfab131c
+      internalID: 1099614143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_57
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc91f0a255022dd479e16553adf0021d
+      internalID: 2093887963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_58
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22bdea94773ce9c4590edc820b9421e8
+      internalID: -529923844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_59
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0573a1b54e945684f8ee241b55b48a07
+      internalID: -1188267718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_60
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9927cb08024919f4ea4a46d198e9d2fb
+      internalID: 1109503178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_61
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fec894087ea0ef42a12243d214386f8
+      internalID: -1095196701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_62
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89ffcab2b99a5da41a73ac24c2e5336e
+      internalID: -1015989118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_63
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc12eed4711fbb45a4aafb886403edc
+      internalID: -1492288584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_64
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 31
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d32894f010bec8e4db8351a99fadcff1
+      internalID: 1058554680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 207fe82f7d097b34e8152e2647c70db3
+      internalID: -1833503281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_66
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e637568eb0ba24fb3450e5085c58ce
+      internalID: -1798708810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_67
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 314ab6fb4485ae5418734617add033a0
+      internalID: -1734536636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_68
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbf02b1941313854faf6cfb6b8c4dc68
+      internalID: -411661489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_69
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dd2792529cf74f41abbf7846fe277df
+      internalID: -1240001915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_70
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3df0b690f39bc94bb7e58b607cc94a2
+      internalID: 113988305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_71
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 25
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 325d358475dfd274d9c88b1a152f4d4e
+      internalID: -2032896200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e47e761c482424f819d3b0d83b934a
+      internalID: -1957817325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_73
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c34e895f589a41489afd8e089a1ce62
+      internalID: -2070266152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_74
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f8b4e23dceb93a41b0a59ddb7d03bb5
+      internalID: 985709896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_75
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb669f6859c33a459d3568139407af7
+      internalID: 248574135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_76
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b221752f3f7ece46942f27c7007c308
+      internalID: 1872141518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_77
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b8a7259d13d5e14abc0c7b16c6dce67
+      internalID: -219239009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_78
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f552f8b42e58074449b89f7abac2d296
+      internalID: 1213166078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_79
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 19
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef403301753a5c44e86a74eb7c93f867
+      internalID: 1180280592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bf5e1b5020353045a1676a056dec9fb
+      internalID: -1438896771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_81
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c16a8be0be90848997296e1edd597f
+      internalID: 554037833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_82
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d890f7337c9b104c995001af343b0d2
+      internalID: 667165035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_83
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebee2b4bda1ab0e48a82101b00a49cef
+      internalID: 1210480379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_84
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11768420766eb48419bb6590834c5b56
+      internalID: 585215167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_85
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41b19ffa679b1254c8c373e8aa0440d1
+      internalID: 1105803044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_86
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f61215d2f5a4c46b960a7836ab73b3
+      internalID: 38997100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_87
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 13
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8cbe700550db024a95084e9aa5372e1
+      internalID: -2105869502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_88
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426428ee8474db946a148d85891309eb
+      internalID: -2147056294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_89
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8057734ed08a244bbe812d16e8bef18
+      internalID: -1874534005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_90
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7569ccad3a27e0a41a7f4947cc360804
+      internalID: 1880726585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_91
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d96a267507d0ac4ab0cf14be21ebb34
+      internalID: 784981583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_92
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8953c19e67cbfb342a43b9f48302fa7a
+      internalID: 118364156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_93
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ce7540540af2a4dbedd955f3b7f2df
+      internalID: -39035524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_94
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 7
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc1f5f1e010f5c7419b820b451991613
+      internalID: 74597169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_95
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2648d546e6a0dd45b0a7eeef7fb6aa3
+      internalID: 184793470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_96
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 1
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f6fc25ced486a4ea8f8e523ff93177
+      internalID: -1653055542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_97
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8973ac6acdf1cb742bd376b5e27280d0
+      internalID: 342101312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solaria Palette Update 03_98
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e65cd7681f3875643b45eb99adbb9435
+      internalID: -843261774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Solaria Palette Update 03_0: -293310387
+      Solaria Palette Update 03_1: 1218595262
+      Solaria Palette Update 03_10: -1159928461
+      Solaria Palette Update 03_11: -1320851813
+      Solaria Palette Update 03_12: 1802139388
+      Solaria Palette Update 03_13: 300912793
+      Solaria Palette Update 03_14: 1013296648
+      Solaria Palette Update 03_15: 1578809829
+      Solaria Palette Update 03_16: -1986599555
+      Solaria Palette Update 03_17: -1097225888
+      Solaria Palette Update 03_18: -953700523
+      Solaria Palette Update 03_19: -2042384573
+      Solaria Palette Update 03_2: -1901960427
+      Solaria Palette Update 03_20: -220869320
+      Solaria Palette Update 03_21: -246097160
+      Solaria Palette Update 03_22: -1329359135
+      Solaria Palette Update 03_23: -418593500
+      Solaria Palette Update 03_24: 758366159
+      Solaria Palette Update 03_25: -61515662
+      Solaria Palette Update 03_26: -455341478
+      Solaria Palette Update 03_27: 664595777
+      Solaria Palette Update 03_28: -1323336739
+      Solaria Palette Update 03_29: 1138339195
+      Solaria Palette Update 03_3: 173854662
+      Solaria Palette Update 03_30: 1685685466
+      Solaria Palette Update 03_31: -2061235974
+      Solaria Palette Update 03_32: 870636113
+      Solaria Palette Update 03_33: -1506526313
+      Solaria Palette Update 03_34: -1530225668
+      Solaria Palette Update 03_35: 2144115344
+      Solaria Palette Update 03_36: -1433236966
+      Solaria Palette Update 03_37: 940132672
+      Solaria Palette Update 03_38: -1353833538
+      Solaria Palette Update 03_39: 2050275960
+      Solaria Palette Update 03_4: 96355980
+      Solaria Palette Update 03_40: 1536285311
+      Solaria Palette Update 03_41: -653924935
+      Solaria Palette Update 03_42: 1619540692
+      Solaria Palette Update 03_43: 945712730
+      Solaria Palette Update 03_44: 857812580
+      Solaria Palette Update 03_45: 1169884467
+      Solaria Palette Update 03_46: -791371323
+      Solaria Palette Update 03_47: -831782111
+      Solaria Palette Update 03_48: 1363146681
+      Solaria Palette Update 03_49: 1358944804
+      Solaria Palette Update 03_5: 965877900
+      Solaria Palette Update 03_50: 1403412514
+      Solaria Palette Update 03_51: -1997991708
+      Solaria Palette Update 03_52: 1904657258
+      Solaria Palette Update 03_53: 168005807
+      Solaria Palette Update 03_54: 215457901
+      Solaria Palette Update 03_55: -2144027818
+      Solaria Palette Update 03_56: 1099614143
+      Solaria Palette Update 03_57: 2093887963
+      Solaria Palette Update 03_58: -529923844
+      Solaria Palette Update 03_59: -1188267718
+      Solaria Palette Update 03_6: 138331454
+      Solaria Palette Update 03_60: 1109503178
+      Solaria Palette Update 03_61: -1095196701
+      Solaria Palette Update 03_62: -1015989118
+      Solaria Palette Update 03_63: -1492288584
+      Solaria Palette Update 03_64: 1058554680
+      Solaria Palette Update 03_65: -1833503281
+      Solaria Palette Update 03_66: -1798708810
+      Solaria Palette Update 03_67: -1734536636
+      Solaria Palette Update 03_68: -411661489
+      Solaria Palette Update 03_69: -1240001915
+      Solaria Palette Update 03_7: -1956576047
+      Solaria Palette Update 03_70: 113988305
+      Solaria Palette Update 03_71: -2032896200
+      Solaria Palette Update 03_72: -1957817325
+      Solaria Palette Update 03_73: -2070266152
+      Solaria Palette Update 03_74: 985709896
+      Solaria Palette Update 03_75: 248574135
+      Solaria Palette Update 03_76: 1872141518
+      Solaria Palette Update 03_77: -219239009
+      Solaria Palette Update 03_78: 1213166078
+      Solaria Palette Update 03_79: 1180280592
+      Solaria Palette Update 03_8: 1637306121
+      Solaria Palette Update 03_80: -1438896771
+      Solaria Palette Update 03_81: 554037833
+      Solaria Palette Update 03_82: 667165035
+      Solaria Palette Update 03_83: 1210480379
+      Solaria Palette Update 03_84: 585215167
+      Solaria Palette Update 03_85: 1105803044
+      Solaria Palette Update 03_86: 38997100
+      Solaria Palette Update 03_87: -2105869502
+      Solaria Palette Update 03_88: -2147056294
+      Solaria Palette Update 03_89: -1874534005
+      Solaria Palette Update 03_9: 1931410513
+      Solaria Palette Update 03_90: 1880726585
+      Solaria Palette Update 03_91: 784981583
+      Solaria Palette Update 03_92: 118364156
+      Solaria Palette Update 03_93: -39035524
+      Solaria Palette Update 03_94: 74597169
+      Solaria Palette Update 03_95: 184793470
+      Solaria Palette Update 03_96: -1653055542
+      Solaria Palette Update 03_97: 342101312
+      Solaria Palette Update 03_98: -843261774
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

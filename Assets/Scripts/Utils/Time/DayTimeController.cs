@@ -126,8 +126,6 @@ public class DayTimeController : MonoBehaviour
 
 
             while(oldPhase <phase){
-                GameManager.Instance.hudController.NextWave();
-                GameManager.Instance.hudController.ResetTime();
                 oldPhase+=1;
                 for (int i =0; i<agents.Count;i++){
                         agents[i].Invoke();

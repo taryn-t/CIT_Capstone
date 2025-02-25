@@ -7,9 +7,8 @@ public class MenuPanel : MonoBehaviour
 {    
     
     public int prevIndex = default;
-
-
-
+ 
+  
     public virtual void SetPrevIndex(int index){
         prevIndex = index;
     }

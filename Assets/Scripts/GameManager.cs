@@ -10,6 +10,7 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
+
     public static GameManager Instance;
     [SerializeField] public Games games;
     [SerializeField] public GameObject[] EnemyStructures;
@@ -35,10 +36,17 @@ public class GameManager : MonoBehaviour
     public bool mapGenerated = false;
      public bool saving = false;
      public int totalEnemies = default;
+     public int enemiesDefeated = default;
+     public int totalTime = default;
+     public int wavesSurvived = default;
      public WorldBounds worldBounds;
 
      public StatusUI statusUI;
-    
+    public ItemContainer inventoryContainer;
+    public Menu menu;
+    public string genSeed;
+    public string gameName;
+    public bool regenerating = false;
 
     private void Awake()
     {
@@ -53,13 +61,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
         
         SelectedSpell = new SpellButton();
+
+        Instance.menu = GameObject.Find("MenuCanvas").GetComponent<Menu>();
+
         
         DontDestroyOnLoad(gameObject);
     }
 
     
-    public ItemContainer inventoryContainer;
-    public Menu menu;
+  
 
     public void SetSpell(GameObject go){
         Instance.SelectedSpell = go.GetComponent<SpellButton>();

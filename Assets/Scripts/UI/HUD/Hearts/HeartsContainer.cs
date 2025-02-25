@@ -52,7 +52,7 @@ public class HeartsContainer : MonoBehaviour
 
     }
 
-    void Update(){
+    void FixedUpdate(){
 
         CheckForHeartChange(GameManager.Instance.GetPlayer().Health);
 
@@ -62,26 +62,41 @@ public class HeartsContainer : MonoBehaviour
     }
 
     public void CheckForSpriteChange(float currentHealth){
- 
-        float difference = currentHeart.maxHeartHealth - currentHealth;
-        
-        int idx = (int) (difference / spriteInterval);
-        
-        if(idx != currentSpriteIndex){
-            currentSpriteIndex = idx;
-            currentHeart.SetSprite(heartSprites[currentSpriteIndex]);
+        if(currentHealth >= currentHeart.maxHeartHealth){
+            currentHeart.SetSprite(heartSprites.Last());
         }
+
+        else if(currentHealth<= currentHeart.minHeartHealth){
+            currentHeart.SetSprite(heartSprites[0]);
+        }
+        else{
+             float difference = currentHeart.maxHeartHealth - currentHealth;
+        
+            int difIndex = (int) (difference / spriteInterval);
+            int idx = Mathf.Clamp(difIndex, 0, heartSprites.Count-1);
+
+            if(idx != currentSpriteIndex){
+                currentSpriteIndex = idx;
+                currentHeart.SetSprite(heartSprites[currentSpriteIndex]);
+            }
+        }
+
+       
         
           healthLabel.text = $"{currentHealth}/{maxPlayerHealth}";
     }
 
     public void CheckForHeartChange(float currentHealth){
-        float difference = maxPlayerHealth - currentHealth;
-
-        int idx = (int) (difference / heartHealthInterval);
         
+        float difference = maxPlayerHealth - currentHealth;
+        
+        int difIndex = (int) (difference / heartHealthInterval);
+        
+        int idx = Mathf.Clamp(difIndex, 0, hearts.Count-1);
+
         if(idx != currentHeartIndex){
 
+            
             int heartIndexDifference = idx - currentHeartIndex;
             
             if(heartIndexDifference > 1 ){

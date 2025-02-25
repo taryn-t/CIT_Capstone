@@ -13,7 +13,10 @@ public class StartPanel : MenuPanel
 
     private static int index = 0;
     
-
+    public void Start()
+    {
+        GameManager.Instance.GetMenu().currentMenuIndex = index;
+    }
     public void ExitGame()
     {
         Application.Quit();
