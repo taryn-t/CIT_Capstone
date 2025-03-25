@@ -31,6 +31,8 @@ public class NewGamePanel : MenuPanel
         
         MapGen.StartGeneration(Seed.text,GameName.text);
         
+        Instantiate(LoadingUI);
+
         
     }
 

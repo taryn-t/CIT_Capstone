@@ -20,9 +20,9 @@ public class HeartsContainer : MonoBehaviour
 
     public int currentHeartIndex;
     public int currentSpriteIndex;
-    public float heartHealthInterval; //total amount per heart
+    public int healthPerHeart; //total amount per heart
     public float spriteInterval;
-    public float maxPlayerHealth;
+    public int maxPlayerHealth;
 
     void Start(){
 
@@ -30,20 +30,20 @@ public class HeartsContainer : MonoBehaviour
         GameManager.Instance.heartsContainer = this;
         currentHeartIndex = 0;
         currentHeart = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Heart>();
-        maxPlayerHealth = GameManager.Instance.GetPlayer().maxHealth;
-        heartHealthInterval = GameManager.Instance.GetPlayer().Health/hearts.Count;
-        spriteInterval = heartHealthInterval/heartSprites.Count;
+        maxPlayerHealth = (int)GameManager.Instance.GetPlayer().maxHealth;
+        healthPerHeart = maxPlayerHealth / 5;
+        spriteInterval = healthPerHeart/heartSprites.Count;
 
-        float min = GameManager.Instance.GetPlayer().Health - heartHealthInterval;
+        float min = GameManager.Instance.GetPlayer().Health - healthPerHeart;
         float max = GameManager.Instance.GetPlayer().Health;
 
         foreach(Transform child in transform.GetChild(0).transform){
             
             child.gameObject.GetComponent<Heart>().maxHeartHealth = max;
-            max -= heartHealthInterval;
+            max -= healthPerHeart;
 
             child.gameObject.GetComponent<Heart>().minHeartHealth = min;
-            min -= heartHealthInterval;
+            min -= healthPerHeart;
 
             child.gameObject.GetComponent<Heart>().SetSprite(heartSprites[currentSpriteIndex]);
         }
@@ -54,68 +54,39 @@ public class HeartsContainer : MonoBehaviour
 
     void FixedUpdate(){
 
-        CheckForHeartChange(GameManager.Instance.GetPlayer().Health);
+        UpdateHealthDisplay(GameManager.Instance.GetPlayer().Health);
 
-        CheckForSpriteChange(GameManager.Instance.GetPlayer().Health);
+        maxPlayerHealth = (int)GameManager.Instance.GetPlayer().maxHealth;
 
-
+        healthLabel.text = $"{(int)GameManager.Instance.GetPlayer().Health}/{maxPlayerHealth}";
     }
 
-    public void CheckForSpriteChange(float currentHealth){
-        if(currentHealth >= currentHeart.maxHeartHealth){
-            currentHeart.SetSprite(heartSprites.Last());
-        }
+     void UpdateHealthDisplay(float currentHealth)
+    {
 
-        else if(currentHealth<= currentHeart.minHeartHealth){
-            currentHeart.SetSprite(heartSprites[0]);
-        }
-        else{
-             float difference = currentHeart.maxHeartHealth - currentHealth;
-        
-            int difIndex = (int) (difference / spriteInterval);
-            int idx = Mathf.Clamp(difIndex, 0, heartSprites.Count-1);
+        for (int i = 0; i < heartSprites.Count; i++)
+        {
+            int reversedIndex = (heartSprites.Count - 1) - i; 
+            int heartStart = healthPerHeart * (i + 1);
+            int heartEnd = healthPerHeart * i;
 
-            if(idx != currentSpriteIndex){
-                currentSpriteIndex = idx;
-                currentHeart.SetSprite(heartSprites[currentSpriteIndex]);
+            if (currentHealth >= heartStart)
+            {
+                 hearts[reversedIndex].SetSprite(heartSprites[4]); // Full heart
             }
-        }
-
-       
-        
-          healthLabel.text = $"{currentHealth}/{maxPlayerHealth}";
-    }
-
-    public void CheckForHeartChange(float currentHealth){
-        
-        float difference = maxPlayerHealth - currentHealth;
-        
-        int difIndex = (int) (difference / heartHealthInterval);
-        
-        int idx = Mathf.Clamp(difIndex, 0, hearts.Count-1);
-
-        if(idx != currentHeartIndex){
-
-            
-            int heartIndexDifference = idx - currentHeartIndex;
-            
-            if(heartIndexDifference > 1 ){
-                for(int i = currentHeartIndex-heartIndexDifference; i < currentHeartIndex; i++){
-                    hearts[i].SetSprite(heartSprites.Last());
-                }
+            else if (currentHealth <= heartEnd)
+            {
+                hearts[reversedIndex].SetSprite(heartSprites[0]); // Empty heart
             }
-            else if(heartIndexDifference < -1){
-                 for(int i = currentHeartIndex-heartIndexDifference; i < currentHeartIndex; i++){
-                    hearts[i].SetSprite(heartSprites.First());
-                }
+            else
+            {
+                int index = Mathf.FloorToInt((currentHealth - heartEnd) / (healthPerHeart / 5));
+                hearts[reversedIndex].SetSprite(heartSprites[index]);
             }
-
-
-            currentHeartIndex = idx;
-            currentHeart = hearts[currentHeartIndex];
         }
     }
-    
+   
+
 
 
 

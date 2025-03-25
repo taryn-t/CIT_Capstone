@@ -6,99 +6,84 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
-public class Enemy : EnemyAI{
+public class Enemy :  EnemyAI{
 
 
-    public float Health
-    {
-        get { return _health; }
-        set { _health = Mathf.Clamp(value, 0, 52); }
-    }
-
-    private float _health = 52;
-    private float maxHealth;
-     public float Mana
-    {
-        get { return _mana; }
-        set { _mana = Mathf.Clamp(value, 0, 52); }
-    }
-
-    private float _mana = 100;
+    public string enemyName = "";
 
     public float speed = 2f;
     [SerializeField] protected Sprite[] healthSprites;
 
     [SerializeField] protected SpriteRenderer healthMeter;
-    float startTime;
 
     [SerializeField] Color burnColor;
     [SerializeField] Color poisonColor;
     
-    private Color endColor;
-    private Color startColor;
     private SpriteRenderer renderer;
-    Collider2D[] results ={};
-    Light2D damageGlow;
 
-    ContactFilter2D cf;
-    
-   CancellationTokenSource damageCancellation;
-    private int dropCount = 1;
     private float spread = 1f;
     [SerializeField] GameObject[] potionDrops;
     [SerializeField] GameObject[] scrollDrops;
     [SerializeField] GameObject babySlime;
-    private float _scrollDropChance = 0.01f;
-     public float ScrollDropChance
+    private float _scrollDropChance = 0.1f;
+    public float ScrollDropChance
     {
         get { return _scrollDropChance; }
-        set { _scrollDropChance = Mathf.Clamp(value, 0.01f, 0.1f); }
+        set {
+                // if(GameManager.Instance.isDev){
+                //     _scrollDropChance = Mathf.Clamp(value, 1, 1);  
+                // }
+                // else{
+                   _scrollDropChance = Mathf.Clamp(value, 0.1f, 0.5f);  
+                // }
+             
+             }
     }
     private float _potionDropChance = 0.3f;
      public float PotionDropChance
     {
         get { return _potionDropChance; }
-        set { _potionDropChance = Mathf.Clamp(value, 0.1f, 0.25f); }
+        set { _potionDropChance = Mathf.Clamp(value, 0.2f, 0.7f); }
     }
     private int HealthInterval;
     private int currentHealthIndex = 0;
+
+    
+   
+    
     
 
 
-
-
-
+    
     void Awake(){
         damageGlow= GetComponentInChildren<Light2D>();
         damageGlow.intensity = 0;
     }
 
     void Start(){
-        maxHealth = Health;
+        mapPanel = GameManager.Instance.mapPanel.GetComponent<MapPanel>();
+        
+        Health = maxHealth;
+        Mana = maxMana;
         Body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         behaviorTree = new BehaviorTree();
         lastMotionVector = Body.position.normalized;
         col = GetComponent<CapsuleCollider2D>();
         renderer = GetComponent<SpriteRenderer>();
-        startColor = renderer.color;
         HealthInterval = (int) maxHealth/healthSprites.Length;
 
-        cf = new ContactFilter2D();
         InitializeBehaviorTree();
-        
-    }
-      private void OnDestroy()
-    {
-        
-        damageCancellation?.Cancel();
     }
 
 
-    void DestroyEnemy(){
-        
+    
 
+    IEnumerator DestroyEnemy(){
+        
+        
         float dropChance = UnityEngine.Random.Range(0f,1f);
 
         Vector3 position = transform.position;
@@ -136,15 +121,18 @@ public class Enemy : EnemyAI{
         
         GameManager.Instance.totalEnemies--;
         GameManager.Instance.enemiesDefeated++;
-        
+        yield return StartCoroutine(mapPanel.RemoveMarker(gameObject)); 
+      
         Destroy(gameObject);  
+       
 
     }
 
-      void DestroyEnemySlime(){
+      IEnumerator DestroyEnemySlime(){
         
+        System.Random rand = new System.Random();
 
-        float babyAmount = UnityEngine.Random.Range(2,4);
+        int babyAmount = rand.Next(2,4);
 
         Vector3 position = transform.position;
         position.x += spread * UnityEngine.Random.value - spread/2;
@@ -154,7 +142,7 @@ public class Enemy : EnemyAI{
         for(int i = 0; i< babyAmount; i++){
             GameObject go = Instantiate(babySlime);
             go.transform.position = position;
-            
+            GameManager.Instance.totalEnemies++;
         }
             
         
@@ -166,8 +154,9 @@ public class Enemy : EnemyAI{
         animator.SetBool("damage",true);
         
         GameManager.Instance.totalEnemies--;
-        
-        Destroy(gameObject);  
+        yield return StartCoroutine(mapPanel.RemoveMarker(gameObject)); 
+
+          Destroy(gameObject); 
 
     }
 
@@ -193,12 +182,19 @@ public class Enemy : EnemyAI{
 
         
 
-        if(Health==0){
+        if(Health==0 && !dead){
+
+            dead=true;
+            StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"{enemyName} Defeated"));
             if(!parent){
-               DestroyEnemy(); 
+               StartCoroutine(DestroyEnemy()); 
+         
             }else{
-                DestroyEnemySlime();
+                StartCoroutine(DestroyEnemySlime());
+                
             }
+
+            
             
         }
 
@@ -206,8 +202,7 @@ public class Enemy : EnemyAI{
         CheckForHealthChange(Health); 
         
          
-
-        
+        CastAttackCone();
         
        
     }
@@ -216,75 +211,92 @@ public class Enemy : EnemyAI{
          behaviorTree.Tick();
 
          Movement();
-         
-    }
 
-
-
-    public async void  TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect){
-        damageCancellation = new CancellationTokenSource();
-        try
-        {
-            damaged = true;
-            Health -= damage;
-            DamageEffect(spellEffect);
-
-            if(!animator.GetBool("damage")){
-                animator.SetBool("damage",true);
-                damageGlow.intensity = 1f;
-            }
-            
-            // if(damaged && Health % healthSprites.Length-1 == 0 && Health > 0){ 
-            //     healthIndex++;
-            //     healthMeter.sprite = healthSprites[healthIndex];
-            // }
-            startTime = Time.time;
-            
-            await Task.Delay(1000,damageCancellation.Token);
-            
-            animator.SetBool("damage",false); 
-            damageGlow.intensity = 0;
-            damaged=false;
-                
-            
-           await Task.Delay(500,damageCancellation.Token);
-            
-        }
-        catch
-        {
-            
-            return;
-        }
-        finally
-        {
-            if(damageCancellation != null){
-                damageCancellation.Dispose();
-                damageCancellation = null;
-            }
-            
-        }
         
-    }
+        if(mapPanel.open){
+            mapPanel.SetMarker(gameObject, mapMarker);
+        }
 
-    public void DamageEffect(SpellEffect spellEffect){
-        switch(spellEffect) 
-        {
-        case SpellEffect.Burn:
-            endColor = burnColor;
-            Invoke("Burn",5);
-            break;
-
-        case SpellEffect.Poison:
-            endColor = poisonColor;
-            Invoke("Poison",5);
-            break;
-
-        default:
-            endColor = renderer.color;
-           break;
+        
+        if( !manaRegenerating && Mana < maxMana){
+            StartCoroutine(ManaRegen());
         }
     }
 
+
+
+// private void OnDrawGizmosSelected()
+//     {
+//         float angleRange = Mathf.PI / 3;      // 60-degree cone
+//         float distance = 5f;
+//         int rayCount = 10;
+
+//         if (lastMotionVector == Vector2.zero) return; // Prevent division errors
+
+//         Gizmos.color = Color.red;
+//         Vector2 origin = transform.position;
+
+//         // Calculate the base direction angle from the normalized vector
+//         float directionAngle = Mathf.Atan2(lastMotionVector.y, lastMotionVector.x); // Get angle in radians
+
+//         // Calculate angle bounds
+//         float halfAngle = angleRange * Mathf.Deg2Rad / 2f;
+//         float startAngle = directionAngle - halfAngle;
+//         float endAngle = directionAngle + halfAngle;
+
+//         for (int i = 0; i < rayCount; i++)
+//         {
+//             float angle = Mathf.Lerp(startAngle, endAngle, (float)i / (rayCount - 1));
+//             Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+//             Gizmos.DrawRay(origin, direction * distance);
+//         }
+//     }
+
+  
+    void CastAttackCone()
+    {
+
+       if (lastMotionVector == Vector2.zero) return; 
+
+        float angleRange = 60f;  
+        int rayCount = 10;
+        Vector2 origin = transform.position;
+
+        float directionAngle = Mathf.Atan2(lastMotionVector.y, lastMotionVector.x);
+
+        float halfAngle = angleRange * Mathf.Deg2Rad / 2f;
+        float startAngle = directionAngle - halfAngle;
+        float endAngle = directionAngle + halfAngle;
+        int collisions =0;
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            float angle = Mathf.Lerp(startAngle, endAngle, (float)i / (rayCount - 1));
+            Vector2 rayDirection = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+            // Perform the actual raycast
+            RaycastHit2D hit = Physics2D.Raycast(origin, rayDirection, attackRange, playerLayerMask);
+
+            // Debugging: Draw the rays in Scene view
+            Debug.DrawRay(origin, rayDirection * attackRange, Color.red, 0.1f);
+
+            if (hit.collider != null)
+            {
+                collisions++;
+            }
+
+        }
+
+        if (collisions > 0)
+        {
+            playerInRayAttack = true;
+        }else{
+                playerInRayAttack = false;
+        }
+    }
+
+  
     public void Burn(){
         Health -= 2;
     }
@@ -309,7 +321,8 @@ public class Enemy : EnemyAI{
         if(collision.gameObject.CompareTag("Player")){
             PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
             Vector2 direction = Vector2.zero;
-            player.TakeDamage(8,2,direction);
+            SpellEffect effect = babySlime ? SpellEffect.Poison : SpellEffect.None;
+            player.TakeDamage(2,2,direction, effect);
         }
     }
  

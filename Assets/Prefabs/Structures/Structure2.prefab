@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5676619795944124830}
   - component: {fileID: 8855592385421409520}
   - component: {fileID: 9060644460802965961}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DecorObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 6333089627276960368}
   - component: {fileID: 2567211362309611707}
   - component: {fileID: 3160809934293076618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Structure2
   m_TagString: Structure
   m_Icon: {fileID: 0}
@@ -1445,7 +1445,7 @@ GameObject:
   - component: {fileID: 2493368344027423337}
   - component: {fileID: 3337233711464423717}
   - component: {fileID: 7523013456177734727}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: ColliderObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2000,6 +2000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 41485322956858332, guid: 5b6e14d51decd53408c553a8e8c4155f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5918406156978560290, guid: 5b6e14d51decd53408c553a8e8c4155f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.49
@@ -2058,6 +2062,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6333089627276960368}
     m_Modifications:
+    - target: {fileID: 1014717994082573793, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4128880540067508457, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.61
@@ -2102,6 +2110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sparky (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5549760701415563942, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2120,6 +2132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6333089627276960368}
     m_Modifications:
+    - target: {fileID: 1014717994082573793, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4128880540067508457, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
@@ -2163,6 +2179,10 @@ PrefabInstance:
     - target: {fileID: 5549760701415563942, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
       propertyPath: m_Name
       value: Sparky (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549760701415563942, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,35 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerController
 {
-     public float moveSpeed = 0.01f;
     private float runSpeed = 2f;
-    private Animator animator;
-    public Animator Animator{
-        get{return animator;}
-        set{animator = value;}
-    }
+ 
     public bool moving;
-    private Rigidbody2D body;
-    public Rigidbody2D Body{
-        get{return body;}
-        set{body=value;}
-    }
     public Vector2 moveInput = Vector2.zero;
 
-    public Vector2 lastMotionVector;
-    private PlayerData playerData;
 
 
 
     void Start()
     {
         GameManager.Instance.playerMovement = this;
-        InitializePlayerData();
         InitializeMovement();
     }
     void Update(){
+
+        if(Input.GetKeyDown(KeyCode.U)){
+             Body.AddForce(Vector2.up * 1000f);
+        }
         HandleMovementAnimation();
     }
     void FixedUpdate()
@@ -42,21 +33,21 @@ public class PlayerMovement : MonoBehaviour
 
 
     public void HandleMovementAnimation(){
-
+        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         
         moveInput = new Vector2(horizontal,vertical);
        
-        Animator.SetFloat("horizontal",horizontal);
-        Animator.SetFloat("vertical",vertical);
+        animator.SetFloat("horizontal",horizontal);
+        animator.SetFloat("vertical",vertical);
         moving = horizontal != 0 || vertical != 0;
-        Animator.SetBool("moving",moving);
+        animator.SetBool("moving",moving);
 
         if(moving){
             lastMotionVector = moveInput.normalized;
-            Animator.SetFloat("lastHorizontal",lastMotionVector.x);
-            Animator.SetFloat("lastVertical",lastMotionVector.y);
+            animator.SetFloat("lastHorizontal",lastMotionVector.x);
+            animator.SetFloat("lastVertical",lastMotionVector.y);
         }
         
     }
@@ -70,10 +61,8 @@ public class PlayerMovement : MonoBehaviour
 
      private void InitializeMovement(){
         Body = GetComponent<Rigidbody2D>();
-        Animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
-    private void InitializePlayerData(){
-        playerData = GameManager.Instance.GetGameData().playerData;
-    }
+   
 
 }

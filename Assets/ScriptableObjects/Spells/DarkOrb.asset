@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: DarkOrb
   m_EditorClassIdentifier: 
   Name: Dark Orb
-  damage: 8
-  knockback: 1
-  manaCost: 4
-  spellEffect: 2
+  damage: 22
+  knockback: 0
+  manaCost: 11
+  spellEffect: 4
   animator: {fileID: 9100000, guid: 522fa06fd0515484d8cf8222e13b5395, type: 2}
   Icon: {fileID: 699911009, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
   frames:
@@ -29,3 +29,4 @@ MonoBehaviour:
   - {fileID: 600198827, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
   - {fileID: -1277274166, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
   - {fileID: 589140547, guid: 34edc12f0a7b4f643b228dc44e5ff94b, type: 3}
+  range: 6

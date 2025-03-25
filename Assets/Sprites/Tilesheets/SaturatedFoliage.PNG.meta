@@ -1519,6 +1519,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SaturatedFoliage_61
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 547
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fb8b88e8923d2744b01f279fd44d5df
+      internalID: 1859845843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaturatedFoliage_62
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 547
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89fb184a3ec086c46a1c2a0925ad1253
+      internalID: 1064994487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1588,6 +1630,8 @@ TextureImporter:
       SaturatedFoliage_59: 1552455164
       SaturatedFoliage_6: -1493617027
       SaturatedFoliage_60: -21385262
+      SaturatedFoliage_61: 1859845843
+      SaturatedFoliage_62: 1064994487
       SaturatedFoliage_7: -2045163799
       SaturatedFoliage_8: 528807029
       SaturatedFoliage_9: -706597184

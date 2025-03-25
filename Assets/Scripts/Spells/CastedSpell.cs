@@ -1,8 +1,9 @@
 
-
 using UnityEngine;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class CastedSpell: MonoBehaviour
 {
@@ -23,11 +24,13 @@ public class CastedSpell: MonoBehaviour
     public Spell spell;
     int index = default;
     SpriteRenderer renderer;
-    CapsuleCollider2D collider;
     public Animator casterAnimator;
-    private CancellationTokenSource cancellation;
-    public Rigidbody2D target;
-
+    public bool colliding = false;
+    public Vector2 targetPosition;
+    public Vector2 startPosition;
+    public float range = 10f;
+    private Vector2 previousPosition;
+    private float totalDistanceTraveled = 0f;
     void Start(){
         
          
@@ -35,112 +38,115 @@ public class CastedSpell: MonoBehaviour
          body = GetComponent<Rigidbody2D>();
          renderer = GetComponent<SpriteRenderer>();
          renderer.sprite = spell.frames[0];
-         collider = GetComponent<CapsuleCollider2D>();
 
-         if(caster =="Enemy"){
-            SmoothMovement( );
-         }else{
-            direction = GameManager.Instance.playerMovement.GetComponent<PlayerMovement>().lastMotionVector;
-         }
+         startPosition = body.position;
         
-    }  
+        direction = (targetPosition-body.position).normalized;    
+        previousPosition = body.position;
 
-    void FixedUpdate()
-    {
-
-        if(tick <=60){
-            if(tick%spell.frames.Length==0){
-                index++;
-                if(index< spell.frames.Length){
-                     renderer.sprite = spell.frames[index];
-                }
-            }
-
-            if(caster== "Player"){
-                  // collider.offset -=  direction;
-                 body.AddForce(direction * speed , ForceMode2D.Impulse);
-            }
-          
-          
-          transform.rotation = rotation;
-        }
-        else{
-            Destroy(gameObject);
-        }
-
-        tick++;
-        
+        StartCoroutine(SmoothMovement( ));
     }
-    private void OnDestroy()
+    public void Update()
     {
-        cancellation?.Cancel();
+       
+    }
+
+    public virtual void FixedUpdate()
+    {
+        float distanceThisFrame = Vector2.Distance(body.position, previousPosition);
+        totalDistanceTraveled += distanceThisFrame;
+
+        // Update previous position
+        previousPosition = body.position;
+
+        transform.rotation = rotation;
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if(collision.gameObject.CompareTag(caster)){
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            return;
+        colliding = true;
+        if(!collision.gameObject.CompareTag(caster)){
+            StopCoroutine("SmoothMovement");
+            Character character = collision.gameObject.GetComponent<Character>();
+        
+            if(character!=null){
+                
+                character.TakeDamage(damage,knockback,direction); 
+            }
+            HitEffect();
+        
         }
         
-         if(collision.gameObject.CompareTag("Enemy"))
-        {
-            cancellation = new CancellationTokenSource();
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             
-            enemy.TakeDamage(damage,knockback,direction,effect);
-            enemy.Body.velocity=Vector2.zero;
-        }
         
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
-            
-            player.TakeDamage(damage,knockback,direction,effect);
-
-        }
-        
-          Destroy(gameObject);  
+         
         
         
     }
 
-     async void SmoothMovement( )
+     IEnumerator  SmoothMovement( )
     {   
-         cancellation = new CancellationTokenSource();
+        bool finish = false;
 
-        try
+         if(caster == "Player"){
+            GameManager.Instance.GetPlayer().lastMotionVector = direction;
+        }
+                
+            
+        while(!finish)
         {
-    
-            Vector3 direction =(target.position-body.position).normalized; 
+            body.AddForce(direction * speed , ForceMode2D.Impulse);
+
+            yield return new WaitForFixedUpdate();
+
+            if(totalDistanceTraveled >= range){
+                break;
+            }
+            
+            finish = IsRigidbodyNear(targetPosition, body);
+            
+            
+        } 
         
-          
-                while(!Mathf.Approximately(Vector2.Distance(body.position, target.position), 0f))
-                    {
-                           
-                         body.AddForce(direction * speed , ForceMode2D.Impulse);
-
-                        await Task.Delay(20, cancellation.Token);
-                        
-                    }
-            
+         
            
-           
-        }
-        catch
-        {
-            
-            return;
-        }
-        finally
-        {
-            cancellation.Dispose();
-            cancellation = null;
-        }
-
+        HitEffect();
         
 }
+
+    bool IsRigidbodyNear(Vector2 position, Rigidbody2D rb, float tolerance = 0.1f)
+    {
+        return Mathf.Abs(rb.position.x - position.x) <= tolerance &&
+            Mathf.Abs(rb.position.y - position.y) <= tolerance;
+    }
+
+    public void HitEffect(){
+        GameObject go;
+        switch(effect) 
+        {
+        case SpellEffect.Explode:
+            
+            go = Instantiate(GameManager.Instance.explosionGO, transform.position, Quaternion.identity, GameManager.Instance.SpellsGO.transform);
+            go.GetComponent<Explosion>().caster = caster;
+            break;
+
+        case SpellEffect.Poison:
+            go =Instantiate(GameManager.Instance.venomPillarGO, transform.position, Quaternion.identity, GameManager.Instance.SpellsGO.transform);
+            go.GetComponent<VenomPillar>().caster = caster;
+            break;
+        case SpellEffect.Gravity:
+            go =Instantiate(GameManager.Instance.blackHoleGO, transform.position, Quaternion.identity, GameManager.Instance.SpellsGO.transform);
+            go.GetComponent<BlackHole>().caster = caster;
+            break;    
+
+        default:
+           break;
+        }
+
+        Destroy(gameObject);
+    }
 
 
     // void OnTriggerEnter(Collider collision)

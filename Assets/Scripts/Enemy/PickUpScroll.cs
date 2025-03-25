@@ -52,9 +52,39 @@ public class PickUpScroll : MonoBehaviour
 
         if(distance < 0.1f){
 
-            GameManager.Instance.SelectedSpell.Set(spell);
+            if(GameManager.Instance.hudController.multiButton.multiSpell){
+                GameManager.Instance.soundEffectController.PlayPositiveSound();
+                if(GameManager.Instance.hudController.multiButton.CheckToAdd(spell.spell)){
+                    
+                    GameManager.Instance.hudController.multiButton.AddSpell(spell.spell);
+                    StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"Learned spell {spell.spell.name}"));
+                }
+                else
+                {
+                    SpellLevel spellLevel = GameManager.Instance.GetPlayer().spellLevels.First(p => p.spell == spell.spell);
+                    spellLevel.IncreaseLevel();
+                    StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"{spellLevel.spell.name} level {spellLevel.level}"));
+                }
+                
+                Destroy(gameObject);
+            }
             
-            Destroy(gameObject);
+            if(!GameManager.Instance.hudController.multiButton.multiSpell){
+                GameManager.Instance.soundEffectController.PlayPositiveSound();
+               if(GameManager.Instance.SelectedSpell.spell != spell.spell){
+                    GameManager.Instance.SelectedSpell.Set(spell); 
+               }
+               else{
+                    SpellLevel spellLevel = GameManager.Instance.GetPlayer().spellLevels.First(p => p.spell == spell.spell);
+                    spellLevel.IncreaseLevel();
+                    StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"{spellLevel.spell.name} level {spellLevel.level}"));
+               }
+
+               Destroy(gameObject);
+            }
+            
+       
+           
         }
        
         

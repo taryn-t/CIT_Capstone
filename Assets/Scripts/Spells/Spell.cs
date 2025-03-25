@@ -13,6 +13,7 @@ public class Spell : ScriptableObject
     [SerializeField] public AnimatorController animator;
     [SerializeField] public Sprite Icon;
     [SerializeField] public Sprite[] frames;
+    [SerializeField] public float range = 10f;
 
 }
 
@@ -20,8 +21,10 @@ public class Spell : ScriptableObject
 
 [Serializable]
 public enum SpellEffect{
+    Explode,
     Burn,
     Poison,
     Slow,
+    Gravity,
     None
 }

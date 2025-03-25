@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -41,52 +42,58 @@ public class PlayerAttack : MonoBehaviour
         
         if(GameManager.Instance.GetSpell() != null){
             if(Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) && !attack){
-                
-                StartCoroutine(CastSpell());
+                Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                StartCoroutine(CastSpell( targetPosition));
                 
             }
         }
     }
 
-    public IEnumerator CastSpell(){
+    private int GetSpellDamage(){
+        SpellLevel spellLevel = GameManager.Instance.GetPlayer().spellLevels.First(p => p.spell == SelectedSpell);
+
+        return (int)(spellLevel.damageBoost * SelectedSpell.damage) + SelectedSpell.damage;
+    }
+
+    public IEnumerator CastSpell(Vector3 targetPosition){
         
 
         
         attack=true;
-        if(!playerMovement.Animator.GetBool("attack")){
-                playerMovement.Animator.SetBool("attack",true);
+        if(!playerMovement.animator.GetBool("attack")){
+                playerMovement.animator.SetBool("attack",true);
             }
         
         SelectedSpell = GameManager.Instance.SelectedSpell.spell;
         
-        if(GameManager.Instance.GetPlayer().Mana < SelectedSpell.manaCost){
-            yield return null;
+        if(GameManager.Instance.GetPlayer().Mana >= SelectedSpell.manaCost){
+            CastedSpell castedSpell = spell.GetComponent<CastedSpell>();
+
+            castedSpell.effect =  SelectedSpell.spellEffect;
+            castedSpell.damage =  GetSpellDamage();
+            castedSpell.knockback =  SelectedSpell.knockback;
+            castedSpell.caster =  gameObject.tag;
+            castedSpell.spell = SelectedSpell;
+            castedSpell.targetPosition = targetPosition;
+            castedSpell.range = SelectedSpell.range;
+            castedSpell.casterAnimator = playerMovement.animator;
+
+            var direction = ((Vector2)targetPosition - playerMovement.Body.position).normalized;
+            GetRotation(direction);
+
+            castedSpell.rotation =  offsetRotation.rotation;
+            Vector3 pos = new(body.position.x,body.position.y,0);
+
+            Instantiate(spell, pos + offsetRotation.offset, offsetRotation.rotation,GameManager.Instance.SpellsGO.transform);
+            
+            GameManager.Instance.GetPlayer().Mana -= SelectedSpell.manaCost;
         }
         
-        CastedSpell castedSpell = spell.GetComponent<CastedSpell>();
-
-
         
-        castedSpell.effect =  SelectedSpell.spellEffect;
-        castedSpell.damage =  SelectedSpell.damage;
-        castedSpell.knockback =  SelectedSpell.knockback;
-        castedSpell.caster =  gameObject.tag;
-        castedSpell.spell = SelectedSpell;
-
-        castedSpell.casterAnimator = playerMovement.Animator;
-
-        GetRotation(playerMovement.lastMotionVector);
-
-        castedSpell.rotation =  offsetRotation.rotation;
-        Vector3 pos = new(body.position.x,body.position.y,0);
-
-        Instantiate(spell, pos + offsetRotation.offset, offsetRotation.rotation);
-        
-        GameManager.Instance.GetPlayer().Mana -= SelectedSpell.manaCost;
 
         yield return new WaitForSeconds(0.5f);
         
-        playerMovement.Animator.SetBool("attack",false);
+        playerMovement.animator.SetBool("attack",false);
         attack = false;
         yield return null;
 
@@ -97,18 +104,22 @@ public class PlayerAttack : MonoBehaviour
         
         string direction = "";
 
-        if(pos == Vector2.left){
-            direction= "left";
+        if (Mathf.Abs(pos.x) > Mathf.Abs(pos.y))
+        {
+            if (pos.x > 0)
+                direction= "right";
+            else
+                direction=  "left";
         }
-        else if(pos == Vector2.right){
-            direction= "right";
+        else
+        {
+            if (pos.y > 0)
+                direction=  "up";
+        
+            else
+                direction= "down";
         }
-        else if(pos == Vector2.down){
-            direction= "down";
-        }
-        else if(pos == Vector2.up){
-            direction= "up";
-        }
+        Debug.Log(direction);
 
         switch(direction) 
         {
@@ -129,11 +140,17 @@ public class PlayerAttack : MonoBehaviour
              offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),collider.bounds.size.y,0);
              break;
         default:
-            offsetRotation.rotation =  Quaternion.Euler(0, 0, 0 );
+            
+            offsetRotation.offset = new Vector3(0,0,0);
             break;
         }
 
 
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }
 

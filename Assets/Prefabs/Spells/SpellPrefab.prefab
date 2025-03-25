@@ -101,14 +101,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  rotation: {x: 0, y: 0, z: 0, w: 1}
-  damage: 8
-  knockback: 1
+  rotation: {x: -0.00000004371139, y: -1, z: -0.00000004371139, w: 1.9106855e-15}
+  damage: 9
+  knockback: 0.2
   effect: 0
   caster: Enemy
-  spell: {fileID: 0}
+  spell: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
   casterAnimator: {fileID: 0}
-  target: {fileID: 0}
+  colliding: 0
+  targetPosition: {x: 15.622911, y: 38.852127}
+  startPosition: {x: 0, y: 0}
+  range: 8
 --- !u!50 &5957162492570905044
 Rigidbody2D:
   serializedVersion: 4
@@ -132,7 +135,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4

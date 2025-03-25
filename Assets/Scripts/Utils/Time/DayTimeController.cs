@@ -27,6 +27,7 @@ public class DayTimeController : MonoBehaviour
     List<TimeAgent> agents;
     TimeAgent saveAgent;
     private float startAtTime = 0f;
+    
 
     int oldPhase =-1;
 
@@ -42,7 +43,6 @@ public class DayTimeController : MonoBehaviour
     void Awake(){
         agents = new List<TimeAgent>();
         
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start(){
@@ -68,7 +68,7 @@ public class DayTimeController : MonoBehaviour
     string formattedTime;
      void Update(){
       
-        if(GameManager.Instance.mapGenerated){
+        if(GameManager.Instance.mapGenerated ){
             time+= Time.deltaTime ;
             int hh = (int) Hours;
             int mm = (int)Minutes;
@@ -134,7 +134,7 @@ public class DayTimeController : MonoBehaviour
                 
                 
             }
-            GameManager.Instance.hudController.UpdateTime((int)time);
+       
       
         }
         

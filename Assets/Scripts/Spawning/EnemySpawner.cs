@@ -11,45 +11,43 @@ public class EnemySpawner : Spawner
     
 
     private void Start(){    
+            if(GameManager.Instance.hudController != null){
+            maxAmount =  GameManager.Instance.hudController.wave == 1 ? 2 :  (int)(GameManager.Instance.hudController.wave*1.5f);
+
+        }else{
+            maxAmount = 2;
+        }
     
-        
-        maxAmount =  GameManager.Instance.hudController.wave == 1 ? 3 :  (int)(GameManager.Instance.hudController.wave*3f);
+        Spawn(GameManager.Instance.SpellsGO.transform);
     }
-
-    private void OnDestroy()
-    {
-        
-        cancellationTokenSource?.Cancel();
-    }
-
    
    private void Update(){
        
-        if(GameManager.Instance.totalEnemies <= maxAmount &&  GameManager.Instance.hudController != null ){
-            Spawn();
-        }  
+       
 
    }
     
     //Overriding base class method
-    protected override async void Spawn(){
+    protected override async void Spawn(Transform parent){
 
         cancellationTokenSource = new CancellationTokenSource();
 
         
-        if(currentWave < GameManager.Instance.hudController.wave){
-            currentWave =  GameManager.Instance.hudController.wave;
-       
-            maxAmount =  GameManager.Instance.hudController.wave == 1 ? 3 :  (int)(GameManager.Instance.hudController.wave*3f);
-        }
 
         try{
-                   
-                base.Spawn();
+                while(amountSpawned < maxAmount){
+                    if(GameManager.Instance.player != null){
+              
+                        base.Spawn(parent);
+                    
+                        amountSpawned++;
+                        GameManager.Instance.totalEnemies++;
+                         
+                    }
+                    await Task.Delay(500,cancellationTokenSource.Token);    
+                    
+                }   
                 
-                amountSpawned++;
-                GameManager.Instance.totalEnemies++;
-                await Task.Delay(500,cancellationTokenSource.Token);
    
         }
         catch{

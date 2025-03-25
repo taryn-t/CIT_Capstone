@@ -48,17 +48,12 @@ public class Patrol : Node
         }
 
         Vector2 direction = (walkPoint - Body.position).normalized;
-        Body.AddForce(speed * Time.deltaTime * (Vector3)direction);
+        Body.AddForce(speed * (Vector3)direction*  Time.deltaTime);
 
         if(avoidanceForce != Vector2.zero){
             Body.velocity = Vector2.zero;
-            Body.AddForce(speed/2 * Time.deltaTime * (Vector3)avoidanceForce, ForceMode2D.Impulse);
-        }
-
-        
-        
-        
-               
+            Body.AddForce(speed/5 * (Vector3)avoidanceForce, ForceMode2D.Force);
+        }    
              
         return NodeStatus.Running;
             
@@ -70,46 +65,33 @@ public class Patrol : Node
     {
 
 
-                System.Random rnd = new();
-                // Calculate random point in range
-                float randomY = rnd.Next((int)-walkPointRange, (int)walkPointRange);
-                float randomX = rnd.Next((int)-walkPointRange,(int) walkPointRange);
+        System.Random rnd = new();
+        // Calculate random point in range
+        float randomY = rnd.Next((int)-walkPointRange, (int)walkPointRange);
+        float randomX = rnd.Next((int)-walkPointRange,(int) walkPointRange);
 
-                
-                int xClamp = (int)Mathf.Clamp(Body.position.x + randomX, GameManager.Instance.worldBounds.minWorld.x+10,  GameManager.Instance.worldBounds.maxWorld.x-10);
-                int yClamp =(int)Mathf.Clamp(Body.position.y + randomY, GameManager.Instance.worldBounds.minWorld.y+10,GameManager.Instance.worldBounds.maxWorld.y-10);
-                
-
-                Vector2 walkPoint = new Vector2(xClamp, yClamp);
-                
-                Vector3Int direction = Vector3Int.RoundToInt((walkPoint-Body.position).normalized);
-
-                
-
-                    Vector3Int vInt = Vector3Int.CeilToInt(walkPoint);
-
-                    if(GameManager.Instance.baseTilemap.HasTile(vInt)){
-                        return walkPoint;
-                    } 
-                    
-                    return SearchWalkPoint();
- 
-
-           
-
-  
         
+        int xClamp = (int)Mathf.Clamp(Body.position.x + randomX, GameManager.Instance.worldBounds.minWorld.x,  GameManager.Instance.worldBounds.maxWorld.x);
+        int yClamp =(int)Mathf.Clamp(Body.position.y + randomY, GameManager.Instance.worldBounds.minWorld.y,GameManager.Instance.worldBounds.maxWorld.y);
+        
+
+        Vector2 walkPoint = new Vector2(xClamp, yClamp);
+        
+        Vector3Int direction = Vector3Int.RoundToInt((walkPoint-Body.position).normalized);
+
+        
+
+        Vector3Int vInt = Vector3Int.CeilToInt(walkPoint);
+
+        if(GameManager.Instance.baseTilemap.GetTile(vInt) == GameManager.Instance.mapGenerator.Floor){
+            return walkPoint;
+        } 
+        
+        return SearchWalkPoint();
+ 
     }
 
-    private bool IsGround(){
-       Chunk chunk = GameManager.Instance.gameData.map.GetChunk(Vector3Int.FloorToInt(enemyTransform.position));
 
-       if(chunk!=null){
-            return Task.Run(()=>chunk.IsPosGround(Body.position)).GetAwaiter().GetResult();
-       }
-
-       return false;
-    }
 
    
        

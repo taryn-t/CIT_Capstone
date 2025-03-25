@@ -247,9 +247,9 @@ TextureImporter:
       name: Windows Copy_7
       rect:
         serializedVersion: 2
-        x: 47
+        x: 48
         y: 64
-        width: 17
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -735,7 +735,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -756,7 +756,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -764,6 +764,48 @@ TextureImporter:
       bones: []
       spriteID: 0362ae859837a6a448443f2e52aeda2d
       internalID: 1729290376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Windows Copy_32
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 288
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549bb34556625264b8fad8e67c55fa00
+      internalID: 24961364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Windows Copy_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a6e0095e41e2b40a17900f25f33336
+      internalID: -1976970966
       vertices: []
       indices: 
       edges: []
@@ -805,6 +847,8 @@ TextureImporter:
       Windows Copy_3: 1326261566
       Windows Copy_30: -1953792271
       Windows Copy_31: 1729290376
+      Windows Copy_32: 24961364
+      Windows Copy_33: -1976970966
       Windows Copy_4: 496266886
       Windows Copy_5: 241532834
       Windows Copy_6: 1250159624

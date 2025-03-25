@@ -1,31 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
-    public int Health
-    {
-        get { return _health; }
-        set { _health = Mathf.Clamp(value, 0, 100); }
-    }
-    private int _health = 100;
-     public int Mana
-    {
-        get { return _mana; }
-        set { _mana = Mathf.Clamp(value, 0, 50); }
-    }
-
-    private int _mana = 50;
+ 
 
     public bool visible = true;
-    public int maxHealth;
 
-    public int maxMana;
-
-    public bool manaRegenerating = false;
-    public int manaRegenAmount = 2;
-
+    public bool invincible = false;
+    
+    [SerializeField] public List<SpellLevel> spellLevels = new List<SpellLevel>();
 
     void Awake()
     {
@@ -33,12 +20,17 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        mapPanel = GameManager.Instance.mapPanel.GetComponent<MapPanel>();
+        damageGlow= GetComponentInChildren<Light2D>();
+        damageGlow.intensity = 0;
         maxHealth = Health;
         maxMana = Mana;
-        GetComponent<InventoryController>().Init();
-        Health = GameManager.Instance.gameData.playerData.Health;
-        Mana = GameManager.Instance.gameData.playerData.Mana;
 
+        if(GameManager.Instance.isDev){
+            invincible = true;
+        }
+        
+         animator = GetComponentInChildren<Animator>();
     }
 
     
@@ -47,33 +39,36 @@ public class PlayerController : MonoBehaviour
             // DestroyPlayer();
         }
 
-        if(!manaRegenerating && Mana < maxMana){
+
+       
+    }
+    
+    void FixedUpdate()
+    {
+        if(mapPanel.open){
+            mapPanel.SetMarker(gameObject, mapMarker);
+        }
+
+        
+        if( !manaRegenerating && Mana < maxMana){
             StartCoroutine(ManaRegen());
         }
     }
 
+    
     void DestroyPlayer(){
         Destroy(this);
     }
-    public void TakeDamage(int damage, float knockback, Vector2 direction, SpellEffect spellEffect=SpellEffect.None){
-        Health -= damage;
-        DamageEffect(spellEffect);
-        
-        GetComponent<Rigidbody2D>().AddForce(direction*knockback);
-    }
-
-    public void DamageEffect(SpellEffect spellEffect){
-        switch(spellEffect) 
-        {
-        case SpellEffect.Burn:
-            Invoke("Burn",5);
-            break;
-        case SpellEffect.Poison:
-            Invoke("Poison",5);
-            break;
-        default:
-           break;
+    public override void TakeDamage(float damage, float knockback, Vector2 direction, SpellEffect effect){
+        if(!invincible){
+            base.TakeDamage(damage,knockback,direction, effect);
+        }else{
+            float damageShift = damage*takeDamagePercent;
+            int randDamage = (int) UnityEngine.Random.Range(damage-damageShift, damage+damageShift);
+            GameManager.Instance.onScreenMessageSystem.PostMessage(transform.position, randDamage.ToString(), direction);
+            
         }
+        
     }
 
     public void Burn(){
@@ -83,17 +78,31 @@ public class PlayerController : MonoBehaviour
         Health -= 2;
     }
 
-    public IEnumerator ManaRegen(){
-        manaRegenerating = true;
 
-       
 
-        yield return new WaitForSeconds(1f);
-         Mana += manaRegenAmount;
+ 
 
-        manaRegenerating = false;
 
+
+    void FixStuck(){
+        
     }
 
-   
+
+
+
+}
+
+[Serializable]
+public class SpellLevel
+{
+    public Spell spell;
+    public float damageBoost = 0f;
+    public int level = 1;
+
+    public void IncreaseLevel(){
+        damageBoost += 0.05f;
+        level++;
+    }
+
 }

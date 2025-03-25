@@ -1,0 +1,310 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5410482632329364138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7382436243077094840}
+  - component: {fileID: 5859123665861115327}
+  - component: {fileID: 2720717680262713037}
+  - component: {fileID: 2125877005960115797}
+  - component: {fileID: 789747755561423251}
+  - component: {fileID: 6408708141645383052}
+  - component: {fileID: 4378861239151502106}
+  m_Layer: 0
+  m_Name: GameManagerBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7382436243077094840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5859123665861115327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d379f112f58452e4bba5cb62c62f3b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerBase: {fileID: 5410482632329364138}
+  games: {fileID: 11400000, guid: cbbb60e636e2a2b429c9766be60ffc2c, type: 2}
+  EnemyStructures:
+  - {fileID: 3208382105464481910, guid: c044ea794ee50244192108a1713d0172, type: 3}
+  - {fileID: 3208382105464481910, guid: b60760c9e797f584a905d41d726c8d92, type: 3}
+  - {fileID: 3208382105464481910, guid: f6dddf81296df76428b9e57be42a59ad, type: 3}
+  KnownSpells: {fileID: 11400000, guid: 6367fc606390a304a8e21802e2454e27, type: 2}
+  availablePotions: {fileID: 11400000, guid: 16c7c7025d2bb4b4eaa92786762fc6fd, type: 2}
+  HUDPrefab: {fileID: 6659274848228791678, guid: ff188b6155dbc254485ebeb823f722d2, type: 3}
+  explosionGO: {fileID: 1638670655391120829, guid: 1b90e397b06c54b49ad46b04c21bf0c8, type: 3}
+  venomPillarGO: {fileID: 1638670655391120829, guid: ea08be6e2235a454eae21c6f308de6e8, type: 3}
+  blackHoleGO: {fileID: 1638670655391120829, guid: 32653836a4fd65440b109f2d4a046546, type: 3}
+  MapContainer: {fileID: 0}
+  hudController: {fileID: 0}
+  playerDamageDone: 0
+  playerDamageTaken: 0
+  gameData:
+    name: 
+    lastSaved: 
+    gameTime: 0
+    daysPlayed: 0
+    map:
+      key: 
+      Chunks: []
+    playerData:
+      Health: 100
+      Mana: 0
+      KnownSpells: {fileID: 0}
+      lastPosition: {x: 0, y: 0, z: 0}
+  virtualCamera: {fileID: 0}
+  mapGenerator: {fileID: 2720717680262713037}
+  player: {fileID: 0}
+  playerMovement: {fileID: 0}
+  dayTimeController: {fileID: 789747755561423251}
+  autoSave: {fileID: 8971298528284919104, guid: f4bf1fbffddb1e049af8dc3915168b60, type: 3}
+  SelectedSpell: {fileID: 3460519517827276040, guid: 65a474aaf91c5444ab9a5f5227f05f53, type: 3}
+  potionButton: {fileID: 0}
+  potionButtonGO: {fileID: 0}
+  baseTilemap: {fileID: 0}
+  heartsContainer: {fileID: 0}
+  manaContainer: {fileID: 0}
+  changeCursor: {fileID: 0}
+  mapGenerated: 0
+  saving: 0
+  totalEnemies: 0
+  enemiesDefeated: 0
+  totalTime: 0
+  wavesSurvived: 0
+  statusUI: {fileID: 0}
+  inventoryContainer: {fileID: 11400000, guid: 8c4db9e0a8417ac45ac99995ed8f6ccc, type: 2}
+  menu: {fileID: 0}
+  genSeed: 
+  gameName: 
+  regenerating: 0
+  procederalWaves: 1
+  minimapCamera: {fileID: 0}
+  mapPanel: {fileID: 0}
+  waveMaxEnemies: 0
+  onScreenMessageSystem: {fileID: 0}
+  enemyDamageBuffer: 0.5
+  isDev: 0
+  EnemiesGO: {fileID: 0}
+  SpellsGO: {fileID: 0}
+--- !u!114 &2720717680262713037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b463385def7b5d7469e4613ff48835c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridGameObject: {fileID: 0}
+  tilemap: {fileID: 0}
+  decorTileMap: {fileID: 0}
+  resourceTileMap: {fileID: 0}
+  leafyTilemap: {fileID: 0}
+  hillTileMap: {fileID: 0}
+  hillFloorTileMap: {fileID: 0}
+  Floor: {fileID: 11400000, guid: 98003979501804d459c74cec7dfd0758, type: 2}
+  DecorFoliage: {fileID: 11400000, guid: 6ab78c8747c9fa94dba3a89831538a6e, type: 2}
+  Water: {fileID: 11400000, guid: bbd7faf9457a56345b76b908e1364ed1, type: 2}
+  Hill: {fileID: 11400000, guid: c3d5478ab8e7fb445b6e8a07fe4ee81c, type: 2}
+  HillFloor: {fileID: 11400000, guid: 1f2f7c4eb42396541a31b665e0ca3772, type: 2}
+  Leafy: {fileID: 11400000, guid: 50fd1ece46bce9b43b72015e4e961198, type: 2}
+  StructureFloor: {fileID: 11400000, guid: 98003979501804d459c74cec7dfd0758, type: 2}
+  CameraConfiner: {fileID: 0}
+  InnerHillSprite: {fileID: 1558741832, guid: 17a7eb8be7ce38340ab935f4fa7d616d, type: 3}
+  availablePositions: []
+  regenerating: 0
+  MapWidth: 64
+  MapHeight: 64
+  MaximumWalkers: 25
+  ResourceCount: 0
+  HillPercent: 0.3
+  ResourcePercent: 0.15
+  RockPercent: 0.2
+  TreePercent: 0.4
+  DecorPercentage: 0.2
+  WaitTime: 0.01
+  ChanceToChange: 0.8
+  FillRadius: 4
+  ResourceRadius: 2
+  LeafyChance: 0.4
+  FloorNoise: 0.65
+  maxEnemyStructures: 4
+  maxMushrooms: 10
+  games: {fileID: 11400000, guid: cbbb60e636e2a2b429c9766be60ffc2c, type: 2}
+  resourceTiles: {fileID: 11400000, guid: 3809248e6f139b446bf0b4b7f73de894, type: 2}
+  playerPrefab: {fileID: 456413293902067149, guid: 8e237a56168b89a41b4f618100c5059a, type: 3}
+  mapPrefab: {fileID: 1706824620412836217, guid: 362e9ebccf196fb43a78323164ff041d, type: 3}
+  fairyJar: {fileID: 3716212539957214331, guid: 6e0157c6797ce7642be70bd1e3a345d3, type: 3}
+  healingMushroom: {fileID: 7516692368784670520, guid: 44ced362652fecc458e4ed38058a6dfa, type: 3}
+  FloorScale: 4
+  HillScale: 4
+  StructureDistance: 10
+--- !u!114 &2125877005960115797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7549b33dbd1138848acb173f3f7d3953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &789747755561423251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b57024c92c28f644bdec7b45bcdec7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  phaseLength: 60
+  nightLightColor: {r: 0.14509805, g: 0.10196079, b: 0.14509805, a: 0.27450982}
+  dayLightColor: {r: 0.14509805, g: 0.10196079, b: 0.14509805, a: 0.27450982}
+  nightTimeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.020050049
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 6
+      value: 0.4
+      inSlope: -0.4
+      outSlope: -0.4
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 7
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 18
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 19
+      value: 0.4
+      inSlope: 0.4
+      outSlope: 0.4
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 24
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AutoSave: {fileID: 3516260758616959680, guid: f4bf1fbffddb1e049af8dc3915168b60, type: 3}
+  globalLight: {fileID: 0}
+  controllers: []
+  days: 1
+--- !u!114 &6408708141645383052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e6eeb68ba79e94d850842decf31c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCursor: {fileID: 1732445263, guid: b13790fe2f4f63d448f27ad450bc27b1, type: 3}
+  loadingCursor: {fileID: -446577584, guid: b13790fe2f4f63d448f27ad450bc27b1, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
+  cursorAtlas: {fileID: 100100200, guid: b5a17f4ebbdf4ae4db3d3fe0a9f8a1c2, type: 3}
+--- !u!114 &4378861239151502106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410482632329364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99102c084d92ba498a276dd8cad7249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 1162473020680332656, guid: 08b146aa49d35e74188c7cf24d7879f9, type: 3}

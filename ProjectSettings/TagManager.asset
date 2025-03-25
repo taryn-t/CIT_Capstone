@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - PotionButton
   - Structure
+  - SpellButton
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Obstacle
   - Water
   - UI
-  - 
-  - 
+  - Structure
+  - Player
   - 
   - 
   - 

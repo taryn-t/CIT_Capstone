@@ -227,7 +227,7 @@ MonoBehaviour:
   GenerateBtn: {fileID: 1960866638759621178}
   GameName: {fileID: 6300935255800362338}
   Seed: {fileID: 1170385624390977191}
-  LoadingUI: {fileID: 0}
+  LoadingUI: {fileID: 1706824620412836217, guid: 362e9ebccf196fb43a78323164ff041d, type: 3}
 --- !u!114 &6527240435403910566
 MonoBehaviour:
   m_ObjectHideFlags: 0

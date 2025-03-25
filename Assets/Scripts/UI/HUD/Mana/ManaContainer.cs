@@ -20,9 +20,9 @@ public class ManaContainer : MonoBehaviour
 
     public int currentManaIndex;
     public int currentManaSpriteIndex;
-    public float manaInterval; //total amount per heart
+    public int manaPerHeart; //total amount per heart
     public float manaSpriteInterval;
-    public float maxPlayerMana;
+    public int maxPlayerMana;
 
     void Start(){
 
@@ -30,20 +30,20 @@ public class ManaContainer : MonoBehaviour
         GameManager.Instance.manaContainer = this;
         currentManaIndex = 0;
         currentMana = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Mana>();
-        maxPlayerMana = GameManager.Instance.GetPlayer().maxMana;
-        manaInterval = GameManager.Instance.GetPlayer().Mana/(mana.Count+1);
-        manaSpriteInterval = manaInterval/manaSprites.Count;
+        maxPlayerMana = (int)GameManager.Instance.GetPlayer().maxMana;
+        manaPerHeart = maxPlayerMana/5;
+        manaSpriteInterval = manaPerHeart/manaSprites.Count;
 
-        float min = GameManager.Instance.GetPlayer().Mana - manaInterval;
+        float min = GameManager.Instance.GetPlayer().Mana - manaPerHeart;
         float max = GameManager.Instance.GetPlayer().Mana;
 
         foreach(Transform child in transform.GetChild(0).transform){
             
             child.gameObject.GetComponent<Mana>().maxManaAmount = max;
-            max -= manaInterval;
+            max -= manaPerHeart;
 
             child.gameObject.GetComponent<Mana>().minManaAmount = min;
-            min -= manaInterval;
+            min -= manaPerHeart;
 
             child.gameObject.GetComponent<Mana>().SetSprite(manaSprites[currentManaSpriteIndex]);
         }
@@ -53,65 +53,41 @@ public class ManaContainer : MonoBehaviour
     }
 
     void FixedUpdate(){
+        
 
-        CheckForManaChange(GameManager.Instance.GetPlayer().Mana);
-
-        CheckForManaSpriteChange(GameManager.Instance.GetPlayer().Mana);
+         UpdateManaDisplay(GameManager.Instance.GetPlayer().Mana);
+        maxPlayerMana = (int)GameManager.Instance.GetPlayer().maxMana;
+        manaLabel.text = $"{GameManager.Instance.GetPlayer().Mana}/{maxPlayerMana}";
 
 
     }
 
-    public void CheckForManaSpriteChange(float currentManaAmount){
-        if(currentManaAmount >= currentMana.maxManaAmount){
-            mana[currentManaIndex-1].SetSprite(manaSprites[0]);
-            // currentMana.SetSprite(manaSprites[0]);
-        }
-        else if (currentManaAmount <= currentMana.minManaAmount){
-            mana[currentManaIndex+1].SetSprite(manaSprites.Last());
-            // currentMana.SetSprite(manaSprites.Last());
-        }
-        else{
-            float difference = currentMana.maxManaAmount - currentManaAmount;
-        
-            int difIndex = (int) (difference / manaSpriteInterval);
-            int idx = Mathf.Clamp(difIndex, 0, manaSprites.Count-1);
-            if(idx != currentManaSpriteIndex){
-                currentManaSpriteIndex = idx;
-                currentMana.SetSprite(manaSprites[currentManaSpriteIndex]);
-            } 
-        }
-       
-        
-          manaLabel.text = $"{currentManaAmount}/{maxPlayerMana}";
-    }
 
-    public void CheckForManaChange(float currentManaAmount){
-        float difference = maxPlayerMana - currentManaAmount;
+      void UpdateManaDisplay(float currentMana)
+    {
 
-        int difIndex = (int) (difference / manaInterval);
-        
-        int idx = Mathf.Clamp(difIndex, 0, mana.Count-1);
+        for (int i = 0; i < manaSprites.Count; i++)
+        {
+            int reversedIndex = (manaSprites.Count - 1) - i; 
+            int heartStart = manaPerHeart * (i + 1);
+            int heartEnd = manaPerHeart * i;
 
-        if(idx != currentManaIndex  ){
-
-            int manaIndexDifference = idx - currentManaIndex;
-            if(manaIndexDifference > 1 ){
-                for(int i = currentManaIndex-manaIndexDifference; i < currentManaIndex; i++){
-                    mana[i].SetSprite(manaSprites.Last());
-                }
+            if (currentMana >= heartStart)
+            {
+                 mana[reversedIndex].SetSprite(manaSprites[4]); // Full heart
             }
-            else if(manaIndexDifference < -1){
-                 for(int i = currentManaIndex-manaIndexDifference; i < currentManaIndex; i++){
-                    mana[i].SetSprite(manaSprites.First());
-                }
+            else if (currentMana <= heartEnd)
+            {
+                mana[reversedIndex].SetSprite(manaSprites[0]); // Empty heart
             }
-
-
-            currentManaIndex = idx;
-            currentMana = mana[currentManaIndex];
+            else
+            {
+                int index = Mathf.FloorToInt((currentMana - heartEnd) / (manaPerHeart / 5));
+                mana[reversedIndex].SetSprite(manaSprites[index]);
+            }
         }
     }
-    
+   
 
 
 

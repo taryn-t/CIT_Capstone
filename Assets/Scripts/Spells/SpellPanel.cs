@@ -12,7 +12,10 @@ public class SpellPanel : MonoBehaviour
     private void Start(){
         spells = GameManager.Instance.gameData.playerData.KnownSpells;
         SetIndex();
-        Show();
+        if(!GameManager.Instance.multiSpell){
+            Show();
+        }
+        
      
     }
 

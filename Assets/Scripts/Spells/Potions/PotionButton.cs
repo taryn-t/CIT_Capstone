@@ -22,7 +22,7 @@ public class PotionButton : MonoBehaviour
 
     void Update(){
         if(potion!=null ){
-            if( Input.GetKeyDown(KeyCode.E)){
+            if( Input.GetKeyDown(KeyCode.Q)){
                 UsePotion();
             }
             

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,13 +10,14 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected GameObject[] spawnPrefabs;
     [SerializeField] protected Vector3 spawnPosition;
     
-    
     [SerializeField] protected List<GameObject> spawnedObjects;
     public int amountSpawned = default;
     [SerializeField] protected int maxAmount;
    
    
     protected CancellationTokenSource cancellationTokenSource;
+
+
     
     
 
@@ -24,12 +26,14 @@ public abstract class Spawner : MonoBehaviour
         
     }
  
+
+
      private void OnDestroy()
     {
         cancellationTokenSource?.Cancel();
     }
 
-    protected virtual async void Spawn()
+    protected virtual async void Spawn(Transform parent)
     {   
          cancellationTokenSource = new CancellationTokenSource();
 
@@ -37,7 +41,7 @@ public abstract class Spawner : MonoBehaviour
          try{
             int randomIndex = UnityEngine.Random.Range(0, spawnPrefabs.Length);
 
-            GameObject go = Instantiate(spawnPrefabs[randomIndex],transform.position, Quaternion.identity); 
+            GameObject go = Instantiate(spawnPrefabs[randomIndex],transform.position, Quaternion.identity,parent); 
             spawnedObjects.Add(go);
             await Task.Delay(500,cancellationTokenSource.Token);
         }

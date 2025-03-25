@@ -1,11 +1,13 @@
 
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
@@ -17,7 +19,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] public SpellContainer KnownSpells;
     [SerializeField] public PotionContainer availablePotions;
     [SerializeField] public GameObject HUDPrefab;
+    [SerializeField] public GameObject explosionGO;
+    [SerializeField] public GameObject venomPillarGO;
+    [SerializeField] public GameObject blackHoleGO;
+    [SerializeField] public GameObject MapContainer;
     public HUDController hudController;
+    public float playerDamageDone = 0f;
+    public float playerDamageTaken = 0f;
     public GameData gameData;
     public CineMachineScript virtualCamera;
     public WalkerGenerator mapGenerator;
@@ -37,7 +45,7 @@ public class GameManager : MonoBehaviour
      public bool saving = false;
      public int totalEnemies = default;
      public int enemiesDefeated = default;
-     public int totalTime = default;
+     public float totalTime = 0f;
      public int wavesSurvived = default;
      public WorldBounds worldBounds;
 
@@ -48,7 +56,19 @@ public class GameManager : MonoBehaviour
     public string gameName;
     public bool regenerating = false;
     public bool procederalWaves = true;
+    public bool multiSpell = true;
+    public MinimapCamera minimapCamera;
+    public GameObject mapPanel;
+    public int waveMaxEnemies = default;
+    public OnScreenMessageSystem onScreenMessageSystem;
 
+    public float enemyDamageBuffer = 0.5f;
+    public bool isDev = true;
+    public GameObject EnemiesGO;
+    public GameObject SpellsGO;
+  
+    public SoundEffectController soundEffectController;
+    
 
     private void Awake()
     {
@@ -66,13 +86,12 @@ public class GameManager : MonoBehaviour
 
         Instance.menu = GameObject.Find("MenuCanvas").GetComponent<Menu>();
 
-        
-        DontDestroyOnLoad(gameObject);
     }
 
-    
+    public void DestroyManager(){
+        Destroy(gameObject);
+    }
   
-
     public void SetSpell(GameObject go){
         Instance.SelectedSpell = go.GetComponent<SpellButton>();
     }
@@ -133,45 +152,62 @@ public class GameManager : MonoBehaviour
         return Instance.virtualCamera;
     }
 
-    public void CastSpellEnemy(GameObject spellPrefab, Spell spell, OffsetRotation offsetRotation, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider, Rigidbody2D target){
+
+    public void CastSpellEnemy(GameObject spellPrefab, Spell spell, Rigidbody2D enemyBody, Vector2 lastMotionVector,CapsuleCollider2D collider, Rigidbody2D target){
         
-        
+        OffsetRotation offsetRotation = new OffsetRotation();
        
         spellPrefab.GetComponent<CastedSpell>().spell = spell;
+        spellPrefab.GetComponent<CastedSpell>().range = spell.range;
         spellPrefab.GetComponent<CastedSpell>().effect =  spell.spellEffect;
-        spellPrefab.GetComponent<CastedSpell>().damage =  spell.damage;
+        spellPrefab.GetComponent<CastedSpell>().damage =  (int)(spell.damage * enemyDamageBuffer);
         spellPrefab.GetComponent<CastedSpell>().knockback =  spell.knockback;
-         spellPrefab.GetComponent<CastedSpell>().caster =  "Enemy";
-         spellPrefab.GetComponent<CastedSpell>().target = target;
+        spellPrefab.GetComponent<CastedSpell>().caster =  "Enemy";
+        spellPrefab.GetComponent<CastedSpell>().targetPosition = target.position;
+
 
         GetRotation(lastMotionVector, offsetRotation, collider);
+        
         spellPrefab.GetComponent<CastedSpell>().rotation =  offsetRotation.rotation;
 
         Vector3 pos = new(enemyBody.position.x,enemyBody.position.y,0);
         
-        Instantiate(spellPrefab, pos + offsetRotation.offset, offsetRotation.rotation);
+        StartCoroutine(AttackDelay(spellPrefab,pos,offsetRotation));
         
         
+    }
+
+    public IEnumerator AttackDelay(GameObject spellPrefab,Vector3 pos, OffsetRotation offsetRotation){
+
+        float wait = UnityEngine.Random.Range(0.1f,0.5f);
+
+        yield return new WaitForSeconds(wait);
+
+        Instantiate(spellPrefab, pos + offsetRotation.offset, offsetRotation.rotation, Instance.SpellsGO.transform);
     }
     
       public void GetRotation(Vector2 pos, OffsetRotation offsetRotation,CapsuleCollider2D collider){
 
-        
+
+       
         string direction = "";
 
-        if(pos == Vector2.left){
-            direction= "left";
+        if (Mathf.Abs(pos.x) > Mathf.Abs(pos.y))
+        {
+            if (pos.x > 0)
+                direction= "right";
+            else
+                direction=  "left";
         }
-        else if(pos == Vector2.right){
-            direction= "right";
+        else
+        {
+            if (pos.y > 0)
+                direction=  "up";
+        
+            else
+                direction= "down";
         }
-        else if(pos == Vector2.down){
-            direction= "down";
-        }
-        else if(pos == Vector2.up){
-            direction= "up";
-        }
-
+      
          switch(direction) 
         {
         case "left":
@@ -191,11 +227,12 @@ public class GameManager : MonoBehaviour
              offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),collider.bounds.size.y*1.5f,0);
              break;
         default:
-            offsetRotation.offset = new Vector3(collider.bounds.size.x-(collider.bounds.size.x/2),-collider.bounds.size.y,0);
+            
+            offsetRotation.offset = new Vector3(0,0,0);
             break;
         }
-
 
     }
 
 }
+

@@ -4,25 +4,21 @@ using System.Threading.Tasks;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Character
 {
     public BehaviorTree behaviorTree;
 
-    public float attackRange =0.5f;
+    public float attackRange =2f;
     public float patrolRange = 5f;
-    public float detectionRange = 2f;
-    private float moveSpeed = 20f;
-    public Animator animator;
-
+    public float detectionRange = 3f;
+    
+    
     [SerializeField] public Spell spellAttack;
     [SerializeField]public  GameObject spellPrefab;
     [SerializeField] public LayerMask obstacleLayerMask;
-    public Vector2 lastMotionVector;
-      private Rigidbody2D body;
-    public Rigidbody2D Body{
-        get{return body;}
-        set{body=value;}
-    }
+    [SerializeField] public LayerMask playerLayerMask;
+
+   
     public Vector2 smoothDeltaPosition = Vector2.zero;
     public bool moving;
     public CapsuleCollider2D col;
@@ -32,6 +28,8 @@ public class EnemyAI : MonoBehaviour
     public CancellationTokenSource cancellationTokenSource;
     public bool parent = false;
     public bool baby = false;
+    public bool playerInRayAttack = false;
+    public bool playerInSightRange = false;
     public void InitializeBehaviorTree()
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
@@ -42,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
         Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, Body);
 
-        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged, baby);
+        Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged, baby, playerInRayAttack);
 
         Node patrol = new Patrol(transform,moveSpeed,patrolRange, Body, col, obstacleLayerMask);
 
@@ -60,9 +58,7 @@ public class EnemyAI : MonoBehaviour
         
 
         UnityEngine.Vector2 motionVector = new UnityEngine.Vector2(horizontal,vertical);
-        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
-        smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, motionVector, smooth);
-
+        
         animator.SetFloat("horizontal",horizontal);
         animator.SetFloat("vertical",vertical);
         moving = horizontal != 0 || vertical != 0;
@@ -70,7 +66,8 @@ public class EnemyAI : MonoBehaviour
 
 
         if(moving){
-            lastMotionVector = smoothDeltaPosition.normalized;
+            
+            lastMotionVector = motionVector.normalized;
             animator.SetFloat("lastHorizontal",lastMotionVector.x);
             animator.SetFloat("lastVertical",lastMotionVector.y);
         }
@@ -79,11 +76,6 @@ public class EnemyAI : MonoBehaviour
 
         
        
-    }
-     private void OnDestroy()
-    {
-        StopAllCoroutines();
-        cancellationTokenSource?.Cancel();
     }
 
     

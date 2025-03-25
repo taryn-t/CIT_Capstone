@@ -5,11 +5,18 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class SpellButton : MonoBehaviour
 {
     [SerializeField] Image icon;
     [SerializeField] public Spell spell;
+    public bool multiSpell;
+    [SerializeField] public GameObject[] spellButtons;
+    [SerializeField] List<Spell> spells = new(new Spell[3]);
+
+    private GameObject activeButton;
+
 
     int myIndex;
 
@@ -18,14 +25,98 @@ public class SpellButton : MonoBehaviour
          icon = transform.gameObject.GetComponent<Image>();
          break;
        }
+
+       if (GameManager.Instance.multiSpell && !multiSpell){
+
+            gameObject.SetActive(false);
+       }
+       else if(!GameManager.Instance.multiSpell && multiSpell){
+            gameObject.SetActive(false);
+       }
+
+       if(GameManager.Instance.multiSpell && multiSpell){
+            SetUpSpells();
+       }
+   
+       
+    }
+    
+
+    void SetUpSpells(){
+        
+        
+        for(int i = 0; i<spells.Count; i++){
+
+            if(spells[i] != null){
+                spellButtons[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1,1,1,1);
+                spellButtons[i].transform.GetChild(0).GetComponent<Image>().sprite = spells[i].Icon;
+            }
+            else{
+                 spellButtons[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1,1,1,0);
+                spellButtons[i].transform.GetChild(0).GetComponent<Image>().sprite = null;
+            }
+
+            if(i==0){
+                spell = spells[i];
+                activeButton = spellButtons[i];
+            }
+            
+        }
+        SelectSpell();
+
     }
 
+    public void AddSpell(Spell newSpell){
+        for(int i = 0; i<spells.Count; i++){
+            if(spells[i] == null){
+                spells[i] = newSpell;
+                break;
+            }
+        }
+        
+    SetUpSpells();
+        
+
+    }
+
+    public bool CheckToAdd(Spell newSpell){
+        return !spells.Contains(newSpell);
+    }
+
+    void ShiftSpellsRight(){
+         if (spells.Count > 1)
+        {
+            Spell firstSpell = spells[0];
+            spells.RemoveAt(0);
+            spells.Add(firstSpell);
+        }
+
+        SetUpSpells();
+    }
+    void ShiftSpellsLeft(){
+        if (spells.Count > 1)
+        {
+            Spell lastSpell = spells[^1]; 
+            spells.RemoveAt(spells.Count - 1); 
+            spells.Insert(0, lastSpell); 
+        }
+        SetUpSpells();
+    }
 
     void Update(){
         if(Input.inputString == (myIndex+1).ToString()){
             SelectSpell();
         }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            ShiftSpellsLeft();
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            ShiftSpellsRight();
+        }
     }
+
     public void SetIndex(int index){
         myIndex =index;
     }
@@ -41,6 +132,7 @@ public class SpellButton : MonoBehaviour
         
         
         spell = slot.spell;
+        SelectSpell();
     }
 
     public void Clean(){

@@ -18,10 +18,10 @@ public class AttackPlayer : Node
     bool damaged;
     bool attack;
     bool slime;
-
-   
-    
-    public AttackPlayer(Rigidbody2D enemy, Rigidbody2D player, float range, Animator animator, Spell spell, GameObject spellPrefab, Vector2 lastMotionVector, CapsuleCollider2D collider, bool damaged, bool slime)
+    LayerMask playerLayerMask;
+    bool playerInRay;
+    Vector2 direction;
+    public AttackPlayer(Rigidbody2D enemy, Rigidbody2D player, float range, Animator animator, Spell spell, GameObject spellPrefab, Vector2 lastMotionVector, CapsuleCollider2D collider, bool damaged, bool slime, bool playerInRay)
     {
         enemyBody = enemy;
         playerBody = player;
@@ -31,55 +31,57 @@ public class AttackPlayer : Node
         this.spellPrefab = spellPrefab;
         this.lastMotionVector = lastMotionVector;
         this.collider = collider;
-        offsetRotation = new OffsetRotation();
         this.damaged = damaged;
         this.slime = slime;
-
-       
-
+        this.playerInRay = playerInRay;
     }
 
     public override NodeStatus Execute( )
     {
-  
         
-        float distance = Vector2.Distance(enemyBody.position, playerBody.position);
-        if (distance <= attackRange && !attack)
-        {
-
-            if(!animator.GetBool("attack")){
-                animator.SetBool("attack",true);
+        if(enemyBody.gameObject.GetComponent<Enemy>().playerInRayAttack){
+            if (!attack)
+            {
+                direction = (playerBody.position - enemyBody.position).normalized;
+                if(!animator.GetBool("attack")){
+                    animator.SetBool("attack",true);
+                }
+                
+                CastSpell();
+                
+                
+                return NodeStatus.Running;
             }
-            
-            if(!slime){
-              
-                GameManager.Instance.CastSpellEnemy(spellPrefab,spell,offsetRotation,enemyBody,lastMotionVector,collider,playerBody);
-            }
-            else{
-            
-                Vector2 direction = (playerBody.position - enemyBody.position).normalized;
-                enemyBody.AddForce((Vector3)direction * 10f * Time.deltaTime, ForceMode2D.Impulse);
-
-                return NodeStatus.Running; // This action runs continuously 
-            }
-            
-            attack=true;
-            
-            AttackCooldown();
-            
-            
-            return NodeStatus.Running;
         }
-
+        
          return NodeStatus.Failure;
     }
 
-    async void AttackCooldown(){
+  
+    private void CastSpell(){
+        
+        if(!slime){
+            GameManager.Instance.CastSpellEnemy(spellPrefab,spell,enemyBody,direction,collider,playerBody);
+            Enemy enemy = enemyBody.gameObject.GetComponent<Enemy>();
+            enemy.Mana -= spell.manaCost;
+        }
+        else{
+            
+            enemyBody.AddForce( enemyBody.gameObject.GetComponent<Enemy>().speed * (Vector3)direction, ForceMode2D.Impulse);
+        }
+        attack=true;
+        
+        
+        enemyBody.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AttackCooldown());
+
+    }
+    IEnumerator AttackCooldown(){
+        float timeout = UnityEngine.Random.Range(0.5f,1f);
         animator.SetBool("attack",false);
-        await Task.Delay(1000);
+        yield return new WaitForSeconds(timeout);
         
         attack=false;
-        
     }
+
 
 }

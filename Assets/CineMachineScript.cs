@@ -23,4 +23,12 @@ public class CineMachineScript : MonoBehaviour
     public void SetFollow(Transform t){
         vc.Follow = t;
     }
+
+   
+    public IEnumerator ShakeCamera(){
+        vc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 2; 
+
+        yield return new WaitForSeconds(0.5f);
+        vc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0; 
+    }
 }

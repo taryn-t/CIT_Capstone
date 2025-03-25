@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PoisonSmoke
   m_EditorClassIdentifier: 
   Name: Poison Smoke
-  damage: 8
-  knockback: 1
-  manaCost: 4
-  spellEffect: 1
+  damage: 14
+  knockback: 0
+  manaCost: 7
+  spellEffect: 2
   animator: {fileID: 9100000, guid: 89876d6d7c50fb744a9eb71667a33dc9, type: 2}
   Icon: {fileID: 1652888562, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
   frames:
@@ -28,3 +28,4 @@ MonoBehaviour:
   - {fileID: 187962415, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
   - {fileID: 1569435124, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
   - {fileID: 2059560198, guid: 7b79c35c6a932604881243b365553ceb, type: 3}
+  range: 5

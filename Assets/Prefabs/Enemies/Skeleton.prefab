@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 2065820738850964780}
   - component: {fileID: 4917456574789126064}
   - component: {fileID: 5360209094616850134}
+  - component: {fileID: -5372764948758697821}
   m_Layer: 3
   m_Name: Skeleton
   m_TagString: Enemy
@@ -302,23 +303,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8d4509b9b806d4b981410168c3182e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  patrolRange: 5
-  detectionRange: 5
+  maxHealth: 56
   animator: {fileID: 0}
+  damageGlow: {fileID: 0}
+  mapMarker: {fileID: -1870678444, guid: 272d9e640f80bf842a4bbd4d7a98fcb6, type: 3}
+  mapIndex: 
+  dead: 0
+  mapPanel: {fileID: 0}
+  manaRegenerating: 0
+  manaRegenAmount: 10
+  maxMana: 0
+  takeDamagePercent: 0.25
+  lastMotionVector: {x: 0, y: 0}
+  moveSpeed: 20
+  attackRange: 8
+  patrolRange: 15
+  detectionRange: 10
   spellAttack: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
   spellPrefab: {fileID: 5517673009184086772, guid: 0b938f1c75886bd4080f15524824e771, type: 3}
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  lastMotionVector: {x: 0, y: 0}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   smoothDeltaPosition: {x: 0, y: 0}
   moving: 0
   col: {fileID: 0}
   damaged: 0
   parent: 0
   baby: 0
-  speed: 0.02
+  playerInRayAttack: 0
+  playerInSightRange: 0
+  enemyName: Skeleton
+  speed: 7.2
   healthSprites:
   - {fileID: -1318831634, guid: fa86d7e4bffd6c14a815d50f8bafc849, type: 3}
   - {fileID: 1660068090, guid: fa86d7e4bffd6c14a815d50f8bafc849, type: 3}
@@ -395,3 +413,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &-5372764948758697821
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734557985186141035}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0006220937, y: -0.0628272}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5036025, y: 0.8743455}
+  m_EdgeRadius: 0

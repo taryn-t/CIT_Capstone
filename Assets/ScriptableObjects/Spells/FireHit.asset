@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FireHit
   m_EditorClassIdentifier: 
   Name: Fire Hit
-  damage: 8
-  knockback: 1
-  manaCost: 4
+  damage: 18
+  knockback: 0.2
+  manaCost: 9
   spellEffect: 0
   animator: {fileID: 9100000, guid: 778e11b28affbe449ada4502ecbe1cb5, type: 2}
   Icon: {fileID: -190648134, guid: 795ffc87906f6f148bdf62705b843f91, type: 3}
@@ -28,3 +28,4 @@ MonoBehaviour:
   - {fileID: 1369795256, guid: 4f1c72741c8aecc4f99c0aeb9f37ab02, type: 3}
   - {fileID: -845684408, guid: 4f1c72741c8aecc4f99c0aeb9f37ab02, type: 3}
   - {fileID: -702440660, guid: 4f1c72741c8aecc4f99c0aeb9f37ab02, type: 3}
+  range: 8

@@ -54,7 +54,7 @@ public class PickUpPotion : MonoBehaviour
         if(distance < 0.1f){
             
             if(GameManager.Instance.potionButton.potion == null){
-               
+               GameManager.Instance.soundEffectController.PlayPositiveSound();
                 GameManager.Instance.potionButton.Set(potion);
                 Destroy(gameObject);
             }

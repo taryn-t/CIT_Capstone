@@ -11,9 +11,12 @@ public class DeathHandler : MonoBehaviour
     private bool gameOver = false;
     void Update()
     {
-        if(GameManager.Instance.GetPlayer().Health == 0 && !gameOver){
+        if(GameManager.Instance.player != null){
+            if(GameManager.Instance.GetPlayer().Health == 0 && !gameOver){
             ShowGameOver();
+            }
         }
+        
     }
 
     void ShowGameOver(){

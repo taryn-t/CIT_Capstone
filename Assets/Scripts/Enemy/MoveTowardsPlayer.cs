@@ -19,10 +19,14 @@ public class MoveTowardsPlayer : Node
     {
         if(GameManager.Instance.GetPlayer().visible){
             
-           Vector2 direction = (playerTransform.position - enemyTransform.position).normalized;
-            body.AddForce((Vector3)direction * speed * Time.deltaTime);
+           
+            Vector2 direction = (playerTransform.position - enemyTransform.position).normalized;
+            body.AddForce((Vector3)direction * speed *  Time.deltaTime);
+            return NodeStatus.Running; 
+            
+           
 
-            return NodeStatus.Running; // This action runs continuously 
+            // This action runs continuously 
         }
 
         return NodeStatus.Failure;
