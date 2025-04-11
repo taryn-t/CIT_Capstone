@@ -11,24 +11,37 @@ public class PlayerMovement : PlayerController
 
 
 
-
     void Start()
     {
         GameManager.Instance.playerMovement = this;
         InitializeMovement();
     }
     void Update(){
+       
 
-        if(Input.GetKeyDown(KeyCode.U)){
-             Body.AddForce(Vector2.up * 1000f);
-        }
+        // if(Input.GetKeyDown(KeyCode.U)){
+        //      Body.AddForce(Vector2.up * 1000f);
+        // }
         HandleMovementAnimation();
     }
     void FixedUpdate()
     {
-       
+       if(GameManager.Instance.regenerating ){
+            Freeze();
+        }
+        else if(GameManager.Instance.instructionsUI.GetComponent<Instructions>().open){
+
+            Freeze();
+        }
+        else if(frozen){
+            UnFreeze();
+        }
+
         
-         MovePlayer();
+        if(!frozen){
+            MovePlayer();
+        }
+        
     }
 
 
@@ -53,11 +66,19 @@ public class PlayerMovement : PlayerController
     }
 
     public void MovePlayer(){
-   
-        Body.velocity = moveInput * moveSpeed/Time.deltaTime;  
+        
+        if(!GameManager.Instance.GetPlayer().slow){
+           Body.velocity = moveInput * moveSpeed/Time.deltaTime;   
+        }
+        else{
+
+            Body.velocity = moveInput * (moveSpeed*0.5f)/Time.deltaTime;  
+        }
+        
+        
           
         
-    }
+    } 
 
      private void InitializeMovement(){
         Body = GetComponent<Rigidbody2D>();

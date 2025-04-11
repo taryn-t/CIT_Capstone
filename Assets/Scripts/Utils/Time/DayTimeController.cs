@@ -19,7 +19,6 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] AnimationCurve nightTimeCurve;
 
     private float timeScale = 60f;
-    [SerializeField] GameObject AutoSave;
     public  Light2D globalLight;
   
       public GameObject[] controllers;
@@ -51,18 +50,18 @@ public class DayTimeController : MonoBehaviour
 
         time = startAtTime;
                     
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        // SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        globalLight= GameObject.Find("GlobalLight").GetComponent<Light2D>();
-        float v = nightTimeCurve.Evaluate(Hours);
-        Color c = Color.Lerp(dayLightColor, nightLightColor, v);
-        globalLight.color = c;
+    // private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    // {
+    //     globalLight= GameObject.Find("GlobalLight").GetComponent<Light2D>();
+    //     float v = nightTimeCurve.Evaluate(Hours);
+    //     Color c = Color.Lerp(dayLightColor, nightLightColor, v);
+    //     globalLight.color = c;
 
-    }
+    // }
 
 
     string formattedTime;
@@ -87,14 +86,14 @@ public class DayTimeController : MonoBehaviour
         
             // timeLabel.text = formattedTime;
             
-            float v = nightTimeCurve.Evaluate(Hours);
-            Color c = Color.Lerp(dayLightColor, nightLightColor, v);
+            // float v = nightTimeCurve.Evaluate(Hours);
+            // Color c = Color.Lerp(dayLightColor, nightLightColor, v);
             
-            if(globalLight == null){
-                globalLight= GameObject.Find("GlobalLight").GetComponent<Light2D>();
-            }
+            // if(globalLight == null){
+            //     globalLight= GameObject.Find("GlobalLight").GetComponent<Light2D>();
+            // }
             
-            globalLight.color = c;
+            // globalLight.color = c;
 
             // timeLabel.text = formattedTime;
             // dayLabel.text = GetDay();

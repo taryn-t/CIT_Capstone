@@ -19,7 +19,9 @@ public class Healing : PotionEffect
 
         GameManager.Instance.GetPlayer().Health += potion.effectStrength;
 
-                
+        GameManager.Instance.hudController.currentWave.healingDone+=potion.effectStrength; 
+
+        GameManager.Instance.hudController.wavePotions["Healing"].totalUsed++;
         return true;
     }
 }

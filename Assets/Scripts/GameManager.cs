@@ -2,12 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Cinemachine;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
@@ -33,7 +28,6 @@ public class GameManager : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public DayTimeController dayTimeController;
-    public AutoSave autoSave;
     public SpellButton SelectedSpell;
     public PotionButton potionButton;
     public GameObject potionButtonGO;
@@ -68,8 +62,14 @@ public class GameManager : MonoBehaviour
     public GameObject SpellsGO;
   
     public SoundEffectController soundEffectController;
+    public GameObject instructionsUI;
     
-
+    public TestingManager testingManager;
+    public List<EnemySpawner> activeSpawners = new List<EnemySpawner>();
+    public bool testSubmitted = false;
+    public GameObject pauseMenu;
+    public bool gameplayStarted = false;
+    
     private void Awake()
     {
     
@@ -104,12 +104,7 @@ public class GameManager : MonoBehaviour
     public PotionButton GetPotion(){
         return potionButton;
     }
-    public void SetAutoSave(GameObject go){
-        Instance.autoSave = go.GetComponent<AutoSave>();
-    }
-    public AutoSave GetAutoSave(){
-        return Instance.autoSave ;
-    }
+ 
     public void SetDayTime(GameObject go){
         Instance.dayTimeController = go.GetComponent<DayTimeController>();
     }

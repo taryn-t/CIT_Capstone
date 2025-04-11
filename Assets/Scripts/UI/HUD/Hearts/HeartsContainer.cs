@@ -1,14 +1,9 @@
 
 
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class HeartsContainer : MonoBehaviour
 {
@@ -30,9 +25,7 @@ public class HeartsContainer : MonoBehaviour
         GameManager.Instance.heartsContainer = this;
         currentHeartIndex = 0;
         currentHeart = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Heart>();
-        maxPlayerHealth = (int)GameManager.Instance.GetPlayer().maxHealth;
-        healthPerHeart = maxPlayerHealth / 5;
-        spriteInterval = healthPerHeart/heartSprites.Count;
+         SetInterval();
 
         float min = GameManager.Instance.GetPlayer().Health - healthPerHeart;
         float max = GameManager.Instance.GetPlayer().Health;
@@ -51,6 +44,11 @@ public class HeartsContainer : MonoBehaviour
         healthLabel.text = $"{maxPlayerHealth}/{maxPlayerHealth}";
 
     }
+    public void SetInterval(){
+        maxPlayerHealth = (int)GameManager.Instance.GetPlayer().maxHealth;
+        healthPerHeart = maxPlayerHealth / 5;
+        spriteInterval = healthPerHeart/heartSprites.Count;
+    }
 
     void FixedUpdate(){
 
@@ -66,7 +64,8 @@ public class HeartsContainer : MonoBehaviour
 
         for (int i = 0; i < heartSprites.Count; i++)
         {
-            int reversedIndex = (heartSprites.Count - 1) - i; 
+            int reversedIndex = Mathf.Clamp((hearts.Count - 1) - i, 0, hearts.Count-1 ); 
+
             int heartStart = healthPerHeart * (i + 1);
             int heartEnd = healthPerHeart * i;
 
@@ -81,6 +80,7 @@ public class HeartsContainer : MonoBehaviour
             else
             {
                 int index = Mathf.FloorToInt((currentHealth - heartEnd) / (healthPerHeart / 5));
+                index = Mathf.Clamp(index,0,heartSprites.Count-1);
                 hearts[reversedIndex].SetSprite(heartSprites[index]);
             }
         }

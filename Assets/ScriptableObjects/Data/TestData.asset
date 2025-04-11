@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bccf99b655dd494db59c9608ba6dd14, type: 3}
+  m_Name: TestData
+  m_EditorClassIdentifier: 
+  data:
+    testData:
+      test_id: b4aaf686631144f1902391ef4d707d70
+      testDateTime: 2025-04-06 17:55:00
+      wavesPerMinute: 0.5
+      deathsPerMinute: 0
+      testDuration: 17
+      totalDeaths: 0
+      wavesCompleted: 0
+      proceduralGeneration: 1
+      spellProgression: 1
+    waveData:
+    - wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      waveNumber: 1
+      timeComplete: 17
+      totalEnemies: 16
+      enemiesDefeated: 6
+      damageDone: 346
+      damageReceived: 0
+      healingDone: 0
+      potionsUsed: 0
+      mushroomsUsed: 0
+      seedUsed: 0
+      completed: 0
+    spellData:
+    - spell_id: 6f72a2512d37436aad55437cd4aa302b
+      wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      spellType: Explode
+      pickedUp: 0
+      totalSpawned: 0
+      damageDone: 317
+      damageReceived: 0
+    - spell_id: b0607cb22877421ebd424bd759895ad9
+      wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      spellType: Gravity
+      pickedUp: 0
+      totalSpawned: 0
+      damageDone: 0
+      damageReceived: 0
+    - spell_id: 250a642f44e940aca47a5ca3cb71d121
+      wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      spellType: Poison
+      pickedUp: 0
+      totalSpawned: 0
+      damageDone: 0
+      damageReceived: 0
+    potionData:
+    - potion_id: 2d4201b23bd3436497a22615f12e6826
+      wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      potionType: Healing
+      pickedUp: 0
+      totalSpawned: 0
+      totalUsed: 0
+    - potion_id: 07735e2048c14860b4aa5f18c9478a76
+      wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      potionType: Invisibility
+      pickedUp: 0
+      totalSpawned: 1
+      totalUsed: 0
+    - potion_id: 47a4694b7de149fcb11036dde84fe49e
+      wave_id: 29d1412d95604f0fa424b63e3c84e0c4
+      test_id: b4aaf686631144f1902391ef4d707d70
+      potionType: Speed
+      pickedUp: 0
+      totalSpawned: 0
+      totalUsed: 0
+    eventData: []

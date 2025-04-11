@@ -102,3 +102,4 @@ MonoBehaviour:
   ttl: 10
   spell:
     spell: {fileID: 11400000, guid: 125422d2690cc4c459f7d03616969593, type: 2}
+  key: Explode

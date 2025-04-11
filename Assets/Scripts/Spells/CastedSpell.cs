@@ -1,9 +1,7 @@
 
 using UnityEngine;
-using System.Threading;
-using System.Threading.Tasks;
+
 using System.Collections;
-using Unity.VisualScripting;
 
 public class CastedSpell: MonoBehaviour
 {
@@ -71,9 +69,9 @@ public class CastedSpell: MonoBehaviour
             StopCoroutine("SmoothMovement");
             Character character = collision.gameObject.GetComponent<Character>();
         
-            if(character!=null){
+            if(character!=null ){
                 
-                character.TakeDamage(damage,knockback,direction); 
+                character.TakeDamage(damage,knockback,direction, spell.spellEffect); 
             }
             HitEffect();
         

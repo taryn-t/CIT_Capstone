@@ -77,15 +77,32 @@ public class BlackHole : MonoBehaviour
 
     IEnumerator DamageCoroutine(GameObject go){
         damaging = true;
-        Vector2 direction = (transform.position- go.transform.position).normalized;
+        
+        if(go == null){
+            yield return null;
+        }
+        else{
+            Vector2 direction = (transform.position- go.transform.position).normalized;
 
-               
-        if(go.TryGetComponent<Character>(out var charc))
-        {
-             charc.TakeDamage(damage,0,direction);
-        }     
-        yield return new WaitForSeconds(0.5f);
-        damaging = false;
+            Debug.Log(caster);
+
+            if(caster == "Enemy"){
+                if(go.TryGetComponent<PlayerController>(out var player))
+                {
+                    player.TakeDamage(damage,0,direction,SpellEffect.Gravity);
+                }     
+            }
+            else{
+                if(go.TryGetComponent<Enemy>(out var enemy))
+                {
+                    enemy.TakeDamage(damage,0,direction,SpellEffect.Gravity);
+                }     
+            }       
+            yield return new WaitForSeconds(0.75f);
+            damaging = false;
+        }
+        
+      
     }
 
     private void OnTriggerStay2D(Collider2D other)

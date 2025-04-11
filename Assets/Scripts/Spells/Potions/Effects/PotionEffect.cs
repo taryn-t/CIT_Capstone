@@ -7,11 +7,14 @@ public class PotionEffect : ScriptableObject
 {
     [SerializeField] public Color effectColor;
     [SerializeField] public string label;
+    
 
     public virtual bool OnApply(Potion potion){
         
         GameManager.Instance.potionButton.Clean();
 
+        GameManager.Instance.hudController.currentWave.potionsUsed++; 
+        
         return true;
     }
 

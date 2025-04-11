@@ -1,14 +1,9 @@
 
 
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class ManaContainer : MonoBehaviour
 {
@@ -30,9 +25,7 @@ public class ManaContainer : MonoBehaviour
         GameManager.Instance.manaContainer = this;
         currentManaIndex = 0;
         currentMana = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Mana>();
-        maxPlayerMana = (int)GameManager.Instance.GetPlayer().maxMana;
-        manaPerHeart = maxPlayerMana/5;
-        manaSpriteInterval = manaPerHeart/manaSprites.Count;
+        SetInterval();
 
         float min = GameManager.Instance.GetPlayer().Mana - manaPerHeart;
         float max = GameManager.Instance.GetPlayer().Mana;
@@ -52,6 +45,12 @@ public class ManaContainer : MonoBehaviour
 
     }
 
+    public void SetInterval(){
+        maxPlayerMana = (int)GameManager.Instance.GetPlayer().maxMana;
+        manaPerHeart = maxPlayerMana/5;
+        manaSpriteInterval = manaPerHeart/manaSprites.Count;
+    }
+
     void FixedUpdate(){
         
 
@@ -68,7 +67,7 @@ public class ManaContainer : MonoBehaviour
 
         for (int i = 0; i < manaSprites.Count; i++)
         {
-            int reversedIndex = (manaSprites.Count - 1) - i; 
+            int reversedIndex = Mathf.Clamp((mana.Count - 1) - i, 0, mana.Count-1 ); 
             int heartStart = manaPerHeart * (i + 1);
             int heartEnd = manaPerHeart * i;
 
@@ -83,6 +82,7 @@ public class ManaContainer : MonoBehaviour
             else
             {
                 int index = Mathf.FloorToInt((currentMana - heartEnd) / (manaPerHeart / 5));
+                index = Mathf.Clamp(index,0,manaSprites.Count-1);
                 mana[reversedIndex].SetSprite(manaSprites[index]);
             }
         }

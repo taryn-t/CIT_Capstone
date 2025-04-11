@@ -175,7 +175,7 @@ MonoBehaviour:
   caster: 
   gravityRadius: 0
   gravityPull: 10
-  damage: 2
+  damage: 5
 --- !u!58 &7330529541443833722
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -208,9 +208,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0024414062, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.4712448
 --- !u!82 &5411829477159491063
 AudioSource:
   m_ObjectHideFlags: 0

@@ -8,6 +8,6 @@ public class Potion : ScriptableObject
     public PotionEffect potionEffect;
     public int effectStrength; 
     public int  duration; //in seconds - 0 if instant
-
+    
 }
 

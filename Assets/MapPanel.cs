@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using TMPro;
 
 public class MapPanel : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class MapPanel : MonoBehaviour
     [SerializeField] GameObject mapMask;
     [SerializeField] public GameObject mapContainer;
     [SerializeField] public GameObject generatingLabel;
+    [SerializeField] public TMP_Text generatingText;
     [SerializeField] public GameObject startButton;
     public float generatingXPos = -345f;
     public float runtimeXPos = 0f;
@@ -33,50 +35,55 @@ public class MapPanel : MonoBehaviour
     private Vector2 basePos;
     private bool zoom = false;
     private Vector2 markerScale;
+    bool mapGenerated = false;
+
+
     
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.mapPanel = gameObject;
+    GameManager.Instance.mapPanel = gameObject;
        startButton.SetActive(false);
        generatingLabel.SetActive(true);
+       RectTransform rect = generatingLabel.GetComponent<RectTransform>();
+       
+        GameManager.Instance.mapGenerator.backgroundColor = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color;
+
+       if(!GameManager.Instance.procederalWaves && !GameManager.Instance.mapGenerated){
+
+            rect.anchorMin = new Vector2(0.5f, 0);
+            rect.anchorMax = new Vector2(0.5f, 1);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+
+            rect.offsetMin = new Vector2(-rect.rect.width / 2, rect.offsetMin.y);
+            rect.offsetMax = new Vector2(rect.rect.width / 2, rect.offsetMax.y);
+       
+
+            mapContainer.SetActive(false);
+
+       }
+       else{
+
+            rect.anchorMin = new Vector2(0, 0);
+            rect.anchorMax = new Vector2(0, 1);
+            rect.pivot = new Vector2(0, 0.5f);
+
+            rect.offsetMin = new Vector2(0, rect.offsetMin.y);
+            rect.offsetMax = new Vector2(rect.rect.width, rect.offsetMax.y);
+        
+            mapContainer.SetActive(true);
+
+       }
     }
 
     // Update is called once per frame
     void Update()
     {
-     
+        if(GameManager.Instance.mapGenerated && !mapGenerated){
+            mapGenerated = true;
+            mapContainer.SetActive(true);
+        }
     }
-
-
-    // public void OnScroll(PointerEventData eventData){
-       
-
-    //     var scale = mapImage.transform.localScale.x;
-    //     //mousePosition contains position of mouse inside scaled area in percentages
-    //     var mousePosition = (Vector2) (Input.mousePosition - mapImage.transform.position) - (Vector2)mapImage.GetComponent<RectTransform>().rect.position * scale;
-    //     mousePosition.x /= mapImage.GetComponent<RectTransform>().rect.width * scale;
-    //     mousePosition.y /= mapImage.GetComponent<RectTransform>().rect.height * scale;
-
-    //     var contentSize = mapImage.GetComponent<RectTransform>().rect;
-    //     var shiftX = -eventData.scrollDelta.y* contentSize.width * (mousePosition.x - 0.5f);
-    //     var shiftY = -eventData.scrollDelta.y* contentSize.height * (mousePosition.y - 0.5f);
-    //     var currPos = mapImage.GetComponent<RectTransform>().localPosition;
-
-    //     mapImage.GetComponent<RectTransform>().localPosition = new Vector3(currPos.x + shiftX, currPos.y + shiftY, currPos.z);
-    //     mapScale.x += eventData.scrollDelta.y ;
-    //     mapScale.y += eventData.scrollDelta.y ;
-    //     mapScale.x = Mathf.Clamp(mapScale.x,minScale, maxScale);
-    //     mapScale.y = Mathf.Clamp(mapScale.y,minScale, maxScale);
-
-    //     mapImage.transform.localScale = mapScale;
-    //     curScale = mapScale.x;
-
-    //     if(curScale == minScale){
-    //         mapImage.transform.position = basePos;
-    //     }
-
-    // }
 
     public void SetMarker(GameObject markedObject, Sprite markerSprite){
         
@@ -142,6 +149,7 @@ public class MapPanel : MonoBehaviour
     
     public void StartGame(){
         GameManager.Instance.mapGenerator.SaveMap();
+        
     }
 
 

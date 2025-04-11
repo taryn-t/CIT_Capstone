@@ -49,6 +49,7 @@ MonoBehaviour:
   pickUpDistance: 0.1
   ttl: 10
   potion: {fileID: 11400000, guid: c615ad6bea6432d4cbf08127c25eea86, type: 2}
+  key: Healing
 --- !u!212 &6088636485700953581
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -20,6 +20,9 @@ public class HealingMushroom : WorldItem
     {
         StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"Mushroom +{healAmount} health"));
         GameManager.Instance.GetPlayer().Health += healAmount;
+
+         GameManager.Instance.hudController.currentWave.mushroomsUsed++;
+        
         base.PickUp();
     }
     void OnDestroy()

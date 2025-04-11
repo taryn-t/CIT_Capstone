@@ -37,15 +37,29 @@ public class Explosion : MonoBehaviour
 
     IEnumerator DamageCoroutine(GameObject go){
         damaging = true;
+        yield return new WaitForSeconds(1f);
+
+        if(go == null){
+            yield return null;
+        }
+        
         Vector2 direction = (transform.position- go.transform.position).normalized;
 
                
                         
-        if(go.TryGetComponent<Character>(out var charc))
-        {
-             charc.TakeDamage(damage,0,direction);
+        if(caster == "Enemy"){
+            if(go.TryGetComponent<PlayerController>(out var player))
+            {
+                player.TakeDamage(damage,0,direction,SpellEffect.Explode);
+            }     
+        }
+        else{
+            if(go.TryGetComponent<Enemy>(out var enemy))
+            {
+                enemy.TakeDamage(damage,0,direction,SpellEffect.Explode);
+            }     
         }    
-        yield return new WaitForSeconds(0.5f);
+        
         damaging = false;
     }
 
@@ -67,7 +81,7 @@ public class Explosion : MonoBehaviour
         if(!other.gameObject.CompareTag(caster) && !damaging){
             GameObject go = other.gameObject;
            
-
+            
              StartCoroutine(DamageCollisions(go));
         }
         

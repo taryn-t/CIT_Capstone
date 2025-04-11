@@ -11,6 +11,7 @@ public class PlayerController : Character
     public bool visible = true;
 
     public bool invincible = false;
+    public bool potionActive = false;
     
     [SerializeField] public List<SpellLevel> spellLevels = new List<SpellLevel>();
 
@@ -98,7 +99,7 @@ public class SpellLevel
 {
     public Spell spell;
     public float damageBoost = 0f;
-    public int level = 1;
+    public int level = 0;
 
     public void IncreaseLevel(){
         damageBoost += 0.05f;

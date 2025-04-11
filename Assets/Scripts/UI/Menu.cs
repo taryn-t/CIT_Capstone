@@ -20,10 +20,10 @@ public class Menu : MonoBehaviour
     {
          gameObject.SetActive(true);
         
-        foreach(GameObject go in MenuPanels){
-           GameObject inst = Instantiate(go,transform);
-           inst.gameObject.SetActive(false);
-        }
+        // foreach(GameObject go in MenuPanels){
+        //    GameObject inst = Instantiate(go,transform);
+        //    inst.gameObject.SetActive(false);
+        // }
 
         transform.GetChild(currentMenuIndex).gameObject.SetActive(true);
          
@@ -37,11 +37,14 @@ public class Menu : MonoBehaviour
             child.gameObject.SetActive(true);
         }
 
-        transform.GetChild(index).gameObject.GetComponent<MenuPanel>().SetPrevIndex(currentMenuIndex);
+        if(transform.GetChild(index).gameObject.TryGetComponent<MenuPanel>(out var mp)){
+            mp.SetPrevIndex(currentMenuIndex);
+        }
+            
 
-
+        
         transform.GetChild(currentMenuIndex).gameObject.SetActive(false);
-         
+         currentMenuIndex = index;
     }
 
     public void GoBack(){

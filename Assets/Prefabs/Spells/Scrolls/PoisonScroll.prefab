@@ -102,3 +102,4 @@ MonoBehaviour:
   ttl: 10
   spell:
     spell: {fileID: 11400000, guid: f3fad68baadaf1144900daec97dcf2c7, type: 2}
+  key: Poison

@@ -27,6 +27,7 @@ public class NewGamePanel : MenuPanel
         
         GameManager.Instance.genSeed = Seed.text;
         GameManager.Instance.gameName = GameName.text;
+        
         MapGen = GameManager.Instance.GetMapGenerator();
         
         MapGen.StartGeneration(Seed.text,GameName.text);

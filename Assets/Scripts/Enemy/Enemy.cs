@@ -1,19 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Threading;
+
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
-using Unity.VisualScripting;
+
 
 public class Enemy :  EnemyAI{
 
 
     public string enemyName = "";
 
-    public float speed = 2f;
     [SerializeField] protected Sprite[] healthSprites;
 
     [SerializeField] protected SpriteRenderer healthMeter;
@@ -90,11 +85,15 @@ public class Enemy :  EnemyAI{
         position.x += spread * UnityEngine.Random.value - spread/2;
         position.y += spread * UnityEngine.Random.value - spread/2;
     
-
-         if (dropChance <= PotionDropChance && dropChance > ScrollDropChance){
-            
+        if (dropChance <= PotionDropChance && dropChance > ScrollDropChance){
+        
             int randomPotionIdx =  UnityEngine.Random.Range(0, potionDrops.Length);
             GameObject go =Instantiate(potionDrops[randomPotionIdx]);
+            
+            string key = go.GetComponent<PickUpPotion>().key;
+            GameManager.Instance.hudController.wavePotions[key].totalSpawned++;
+
+            
             go.transform.position = position;
             ResetPotionChance();
         }
@@ -102,17 +101,25 @@ public class Enemy :  EnemyAI{
             IncreasePotionChance();
         }
 
-        if(dropChance <= ScrollDropChance){
+        if(GameManager.Instance.multiSpell){
 
-            int randomScrollIdx =  UnityEngine.Random.Range(0, scrollDrops.Length);
-            GameObject go =Instantiate(scrollDrops[randomScrollIdx]);
-            go.transform.position = position;
-            ResetScrollChance();
+            if(dropChance <= ScrollDropChance){
 
-        }
-        else{
-            IncreaseScrollChance();
-        }
+                int randomScrollIdx =  UnityEngine.Random.Range(0, scrollDrops.Length);
+                GameObject go =Instantiate(scrollDrops[randomScrollIdx]);
+                go.transform.position = position;
+                string key = go.GetComponent<PickUpScroll>().key;
+
+                GameManager.Instance.hudController.waveSpells[key].totalSpawned++;
+
+                ResetScrollChance();
+
+            }
+            else{
+                IncreaseScrollChance();
+            }
+        }         
+        
 
 
        
@@ -121,12 +128,17 @@ public class Enemy :  EnemyAI{
         
         GameManager.Instance.totalEnemies--;
         GameManager.Instance.enemiesDefeated++;
+
+        
+        GameManager.Instance.hudController.currentWave.enemiesDefeated++; 
+        
         yield return StartCoroutine(mapPanel.RemoveMarker(gameObject)); 
       
         Destroy(gameObject);  
        
 
     }
+
 
       IEnumerator DestroyEnemySlime(){
         
@@ -154,6 +166,11 @@ public class Enemy :  EnemyAI{
         animator.SetBool("damage",true);
         
         GameManager.Instance.totalEnemies--;
+        GameManager.Instance.hudController.currentWave.enemiesDefeated++; 
+
+        
+        
+
         yield return StartCoroutine(mapPanel.RemoveMarker(gameObject)); 
 
           Destroy(gameObject); 
@@ -181,6 +198,7 @@ public class Enemy :  EnemyAI{
     {
 
         
+        
 
         if(Health==0 && !dead){
 
@@ -207,10 +225,24 @@ public class Enemy :  EnemyAI{
        
     }
     void FixedUpdate(){
-        
-         behaviorTree.Tick();
 
-         Movement();
+
+        if(GameManager.Instance.regenerating ){
+            Freeze();
+        }
+        else if(GameManager.Instance.instructionsUI.GetComponent<Instructions>().open){
+            Freeze();
+        }
+        else if(frozen){
+            UnFreeze();
+        }
+
+        if(!frozen){
+            behaviorTree.Tick();
+
+             Movement(); 
+        }
+        
 
         
         if(mapPanel.open){
@@ -257,8 +289,13 @@ public class Enemy :  EnemyAI{
     void CastAttackCone()
     {
 
-       if (lastMotionVector == Vector2.zero) return; 
+       if (lastMotionVector == Vector2.zero ) return; 
 
+        if(!GameManager.Instance.GetPlayer().visible){
+            playerInRayAttack = false;
+            return;
+        }
+        
         float angleRange = 60f;  
         int rayCount = 10;
         Vector2 origin = transform.position;
@@ -322,7 +359,9 @@ public class Enemy :  EnemyAI{
             PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
             Vector2 direction = Vector2.zero;
             SpellEffect effect = babySlime ? SpellEffect.Poison : SpellEffect.None;
-            player.TakeDamage(2,2,direction, effect);
+
+            int damage = babySlime ? 8 : 5;
+            player.TakeDamage(damage,2,direction, effect);
         }
     }
  

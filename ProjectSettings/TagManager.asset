@@ -12,6 +12,7 @@ TagManager:
   - PotionButton
   - Structure
   - SpellButton
+  - TestManager
   layers:
   - Default
   - TransparentFX

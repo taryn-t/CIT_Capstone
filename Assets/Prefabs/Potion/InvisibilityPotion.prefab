@@ -49,6 +49,7 @@ MonoBehaviour:
   pickUpDistance: 0.1
   ttl: 10
   potion: {fileID: 11400000, guid: a9a2715e07c44f04384d53e8ef290104, type: 2}
+  key: Invisibility
 --- !u!212 &-7722634976708844669
 SpriteRenderer:
   m_ObjectHideFlags: 0

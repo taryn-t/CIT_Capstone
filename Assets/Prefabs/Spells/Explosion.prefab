@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   caster: 
-  damage: 12
+  damage: 5
 --- !u!114 &6441316347485204419
 MonoBehaviour:
   m_ObjectHideFlags: 0

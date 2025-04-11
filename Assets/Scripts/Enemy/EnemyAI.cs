@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Threading;
-using System.Threading.Tasks;
-using UnityEditor.Rendering;
+
 using UnityEngine;
 
 public class EnemyAI : Character
@@ -25,11 +22,11 @@ public class EnemyAI : Character
 
     public bool damaged = false;
    
-    public CancellationTokenSource cancellationTokenSource;
     public bool parent = false;
     public bool baby = false;
     public bool playerInRayAttack = false;
     public bool playerInSightRange = false;
+    public Vector2 targetPosition = new Vector2();
     public void InitializeBehaviorTree()
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
@@ -38,13 +35,13 @@ public class EnemyAI : Character
 
         Node checkPlayerInRange = new CheckPlayerInRange(transform, playerTransform, detectionRange);
 
-        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, Body);
+        Node moveTowardsPlayer = new MoveTowardsPlayer(transform, playerTransform, moveSpeed, Body, playerLayerMask,obstacleLayerMask);
 
         Node attackPlayer = new AttackPlayer(body,playerbody,attackRange, animator, spellAttack, spellPrefab, lastMotionVector, col, damaged, baby, playerInRayAttack);
 
         Node patrol = new Patrol(transform,moveSpeed,patrolRange, Body, col, obstacleLayerMask);
 
-        Node[] sequenceNodes = {  patrol, checkPlayerInRange, moveTowardsPlayer, attackPlayer };
+        Node[] sequenceNodes = { checkPlayerInRange, moveTowardsPlayer, attackPlayer, patrol };
         
         Node behaviorTreeRoot = new Sequence(sequenceNodes);
         

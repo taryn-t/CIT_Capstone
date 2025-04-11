@@ -14,6 +14,7 @@ public class PickUpPotion : MonoBehaviour
     [SerializeField] float ttl = 90f;
     [SerializeField] public Potion potion;
     private string goTag = "PotionButton";
+    public string key = "";
     
     void Start()
     {
@@ -43,7 +44,7 @@ public class PickUpPotion : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         transform.position = Vector3.MoveTowards( 
             transform.position,
@@ -51,11 +52,13 @@ public class PickUpPotion : MonoBehaviour
             speed*Time.deltaTime
         );
 
-        if(distance < 0.1f){
+        if(distance < 0.3f){
             
             if(GameManager.Instance.potionButton.potion == null){
                GameManager.Instance.soundEffectController.PlayPositiveSound();
                 GameManager.Instance.potionButton.Set(potion);
+                
+                GameManager.Instance.hudController.wavePotions[key].pickedUp++;
                 Destroy(gameObject);
             }
             

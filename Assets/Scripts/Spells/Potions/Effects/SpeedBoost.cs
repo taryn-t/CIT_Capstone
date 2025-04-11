@@ -1,10 +1,8 @@
 
-using System;
+
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "Data/Potions/Effects/Speed Boost")]
 public class SpeedBoost : PotionEffect
@@ -17,25 +15,25 @@ public class SpeedBoost : PotionEffect
         }
         
         float oldSpeed = GameManager.Instance.playerMovement.moveSpeed;
-        float newSpeed = oldSpeed + (oldSpeed*potion.effectStrength);
+        float newSpeed = oldSpeed *2;
         
         base.OnApply(potion);
         
-        RunEffect(newSpeed,oldSpeed,potion.duration);
-
+        GameManager.Instance.player.GetComponent<MonoBehaviour>().StartCoroutine(RunEffect(newSpeed,oldSpeed,potion.duration));
+        GameManager.Instance.hudController.wavePotions["Speed"].totalUsed++;
         
 
         return true;
     }
 
-    private async void RunEffect(float newSpeed, float oldSpeed, int duration){
+    private IEnumerator RunEffect(float newSpeed, float oldSpeed, int duration){
         
-        int durMilli = duration * 1000;
         GameManager.Instance.playerMovement.moveSpeed = newSpeed;
         SetStatusUI();
+        GameManager.Instance.GetPlayer().potionActive = true;
 
-        await Task.Delay(durMilli);
-
+        yield return new WaitForSeconds(duration);
+         GameManager.Instance.GetPlayer().potionActive = false;
         GameManager.Instance.playerMovement.moveSpeed = oldSpeed;
         CleanStatusUI();
 

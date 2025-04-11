@@ -1,12 +1,9 @@
 
 
 
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "Data/Potions/Effects/Invisibility")]
 public class Invisibility : PotionEffect
@@ -23,24 +20,24 @@ public class Invisibility : PotionEffect
         Color newColor = new Vector4(225,225,50);
         Color oldColor = GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color;
         
+        GameManager.Instance.player.GetComponent<MonoBehaviour>().StartCoroutine(RunEffect(oldColor, newColor, potion.duration));
 
-        RunEffect(oldColor, newColor, potion.duration);
-
-        
+        GameManager.Instance.hudController.wavePotions["Invisibility"].totalUsed++;
 
         return true;
     }
 
-    private async void RunEffect(Color oldColor, Color newColor, int duration){
+    private IEnumerator RunEffect(Color oldColor, Color newColor, int duration){
         
-        int durMilli = duration * 1000;
+        GameManager.Instance.GetPlayer().potionActive = true;
 
         GameManager.Instance.GetPlayer().visible = false;
         GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color = newColor;
 
         SetStatusUI();
         
-        await Task.Delay(durMilli);
+        yield return new WaitForSeconds(duration);
+         GameManager.Instance.GetPlayer().potionActive = false;
 
         GameManager.Instance.GetPlayer().visible = true;
         GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color = oldColor;

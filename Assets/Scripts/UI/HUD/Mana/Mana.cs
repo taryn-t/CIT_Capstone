@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Search;
+
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Mana : MonoBehaviour
 {

@@ -13,13 +13,15 @@ public class PickUpScroll : MonoBehaviour
     [SerializeField] float pickUpDistance = 0.01f;
     [SerializeField] float ttl = 90f;
     [SerializeField] public SpellSlot spell;
+
+    public string key;
     
     void Start()
     {
         
         player = GameManager.Instance.player.transform;
 
-       
+       key = spell.spell.spellEffect.ToString();
     }
 
 
@@ -42,7 +44,7 @@ public class PickUpScroll : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         transform.position = Vector3.MoveTowards( 
             transform.position,
@@ -50,14 +52,17 @@ public class PickUpScroll : MonoBehaviour
             speed*Time.deltaTime
         );
 
-        if(distance < 0.1f){
+        if(distance < 0.3f){
 
             if(GameManager.Instance.hudController.multiButton.multiSpell){
                 GameManager.Instance.soundEffectController.PlayPositiveSound();
                 if(GameManager.Instance.hudController.multiButton.CheckToAdd(spell.spell)){
                     
                     GameManager.Instance.hudController.multiButton.AddSpell(spell.spell);
+                    GameManager.Instance.hudController.UpdateSpells();
+                    GameManager.Instance.hudController.waveSpells[key].pickedUp++;
                     StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"Learned spell {spell.spell.name}"));
+                
                 }
                 else
                 {
@@ -79,6 +84,7 @@ public class PickUpScroll : MonoBehaviour
                     spellLevel.IncreaseLevel();
                     StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"{spellLevel.spell.name} level {spellLevel.level}"));
                }
+             GameManager.Instance.hudController.waveSpells[key].pickedUp++;
 
                Destroy(gameObject);
             }

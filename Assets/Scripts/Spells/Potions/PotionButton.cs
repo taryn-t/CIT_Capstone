@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Search;
+
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+
 using Image = UnityEngine.UI.Image;
 public class PotionButton : MonoBehaviour
 {
@@ -22,7 +18,7 @@ public class PotionButton : MonoBehaviour
 
     void Update(){
         if(potion!=null ){
-            if( Input.GetKeyDown(KeyCode.Q)){
+            if( Input.GetKeyDown(KeyCode.Q) && !GameManager.Instance.GetPlayer().potionActive){
                 UsePotion();
             }
             

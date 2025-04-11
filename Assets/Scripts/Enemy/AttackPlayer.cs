@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Threading;
-using System.Threading.Tasks;
+
 using UnityEngine;
 
 public class AttackPlayer : Node
@@ -39,22 +38,26 @@ public class AttackPlayer : Node
     public override NodeStatus Execute( )
     {
         
-        if(enemyBody.gameObject.GetComponent<Enemy>().playerInRayAttack){
+        if(enemyBody.gameObject.GetComponent<Enemy>().playerInRayAttack && GameManager.Instance.GetPlayer().visible){
             if (!attack)
             {
                 direction = (playerBody.position - enemyBody.position).normalized;
                 if(!animator.GetBool("attack")){
                     animator.SetBool("attack",true);
                 }
+                Enemy enemy = enemyBody.gameObject.GetComponent<Enemy>();
+                if(enemy.Mana-spell.manaCost >= 0){
+                    CastSpell();
+                    return NodeStatus.Success;
+                }
+                else{
+                    return NodeStatus.Failure;
+                }
                 
-                CastSpell();
-                
-                
-                return NodeStatus.Running;
             }
         }
         
-         return NodeStatus.Failure;
+         return NodeStatus.Running;
     }
 
   
@@ -67,7 +70,7 @@ public class AttackPlayer : Node
         }
         else{
             
-            enemyBody.AddForce( enemyBody.gameObject.GetComponent<Enemy>().speed * (Vector3)direction, ForceMode2D.Impulse);
+            enemyBody.AddForce( enemyBody.gameObject.GetComponent<Enemy>().speed*10f * (Vector3)direction, ForceMode2D.Impulse);
         }
         attack=true;
         
@@ -76,7 +79,7 @@ public class AttackPlayer : Node
 
     }
     IEnumerator AttackCooldown(){
-        float timeout = UnityEngine.Random.Range(0.5f,1f);
+        float timeout = UnityEngine.Random.Range(0.5f,1.5f);
         animator.SetBool("attack",false);
         yield return new WaitForSeconds(timeout);
         

@@ -121,6 +121,7 @@ MonoBehaviour:
   mapMask: {fileID: 5440192781892230418}
   mapContainer: {fileID: 276049754335486381}
   generatingLabel: {fileID: 542833262525952362}
+  generatingText: {fileID: 8467627245371022443}
   startButton: {fileID: 4989594186567136472}
   generatingXPos: -345
   runtimeXPos: 0
@@ -159,6 +160,34 @@ PrefabInstance:
     - target: {fileID: 909256121192982309, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558529694992533662, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558529694992533662, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558529694992533662, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558529694992533662, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836654160803834066, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4755561248946421036}
+    - target: {fileID: 4836654160803834066, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375607888459523184, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8446836088778664708, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
       propertyPath: m_Pivot.x
@@ -291,3 +320,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1122316763557258293, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
   m_PrefabInstance: {fileID: 6606231248137274845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8467627245371022443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3327318226807593398, guid: 951907c4adde7af479971fc2cc7779e7, type: 3}
+  m_PrefabInstance: {fileID: 6606231248137274845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

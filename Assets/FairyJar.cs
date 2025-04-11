@@ -25,6 +25,7 @@ public class FairyJar : WorldItem
     public override void PickUp()
     {
         GameManager.Instance.hudController.UpdateFairyJar();
+        
         base.PickUp();
     }
 }

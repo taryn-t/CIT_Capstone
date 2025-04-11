@@ -7,6 +7,8 @@ using UnityEngine.Rendering.Universal;
 
 public class Character:MonoBehaviour
 {
+    [SerializeField] GameObject burnParticles;
+    [SerializeField] GameObject poisonParticles;
     public float Health
     {
         get { return _health; }
@@ -35,6 +37,10 @@ public class Character:MonoBehaviour
     public float takeDamagePercent = 0.15f;
     public Vector2 lastMotionVector;
     public float moveSpeed = 20f;
+    public float speed = 2f;
+    public bool slow = false;
+
+
 
     private Rigidbody2D body;
     public Rigidbody2D Body{
@@ -45,6 +51,7 @@ public class Character:MonoBehaviour
     public int level = 1;
     public float healthLevelBoost = 0f;
     public float manaLevelBoost = 0f;
+    public bool frozen = false;
 
     public void LevelUp(){
         healthLevelBoost+=0.1f;
@@ -63,16 +70,35 @@ public class Character:MonoBehaviour
         
 
         float damageShift = damage*takeDamagePercent;
-        int randDamage = (int) Random.Range(damage-damageShift, damage+damageShift);
+        int randDamage = (int) Random.Range(damage, damage+damageShift);
+
+        randDamage = (int) Mathf.Clamp(randDamage,1f,100f);
         Health -= randDamage;
         GameManager.Instance.onScreenMessageSystem.PostMessage(transform.position, randDamage.ToString(), direction);
-        GetComponent<Rigidbody2D>().AddForce(2f * knockback * direction);
+        GetComponent<Rigidbody2D>().AddForce( knockback * direction);
 
         if(TryGetComponent<Enemy>(out var enemy))
         {
             GameManager.Instance.playerDamageDone += randDamage;
+            GameManager.Instance.hudController.currentWave.damageDone+= randDamage;
+
+            if(effect != SpellEffect.None){
+            GameManager.Instance.hudController.waveSpells[effect.ToString()].damageDone+= randDamage;
+    
+            }
+
+            
         }else{
             GameManager.Instance.playerDamageTaken += randDamage;
+            
+            GameManager.Instance.hudController.currentWave.damageReceived+= randDamage;
+
+            if(effect != SpellEffect.None){
+                GameManager.Instance.hudController.waveSpells[effect.ToString()].damageReceived+= randDamage;
+
+            }
+
+
         }
 
         
@@ -134,30 +160,54 @@ public class Character:MonoBehaviour
 
     IEnumerator Burn(){
         int duration = 5;
-        int burnDamage = 1;
         
-        for(int i = 0; i<duration; i++){
-            TakeDamage(burnDamage,0,lastMotionVector);
+        int burnDamage =3;
+        float damageShift = burnDamage*takeDamagePercent;
+        int randDamage = (int) Random.Range(burnDamage, burnDamage+damageShift);
 
+        randDamage = (int) Mathf.Clamp(randDamage,1f,5f);
+        burnParticles.SetActive(true);
+        for(int i = 0; i<duration; i++){
+
+            TakeDamage(randDamage,0,lastMotionVector);
             yield return new WaitForSeconds(1f);
+
         }
+        burnParticles.SetActive(false);
     }
 
     IEnumerator Slow(){
         float duration = 5;
-        float slowMultiplier = 0.5f;
-        float prevSpeed = moveSpeed;
+        float slowMultiplier = 0.01f;
+        float prevSpeedMS = moveSpeed;
+        float prevSpeed = speed;
 
         moveSpeed*=slowMultiplier;
+        speed*=slowMultiplier;
+        poisonParticles.SetActive(true);
+
+        slow = true;
 
         yield return new WaitForSeconds(duration);
 
-        moveSpeed=prevSpeed;
+        slow = false;
 
+        moveSpeed=prevSpeedMS;
+        speed=prevSpeed;
+        poisonParticles.SetActive(false);
     }
     void OnDestroy()
     {
         StopAllCoroutines();
+    }
+
+    public void Freeze(){
+        Body.velocity=Vector2.zero;
+        frozen = true;
+    }
+
+    public void UnFreeze(){
+        frozen = false;
     }
 
 

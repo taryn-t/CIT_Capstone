@@ -29,13 +29,8 @@ public class StartPanel : MenuPanel
         
         GameManager.Instance.GetMenu().ChangePanel(1);
     }
-
-    public void ContinueGame()
-    {
-        GameManager.Instance.GetMenu().ChangePanel(2);
-    }
     public void ShowSettings()
     {
-        GameManager.Instance.GetMenu().ChangePanel(3);
+        GameManager.Instance.GetMenu().ChangePanel(2);
     }
 }

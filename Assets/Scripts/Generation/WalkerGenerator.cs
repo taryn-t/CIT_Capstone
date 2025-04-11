@@ -1,20 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.IO;
 using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using UnityEngine.U2D;
-using Vector2 = UnityEngine.Vector2;
+using UnityEngine.UI;
 public enum Grid{
         FLOOR,
         WALL,
@@ -42,20 +32,15 @@ public class WalkerGenerator : MonoBehaviour
     [SerializeField] public TileBase HillFloor;
     [SerializeField] public TileBase Leafy;
     [SerializeField] public TileBase StructureFloor;
-    [SerializeField] PolygonCollider2D CameraConfiner;
     [SerializeField] public Sprite InnerHillSprite;
     public List<Vector3Int> availablePositions = new List<Vector3Int>();
-    public bool regenerating = false;
 
 
     public int MapWidth = 32;
     public int MapHeight = 32;
-    public int MaximumWalkers = 10;
     private int TileCount = default;
     private int TreeCount = default;
     private int RockCount = default;
-    private int HillCount = default;
-    public float ResourceCount = default;
     public float HillPercent = 0.2f;
     public float ResourcePercent = 0.2f;
     
@@ -74,7 +59,7 @@ public class WalkerGenerator : MonoBehaviour
 
     private int xOrg;
     private int yOrg;
-    private int Seed;
+    public int Seed;
     private Map map;
     private Chunk currentChunk;
     [SerializeField] Games games;
@@ -91,10 +76,14 @@ public class WalkerGenerator : MonoBehaviour
     public int HillScale = 5;
     public int DecorScale = 10000;
     public int LeafyScale = 1000;
+    public int ResourceScale = 10000;
     private int enemyStructuresGenerated = default;
     public int StructureDistance = 25;
    
     public Grid[,] gridHandler;
+    [SerializeField] public Color backgroundColor;
+    private Color transparentColor = new Color(0,0,0,0);
+
     
     void Start(){
         // Seed = (int)UnityEngine.Random.value;
@@ -170,7 +159,6 @@ public class WalkerGenerator : MonoBehaviour
 
    public void StartGeneration(string seed, string gameName)
    {
-       
         GameManager.Instance.changeCursor.Default();
         key = gameName;
         
@@ -194,12 +182,16 @@ public class WalkerGenerator : MonoBehaviour
 
     public void RegenerateMap(string seed, string gameName)
    {
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().open = true;
+        GameManager.Instance.mapPanel.SetActive(true);
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().startButton.SetActive(false);
+        GameManager.Instance.mapPanel.transform.GetChild(0).gameObject.GetComponent<Image>().color = backgroundColor;
 
         GameManager.Instance.regenerating = true;
-         GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingLabel.SetActive(true);
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingLabel.SetActive(true);
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Generating wave {GameManager.Instance.hudController.wave}";
          
-         
-         GameManager.Instance.mapPanel.GetComponent<MapPanel>().mapContainer.GetComponent<RectTransform>().localPosition = new UnityEngine.Vector3(150,0,0);
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().mapContainer.GetComponent<RectTransform>().localPosition = new UnityEngine.Vector3(150,0,0);
         GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
         
 
@@ -246,6 +238,7 @@ public class WalkerGenerator : MonoBehaviour
 
     void InitializeGrid()
     {
+
         Debug.Log("Initializing grid");
         gridHandler = new Grid[MapWidth, MapHeight];
 
@@ -519,11 +512,9 @@ public class WalkerGenerator : MonoBehaviour
         yield return StartCoroutine(CreateStructures());
 
         InitGame();
-        if(GameManager.Instance.regenerating){
-            SaveMap();
-        }else{
-             GameManager.Instance.mapPanel.GetComponent<MapPanel>().startButton.SetActive(true);
-        }
+        
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().startButton.SetActive(true);
+        
         
     }
 
@@ -558,9 +549,10 @@ public class WalkerGenerator : MonoBehaviour
 
     public IEnumerator CreateStructures( )
     {
+        GameManager.Instance.activeSpawners = new List<EnemySpawner>();
         Vector3Int c = new Vector3Int(MapWidth/2, MapHeight/2,0);
         Debug.Log("Creating Structures");
-
+        availablePositions = new List<Vector3Int>();
         foreach (Vector3Int position in tilemap.cellBounds.allPositionsWithin)
         {
             Debug.Log("Generating structures");
@@ -654,9 +646,10 @@ public class WalkerGenerator : MonoBehaviour
             AddHealingMushrooms();
             
             GameManager.Instance.GetVirtualCamera().SetFollow(player.transform);
+            
         }
         else{
-            int randomIndex = UnityEngine.Random.Range(0, availablePositions.Count);
+            int randomIndex = UnityEngine.Random.Range(0, availablePositions.Count-1);
             AddFairyJars();
             AddHealingMushrooms();
             Vector3Int playerPos = Vector3Int.FloorToInt(GameManager.Instance.player.transform.position);
@@ -668,7 +661,7 @@ public class WalkerGenerator : MonoBehaviour
                 GameManager.Instance.player.transform.position = availablePositions[randomIndex];
             }
 
-            GameManager.Instance.regenerating = false;
+           
         }
     }
      
@@ -680,19 +673,45 @@ public class WalkerGenerator : MonoBehaviour
 
             // Instantiate(mapPrefab);
             Instantiate(GameManager.Instance.HUDPrefab);
-            GameManager.Instance.menu.Close();
-            GameManager.Instance.mapGenerated =true;
+             GameManager.Instance.menu.Close();
+            GameManager.Instance.mapGenerated = true;
             GameManager.Instance.changeCursor.Default();
             tilemap.CompressBounds();
                 
             WorldBounds worldBounds = new WorldBounds(tilemap);
-            GameManager.Instance.worldBounds = worldBounds; 
+            GameManager.Instance.worldBounds = worldBounds;
             
+            GameManager.Instance.instructionsUI.SetActive(true);
+        }
+        
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingLabel.SetActive(false);
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().mapContainer.GetComponent<RectTransform>().localPosition = new UnityEngine.Vector3(0,0,0);
+        
+        if(GameManager.Instance.regenerating){
+
+            
+            GameManager.Instance.regenerating = false;
+            GameManager.Instance.mapPanel.GetComponent<MapPanel>().open = false;
+             GameManager.Instance.mapPanel.SetActive(false);
+
+            if(GameManager.Instance.testingManager.firstGen){
+                GameManager.Instance.testingManager.firstGen = false;
+            }
+            
+            StartCoroutine(GameManager.Instance.hudController.ShowNextWave());
             
         }
 
-        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingLabel.SetActive(false);
-        GameManager.Instance.mapPanel.GetComponent<MapPanel>().mapContainer.GetComponent<RectTransform>().localPosition = new UnityEngine.Vector3(0,0,0);
+        if(GameManager.Instance.testingManager.firstGen){
+            GameManager.Instance.testingManager.StartTest();
+            
+        }
+
+        // if(!GameManager.Instance.procederalWaves){
+        //     GameManager.Instance.testingManager.firstGen = false;
+        // }
+
+       
     }
 
     public void AddHealingMushrooms(){
@@ -783,7 +802,7 @@ public class WalkerGenerator : MonoBehaviour
     public void AddResources(Vector3Int curPos){
         bool canCreateTree = (float)TreeCount / TileCount < TreePercent;
         bool canCreateRock = (float)RockCount / TileCount < RockPercent;
-          float noise = CalcNoise(curPos.x,curPos.y, 10000);
+          float noise = CalcNoise(curPos.x,curPos.y, ResourceScale);
          if( noise < ResourcePercent){
 
             foreach (ResourceTile resource in resourceTiles.data){

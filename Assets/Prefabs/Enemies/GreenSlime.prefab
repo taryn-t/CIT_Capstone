@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6571488617045423142}
   - component: {fileID: 5734144456393875816}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 1
+  m_FalloffIntensity: 0.801
   m_Color: {r: 0.97647065, g: 0.7607844, b: 0.16862746, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00029999018, y: -0.03944999, z: 0}
-    m_Extent: {x: 1.3099, y: 1.50775, z: 0}
+    m_Center: {x: 0.026850015, y: 0.05645001, z: 0}
+    m_Extent: {x: 0.84685004, y: 0.82675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.42
@@ -75,16 +75,22 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 1
+  m_ShapeLightFalloffSize: 0.26
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.234892, y: -0.54629856, z: 0}
-  - {x: 0.23289856, y: -0.5449436, z: 0}
-  - {x: 0.31065837, y: 0.0044523813, z: 0}
-  - {x: 0.30936503, y: 0.46796614, z: 0}
-  - {x: -0.0034087524, y: 0.46597138, z: 0}
-  - {x: -0.30926847, y: 0.46416506, z: 0}
+  - {x: -0.5606571, y: -0.3325153, z: 0}
+  - {x: -0.25207704, y: -0.5009428, z: 0}
+  - {x: 0.37909263, y: -0.51112306, z: 0}
+  - {x: 0.6146545, y: -0.30570987, z: 0}
+  - {x: 0.5979661, y: -0.1548175, z: 0}
+  - {x: 0.36664927, y: 0.014632519, z: 0}
+  - {x: 0.37553594, y: 0.4068852, z: 0}
+  - {x: 0.19075967, y: 0.58324385, z: 0}
+  - {x: 0.0016813353, y: 0.6237638, z: 0}
+  - {x: -0.19608624, y: 0.5781538, z: 0}
+  - {x: -0.30926847, y: 0.44380474, z: 0}
   - {x: -0.30972922, y: -0.0011932775, z: 0}
+  - {x: -0.5473017, y: -0.10900679, z: 0}
 --- !u!1 &1466561282477897331
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939675057546776550}
   - component: {fileID: 7264928285615049819}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HealthMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +143,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -204,6 +210,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6349984038492933549}
+  - {fileID: 6867451675379187470}
   - {fileID: 6571488617045423142}
   - {fileID: 4939675057546776550}
   m_Father: {fileID: 0}
@@ -220,7 +228,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -303,7 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8d4509b9b806d4b981410168c3182e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 48
+  burnParticles: {fileID: 5839287934327832409}
+  poisonParticles: {fileID: 989055348788358590}
+  maxHealth: 60
   animator: {fileID: 0}
   damageGlow: {fileID: 0}
   mapMarker: {fileID: -1870678444, guid: 272d9e640f80bf842a4bbd4d7a98fcb6, type: 3}
@@ -311,14 +321,20 @@ MonoBehaviour:
   dead: 0
   mapPanel: {fileID: 0}
   manaRegenerating: 0
-  manaRegenAmount: 10
-  maxMana: 0
-  takeDamagePercent: 0.25
+  manaRegenAmount: 15
+  maxMana: 50
+  takeDamagePercent: 0.1
   lastMotionVector: {x: 0, y: 0}
-  moveSpeed: 20
+  moveSpeed: 2
+  speed: 2
+  slow: 0
+  level: 1
+  healthLevelBoost: 0
+  manaLevelBoost: 0
+  frozen: 0
   attackRange: 5
-  patrolRange: 8
-  detectionRange: 8
+  patrolRange: 2
+  detectionRange: 10
   spellAttack: {fileID: 11400000, guid: f3fad68baadaf1144900daec97dcf2c7, type: 2}
   spellPrefab: {fileID: 5517673009184086772, guid: 0b938f1c75886bd4080f15524824e771, type: 3}
   obstacleLayerMask:
@@ -335,8 +351,8 @@ MonoBehaviour:
   baby: 0
   playerInRayAttack: 0
   playerInSightRange: 0
+  targetPosition: {x: 0, y: 0}
   enemyName: Slime
-  speed: 6.5
   healthSprites:
   - {fileID: -1318831634, guid: fa86d7e4bffd6c14a815d50f8bafc849, type: 3}
   - {fileID: 1660068090, guid: fa86d7e4bffd6c14a815d50f8bafc849, type: 3}
@@ -458,3 +474,149 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5036025, y: 0.8743455}
   m_EdgeRadius: 0
+--- !u!1001 &5232345862822609724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 612543286816181405}
+    m_Modifications:
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843194523167194213, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_Name
+      value: burnParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843194523167194213, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386600497824748119, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386600497824748119, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+--- !u!1 &5839287934327832409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1843194523167194213, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+  m_PrefabInstance: {fileID: 5232345862822609724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6867451675379187470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1716733745067064370, guid: 4a7841429b84b7b4cb700177ad168e2a, type: 3}
+  m_PrefabInstance: {fileID: 5232345862822609724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7156459985215080072
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 612543286816181405}
+    m_Modifications:
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991935411187362614, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+      propertyPath: m_Name
+      value: poisonParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+--- !u!1 &989055348788358590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7991935411187362614, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+  m_PrefabInstance: {fileID: 7156459985215080072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6349984038492933549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4273765028811721509, guid: 5094cd2cfe9db42428230590462b60a7, type: 3}
+  m_PrefabInstance: {fileID: 7156459985215080072}
+  m_PrefabAsset: {fileID: 0}

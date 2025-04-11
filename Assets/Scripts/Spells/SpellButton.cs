@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Linq;
+
 
 public class SpellButton : MonoBehaviour
 {
@@ -13,8 +9,8 @@ public class SpellButton : MonoBehaviour
     [SerializeField] public Spell spell;
     public bool multiSpell;
     [SerializeField] public GameObject[] spellButtons;
-    [SerializeField] List<Spell> spells = new(new Spell[3]);
-
+    [SerializeField] public List<Spell> spells = new(new Spell[3]);
+    [SerializeField] public List<Spell> allSpells = new(new Spell[3]);
     private GameObject activeButton;
 
 
@@ -37,7 +33,8 @@ public class SpellButton : MonoBehaviour
        if(GameManager.Instance.multiSpell && multiSpell){
             SetUpSpells();
        }
-   
+        GameManager.Instance.SelectedSpell = this;
+        GameManager.Instance.hudController.UpdateSpells();
        
     }
     
@@ -63,7 +60,7 @@ public class SpellButton : MonoBehaviour
             
         }
         SelectSpell();
-
+        
     }
 
     public void AddSpell(Spell newSpell){

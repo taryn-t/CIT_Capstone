@@ -102,3 +102,4 @@ MonoBehaviour:
   ttl: 10
   spell:
     spell: {fileID: 11400000, guid: 88702307b27e5e844b738a19517c7076, type: 2}
+  key: Gravity
