@@ -17,7 +17,7 @@ public class Invisibility : PotionEffect
         
         base.OnApply(potion);
         
-        Color newColor = new Vector4(225,225,50);
+        Color newColor = new (255, 255, 255, 125);
         Color oldColor = GameManager.Instance.player.GetComponentInChildren<SpriteRenderer>().color;
         
         GameManager.Instance.player.GetComponent<MonoBehaviour>().StartCoroutine(RunEffect(oldColor, newColor, potion.duration));

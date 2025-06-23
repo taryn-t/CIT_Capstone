@@ -15,15 +15,17 @@ public class CheckPlayerInRange : Node
 
     public override NodeStatus Execute()
     {
-        if(GameManager.Instance.GetPlayer().visible){
+        if (GameManager.Instance.GetPlayer().visible)
+        {
             float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
             enemyTransform.gameObject.GetComponent<EnemyAI>().playerInSightRange = distance <= detectionRange;
             return distance <= detectionRange ? NodeStatus.Success : NodeStatus.Running;
         }
-        else{
+        else
+        {
             enemyTransform.gameObject.GetComponent<EnemyAI>().playerInSightRange = false;
             return NodeStatus.Running;
         }
-        
+
     }
 }

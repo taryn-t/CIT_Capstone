@@ -56,7 +56,7 @@ public class ManaContainer : MonoBehaviour
 
          UpdateManaDisplay(GameManager.Instance.GetPlayer().Mana);
         maxPlayerMana = (int)GameManager.Instance.GetPlayer().maxMana;
-        manaLabel.text = $"{GameManager.Instance.GetPlayer().Mana}/{maxPlayerMana}";
+        manaLabel.text = $"{(int)GameManager.Instance.GetPlayer().Mana}/{maxPlayerMana}";
 
 
     }

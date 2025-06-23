@@ -83,6 +83,7 @@ public class WalkerGenerator : MonoBehaviour
     public Grid[,] gridHandler;
     [SerializeField] public Color backgroundColor;
     private Color transparentColor = new Color(0,0,0,0);
+    public bool loading = false;
 
     
     void Start(){
@@ -159,6 +160,7 @@ public class WalkerGenerator : MonoBehaviour
 
    public void StartGeneration(string seed, string gameName)
    {
+        loading = true;
         GameManager.Instance.changeCursor.Default();
         key = gameName;
         
@@ -174,6 +176,7 @@ public class WalkerGenerator : MonoBehaviour
 
             Seed = seedInt;
         }
+       
 
         
         InitializeGrid();
@@ -182,6 +185,7 @@ public class WalkerGenerator : MonoBehaviour
 
     public void RegenerateMap(string seed, string gameName)
    {
+        loading = true;
         GameManager.Instance.mapPanel.GetComponent<MapPanel>().open = true;
         GameManager.Instance.mapPanel.SetActive(true);
         GameManager.Instance.mapPanel.GetComponent<MapPanel>().startButton.SetActive(false);
@@ -189,8 +193,7 @@ public class WalkerGenerator : MonoBehaviour
 
         GameManager.Instance.regenerating = true;
         GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingLabel.SetActive(true);
-        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Generating wave {GameManager.Instance.hudController.wave}";
-         
+        StartCoroutine(ShowLoadingTextNewWave());
         GameManager.Instance.mapPanel.GetComponent<MapPanel>().mapContainer.GetComponent<RectTransform>().localPosition = new UnityEngine.Vector3(150,0,0);
         GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
         
@@ -238,7 +241,7 @@ public class WalkerGenerator : MonoBehaviour
 
     void InitializeGrid()
     {
-
+        
         Debug.Log("Initializing grid");
         gridHandler = new Grid[MapWidth, MapHeight];
 
@@ -514,6 +517,7 @@ public class WalkerGenerator : MonoBehaviour
         InitGame();
         
         GameManager.Instance.mapPanel.GetComponent<MapPanel>().startButton.SetActive(true);
+         loading = false;
         
         
     }
@@ -702,16 +706,54 @@ public class WalkerGenerator : MonoBehaviour
             
         }
 
-        if(GameManager.Instance.testingManager.firstGen){
-            GameManager.Instance.testingManager.StartTest();
+      
+    }
+
+    public IEnumerator ShowLoadingTextNoProc(){
+        string[] elips = {".","..","...",""};
+        
+        while(loading){
+            foreach(string el in elips){
+                GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Loading{el}";
+                yield return new WaitForSeconds(0.25f);
+                if(!loading){
+                    break;
+                }
+            }
             
         }
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Begin Game";
+    }
+     public IEnumerator ShowLoadingTextProc(){
+        string[] elips = {".","..","...",""};
+        
+        while(loading){
+            foreach(string el in elips){
+                GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Generating Map{el}";
+                yield return new WaitForSeconds(0.25f);
+                if(!loading){
+                    break;
+                }
+            }
+            
+        }
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Map Generated";
+    }
+      public IEnumerator ShowLoadingTextNewWave(){
+        string[] elips = {".","..","...",""};
+        
+        while(loading){
+            foreach(string el in elips){
+                GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Generating Map {GameManager.Instance.hudController.wave}{el}";
 
-        // if(!GameManager.Instance.procederalWaves){
-        //     GameManager.Instance.testingManager.firstGen = false;
-        // }
-
-       
+                yield return new WaitForSeconds(0.25f);
+                if(!loading){
+                    break;
+                }
+            }
+            
+        }
+        GameManager.Instance.mapPanel.GetComponent<MapPanel>().generatingText.text = $"Wave {GameManager.Instance.hudController.wave} Generated";
     }
 
     public void AddHealingMushrooms(){

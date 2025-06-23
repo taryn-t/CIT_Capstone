@@ -13,12 +13,17 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] Toggle spellProgression;
     [SerializeField] Toggle submitToDB;
 
+    public bool toggling = false;
+
+
     public void Start()
     {
-        devMode.isOn = GameManager.Instance.isDev;
-        proceduralWaves.isOn = GameManager.Instance.testingManager.procGen;
-        spellProgression.isOn = GameManager.Instance.testingManager.spellProg;
-        submitToDB.isOn = GameManager.Instance.testingManager.submitToDB;
+         if(GameManager.Instance.testingManager != null ){
+            devMode.isOn = GameManager.Instance.isDev;
+            proceduralWaves.isOn = GameManager.Instance.testingManager.procGen;
+            spellProgression.isOn = GameManager.Instance.testingManager.spellProg;
+            submitToDB.isOn = GameManager.Instance.testingManager.submitToDB; 
+        }
     }
 
     public void GoBack(){
@@ -26,7 +31,6 @@ public class SettingsPanel : MonoBehaviour
     }
     
     public void ChangeDevMode(){
-
         GameManager.Instance.isDev = devMode.isOn;
     }
 

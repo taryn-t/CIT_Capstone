@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2127b40ab1a4ba14c8a1395b725c5d43, type: 3}
   m_Name: InvisibilityPotionMinor
   m_EditorClassIdentifier: 
-  Name: Potion of Minor Invisibility
+  Name: Invisibility
   icon: {fileID: -503571290, guid: 1e30888636987bd4c9876d5f60c3628d, type: 3}
   potionEffect: {fileID: 11400000, guid: c8e5385c445725845b2bbaa40d01d8d0, type: 2}
   effectStrength: 0

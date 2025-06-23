@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2127b40ab1a4ba14c8a1395b725c5d43, type: 3}
   m_Name: SpeedPotionMinor
   m_EditorClassIdentifier: 
-  Name: Potion of Minor Speed
+  Name: Speed
   icon: {fileID: 381709819, guid: 1e30888636987bd4c9876d5f60c3628d, type: 3}
   potionEffect: {fileID: 11400000, guid: 0c5f96c979858e8479326260fdf41413, type: 2}
-  effectStrength: 0.1
+  effectStrength: 0
   duration: 10

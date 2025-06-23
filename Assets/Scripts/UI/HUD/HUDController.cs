@@ -16,7 +16,11 @@ public class HUDController : MonoBehaviour{
     [SerializeField] public SpellButton multiButton;
     [SerializeField] public GameObject nextWaveGo;
     [SerializeField] public TMP_Text nextWaveText;
+     [SerializeField] public TMP_Text nextWaveSpellLabel;
+     [SerializeField] public GameObject nextWaveSpellGO;
+    [SerializeField] public GameObject testComplete;
     public WaveData currentWave;
+    bool endGame = false;
 
     private GameObject tmpGO = null;
     private bool popupShowing = false;
@@ -31,6 +35,7 @@ public class HUDController : MonoBehaviour{
     public Dictionary<string,SpellData> waveSpells = new();
     private string test_id;
     private string seed;
+    [SerializeField] public Spell[] spells; 
     
     public void Start(){
         nextWaveGo.SetActive(false);
@@ -85,10 +90,31 @@ public class HUDController : MonoBehaviour{
            
         }
     }
+    void AddNewSpell(){
+        int spellIndex = Mathf.Clamp(wave-1, 0, spells.Length-1);
+        Spell spell = spells[spellIndex];
+        if(GameManager.Instance.hudController.multiButton.CheckToAdd(spell)){
+                    
+            GameManager.Instance.hudController.multiButton.AddSpell(spell);
+            GameManager.Instance.hudController.UpdateSpells();
+            GameManager.Instance.hudController.waveSpells[spell.spellEffect.ToString()].pickedUp++;
+        
+        }
+    }
 
     public IEnumerator ShowNextWave(){
-
         nextWaveGo.SetActive(true);
+
+        if(wave <= 3 && wave > 1 && GameManager.Instance.multiSpell){
+            AddNewSpell();
+            nextWaveSpellGO.SetActive(true);
+            
+        }else{
+            nextWaveSpellGO.SetActive(false);
+        }
+        
+        
+        
         nextWaveText.text = $"Wave {wave}";
 
         yield return new WaitForSeconds(3f);
@@ -109,8 +135,11 @@ public class HUDController : MonoBehaviour{
     
 
     public void NextWave(){
-        wave++;
         currentWave.completed = true;
+        GameManager.Instance.wavesSurvived++;
+        GameManager.Instance.testingManager.testingData.wavesCompleted++;
+        wave++;
+        
 
         GameManager.Instance.testingManager.AddWave(currentWave);
 
@@ -124,18 +153,13 @@ public class HUDController : MonoBehaviour{
             GameManager.Instance.testingManager.AddSpell(spell);
         }
         
-        
-        
-        GameManager.Instance.wavesSurvived++;
-        
+                
         fairyJarsGathered -= fairyJarsGathered;
         fairyJarsLabel.text = fairyJarsGathered.ToString();
         GameManager.Instance.GetPlayer().LevelUp();
 
         if(GameManager.Instance.procederalWaves && wave != 1){
-            
-            
-            
+
             RegenerateMap();
             seed = GameManager.Instance.mapGenerator.Seed.ToString();
 
@@ -146,8 +170,12 @@ public class HUDController : MonoBehaviour{
             StartCoroutine(ShowNextWave());
         }
         
-       
-        GameManager.Instance.waveMaxEnemies = 4 * wave*2;
+        if(GameManager.Instance.isDev){
+            GameManager.Instance.waveMaxEnemies = 4 * 1;
+        }else{
+            GameManager.Instance.waveMaxEnemies = 4 * wave*2;
+        }
+        
          
          
         
@@ -158,7 +186,7 @@ public class HUDController : MonoBehaviour{
         GameManager.Instance.heartsContainer.SetInterval();
         GameManager.Instance.manaContainer.SetInterval();
 
-        GameManager.Instance.testingManager.testingData.wavesCompleted++;
+        
 
         GameManager.Instance.testingManager.AddWavePotions(wavePotions);      
         wavePotions.Clear();
@@ -170,6 +198,7 @@ public class HUDController : MonoBehaviour{
 
         currentWave = new WaveData(test_id,wave,seed);
         GameManager.Instance.testingManager.AddWave(currentWave);
+        GameManager.Instance.waveSpellDropped = false;
     }
 
     IEnumerator WaitJars(){
@@ -239,11 +268,26 @@ public class HUDController : MonoBehaviour{
             bool noMoreEnemies = GameManager.Instance.waveMaxEnemies != 0 && GameManager.Instance.totalEnemies == 0;
             bool allFairyJarsFound = fairyJarsGathered ==3;
 
-            if(noMoreEnemies && allFairyJarsFound ){
-                nextWave = true;
-                NextWave();
-                StartCoroutine(WaitJars());
+            if(noMoreEnemies && allFairyJarsFound && !currentWave.completed ){
+                
+                if(wave < 3){
+                    nextWave = true;
+                    NextWave();
+                    StartCoroutine(WaitJars());
+                }
+                else if(wave >=3 && !endGame){
+                    currentWave.completed = true;
+                    endGame = true;
+
+                    if(GameManager.Instance.testingManager.submitToDB){
+                        GameManager.Instance.testingManager.StopTest();
+                        StartCoroutine(GameManager.Instance.testingManager.UploadTestData());
+                    }
+
+                    
+                }  
             }
+            
            
         }
 

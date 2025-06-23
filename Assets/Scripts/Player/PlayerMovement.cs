@@ -15,6 +15,7 @@ public class PlayerMovement : PlayerController
     {
         GameManager.Instance.playerMovement = this;
         InitializeMovement();
+        Body = GetComponent<Rigidbody2D>();
     }
     void Update(){
        
@@ -26,10 +27,16 @@ public class PlayerMovement : PlayerController
     }
     void FixedUpdate()
     {
-       if(GameManager.Instance.regenerating ){
-            Freeze();
+        if (GameManager.Instance.hudController != null){
+            if( GameManager.Instance.hudController.testComplete.activeSelf || GameManager.Instance.hudController.nextWaveGo.activeSelf || GameManager.Instance.mapPanel.GetComponent<MapPanel>().open){
+                Freeze();
+            }
+            else if(frozen){
+                UnFreeze();
+            }
+
         }
-        else if(GameManager.Instance.instructionsUI.GetComponent<Instructions>().open){
+        if(GameManager.Instance.regenerating ||  GameManager.Instance.instructionsUI.GetComponent<Instructions>().open || GameManager.Instance.pauseMenu.activeSelf || GameManager.Instance.mapPanel.GetComponent<MapPanel>().open ){
 
             Freeze();
         }
@@ -81,7 +88,6 @@ public class PlayerMovement : PlayerController
     } 
 
      private void InitializeMovement(){
-        Body = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
     }
    

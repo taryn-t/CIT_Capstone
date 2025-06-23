@@ -2,6 +2,7 @@
 
 
 
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 
 public class DeathHandler : MonoBehaviour
@@ -9,6 +10,11 @@ public class DeathHandler : MonoBehaviour
 
     [SerializeField] GameObject gameOverUI;
     private bool gameOver = false;
+
+    public void Start()
+    {
+        GameManager.Instance.deathHandler = this;
+    }
     void Update()
     {
         if(GameManager.Instance.player != null){
@@ -28,7 +34,7 @@ public class DeathHandler : MonoBehaviour
         
     }
 
-    void ShowGameOver(){
+    public void ShowGameOver(){
         gameOver = true;
         GameManager.Instance.testingManager.AddWave(GameManager.Instance.hudController.currentWave);
         Instantiate(gameOverUI);

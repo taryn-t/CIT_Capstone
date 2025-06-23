@@ -1,9 +1,11 @@
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -31,8 +33,10 @@ public class TestingManager : MonoBehaviour
     public bool spellProg = false;
     public bool firstGen;
     public bool toggled = false;
+    public bool receivingData = false;
     private Queue<float> deathTimestamps = new Queue<float>();
     private Queue<float> waveTimestamps = new Queue<float>();
+    public int testNumber;
 
     public float rollingWindowSeconds;
     public void Awake()
@@ -56,7 +60,7 @@ public class TestingManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(GameManager.Instance.testingManager == null && testRunning){
+        if(GameManager.Instance.testingManager == null ){
             GameManager.Instance.testingManager = this;
             GameManager.Instance.multiSpell = spellProg;
             GameManager.Instance.procederalWaves = procGen;
@@ -69,15 +73,11 @@ public class TestingManager : MonoBehaviour
     {
         rollingWindowSeconds = testLength * 60f;
 
-        if(GameManager.Instance.testingManager == null){
+        if(GameManager.Instance.testingManager != null){
             testRunning = true;
 
             firstGen = true;
-            GameManager.Instance.testingManager = this;
-            RandomizeConditions();
-
-            GameManager.Instance.multiSpell = spellProg;
-            GameManager.Instance.procederalWaves = procGen;
+            StartCoroutine(GetTestConditions());
         }
         
        
@@ -121,7 +121,7 @@ public class TestingManager : MonoBehaviour
         AddWave(GameManager.Instance.hudController.currentWave);
         
         StopAllCoroutines();
-        Destroy(gameObject);
+        // Destroy(gameObject);
 
     }
     
@@ -193,14 +193,11 @@ public class TestingManager : MonoBehaviour
 
         if(canSubmit && submitToDB){
             SaveTestData();
-            if(GameManager.Instance.hudController != null){
-                GameManager.Instance.hudController.ShowTestCompleted();
-            }
-            
-
+            StopTest();
             StartCoroutine(UploadTestData());
             
         }
+        
     }
 
     public void AddDeath()
@@ -256,26 +253,91 @@ public class TestingManager : MonoBehaviour
         File.WriteAllText(path, jsonData);
         Debug.Log("Saved to: " + path);
     }
-      IEnumerator UploadTestData()
+     public IEnumerator UploadTestData()
     {
         submitting = true;
-        
+        GameManager.Instance.hudController.testComplete.SetActive(true);
+        yield return new WaitForSeconds(1f);
         string jsonData = Test.data.Stringify();
         using (UnityWebRequest www = UnityWebRequest.Post("https://cloudflare-api.tarynthompson349.workers.dev/submit", jsonData, "application/json"))
         {
             yield return www.SendWebRequest();
-
+            
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError(www.error);
             }
             else
             {
+                string json = www.downloadHandler.text;
+
+                PostResult data = JsonUtility.FromJson<PostResult>(json);
+                Debug.Log("Received: " + json);
+                testNumber = data.testNumber;
                 GameManager.Instance.testSubmitted = true;
                 Debug.Log("Test data upload complete!");
+                
+                yield return new WaitForSeconds(1f);
+
+                if(www.result == UnityWebRequest.Result.Success){
+                    GameManager.Instance.hudController.testComplete.SetActive(false);
+                    GameManager.Instance.deathHandler.ShowGameOver();
+                }
             }
 
+
             submitting = false;
+            
         }
+       
+         
     }
+     public IEnumerator GetTestConditions()
+    {
+        receivingData = true;
+        string url = "https://cloudflare-api.tarynthompson349.workers.dev/next-condition";
+
+    
+        UnityWebRequest request = UnityWebRequest.Get(url);
+
+        yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error: " + request.error);
+        }
+        else
+        {
+            string json = request.downloadHandler.text;
+            Debug.Log("Received: " + json);
+
+
+            ConditionRes data = JsonUtility.FromJson<ConditionRes>(json);
+
+            procGen = data.result.proceduralGeneration != 0;
+            spellProg = data.result.spellProgression != 0;
+            GameManager.Instance.multiSpell = spellProg;
+            GameManager.Instance.procederalWaves = procGen;
+            StartTest();
+        }
+        receivingData = false;
+    }
+}
+
+[Serializable]
+public class ConditionRes{
+    public bool success;
+    public TestCondition result;
+}
+[Serializable]
+public class TestCondition{
+    public int id;
+    public int proceduralGeneration;
+    public int spellProgression;
+    public int used;
+}
+
+[Serializable]
+public class PostResult{
+    public string message;
+    public int testNumber;
 }

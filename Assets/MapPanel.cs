@@ -42,27 +42,28 @@ public class MapPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    GameManager.Instance.mapPanel = gameObject;
-       startButton.SetActive(false);
-       generatingLabel.SetActive(true);
-       RectTransform rect = generatingLabel.GetComponent<RectTransform>();
-       
-        GameManager.Instance.mapGenerator.backgroundColor = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color;
+        
+        GameManager.Instance.mapPanel = gameObject;
+        startButton.SetActive(false);
+        generatingLabel.SetActive(true);
+        RectTransform rect = generatingLabel.GetComponent<RectTransform>();
+        
+            GameManager.Instance.mapGenerator.backgroundColor = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color;
 
-       if(!GameManager.Instance.procederalWaves && !GameManager.Instance.mapGenerated){
+        if(!GameManager.Instance.procederalWaves && !GameManager.Instance.mapGenerated){
 
-            rect.anchorMin = new Vector2(0.5f, 0);
-            rect.anchorMax = new Vector2(0.5f, 1);
-            rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchorMin = new Vector2(0.5f, 0);
+                rect.anchorMax = new Vector2(0.5f, 1);
+                rect.pivot = new Vector2(0.5f, 0.5f);
 
-            rect.offsetMin = new Vector2(-rect.rect.width / 2, rect.offsetMin.y);
-            rect.offsetMax = new Vector2(rect.rect.width / 2, rect.offsetMax.y);
-       
+                rect.offsetMin = new Vector2(-rect.rect.width / 2, rect.offsetMin.y);
+                rect.offsetMax = new Vector2(rect.rect.width / 2, rect.offsetMax.y);
+        
 
-            mapContainer.SetActive(false);
+                mapContainer.SetActive(false);
 
-       }
-       else{
+        }
+        else{
 
             rect.anchorMin = new Vector2(0, 0);
             rect.anchorMax = new Vector2(0, 1);
@@ -74,15 +75,41 @@ public class MapPanel : MonoBehaviour
             mapContainer.SetActive(true);
 
        }
+        if(!GameManager.Instance.procederalWaves){
+            StartCoroutine(GameManager.Instance.mapGenerator.ShowLoadingTextNoProc());
+        }
+        else if( !GameManager.Instance.regenerating && GameManager.Instance.procederalWaves){
+            StartCoroutine(GameManager.Instance.mapGenerator.ShowLoadingTextProc());
+        }
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.mapGenerated && !mapGenerated){
+        if (GameManager.Instance.mapGenerated && !mapGenerated)
+        {
             mapGenerated = true;
             mapContainer.SetActive(true);
         }
+        if (GameManager.Instance.player != null)
+        {
+            if (open)
+            {
+
+                GameManager.Instance.player.GetComponent<PlayerController>().Freeze();
+
+            }
+            else if (!open)
+            {
+                if (GameManager.Instance.player.GetComponent<PlayerController>().frozen)
+                {
+                    GameManager.Instance.player.GetComponent<PlayerController>().UnFreeze();
+                }
+
+            }
+        }
+
     }
 
     public void SetMarker(GameObject markedObject, Sprite markerSprite){

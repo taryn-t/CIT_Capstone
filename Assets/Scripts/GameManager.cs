@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public DayTimeController dayTimeController;
     public SpellButton SelectedSpell;
-    public PotionButton potionButton;
+    public List<PotionButton> potionButtons;
     public GameObject potionButtonGO;
     public Tilemap baseTilemap;
     public HeartsContainer heartsContainer;
@@ -68,8 +68,11 @@ public class GameManager : MonoBehaviour
     public List<EnemySpawner> activeSpawners = new List<EnemySpawner>();
     public bool testSubmitted = false;
     public GameObject pauseMenu;
-    public bool gameplayStarted = false;
-    
+    public bool gameplayStarted = false;       
+    public DeathHandler deathHandler;        
+    public bool waveSpellDropped = false;
+    [SerializeField] public GameObject wave2Scroll;
+    [SerializeField] public GameObject wave3Scroll;
     private void Awake()
     {
     
@@ -98,13 +101,7 @@ public class GameManager : MonoBehaviour
     public Spell GetSpell(){
         return SelectedSpell.spell;
     }
-    public void SetPotion(PotionButton potion){
-        Instance.potionButton = potion;
-    }
-    public PotionButton GetPotion(){
-        return potionButton;
-    }
- 
+  
     public void SetDayTime(GameObject go){
         Instance.dayTimeController = go.GetComponent<DayTimeController>();
     }

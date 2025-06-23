@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 using Image = UnityEngine.UI.Image;
@@ -6,47 +8,69 @@ public class PotionButton : MonoBehaviour
 {
     [SerializeField] Image icon;
     [SerializeField] public Potion potion;
+    [SerializeField] TMP_Text countLabel;
+    [SerializeField] Color activeColor;
+    [SerializeField] Color inactiveColor;
 
-    int myIndex;
+    public int count = 0;
+
 
     void Start(){
-        GameManager.Instance.potionButton = this;
+        
         GameManager.Instance.potionButtonGO = gameObject;
-       
+        countLabel.text = count.ToString();
+        
+        transform.GetChild(0).GetComponent<Image>().sprite = potion.icon;
+        transform.GetChild(0).GetComponent<Image>().color = inactiveColor;
+
     }
 
 
     void Update(){
-        if(potion!=null ){
-            if( Input.GetKeyDown(KeyCode.Q) && !GameManager.Instance.GetPlayer().potionActive){
-                UsePotion();
-            }
+        // if(potion!=null ){
+        //     if( Input.GetKeyDown(KeyCode.Q) ){
+        //         if(potion.Name == "Healing"){
+        //             UsePotion();
+        //         }
+        //         else if(!GameManager.Instance.GetPlayer().potionActive){
+        //              UsePotion();
+        //         }
+                
+        //     }
             
-        }
-    }
-    public void SetIndex(int index){
-        myIndex =index;
+        // }
     }
 
     public void Set(Potion slot){
-        if(!transform.GetChild(0).gameObject.activeSelf){
-            transform.GetChild(0).gameObject.SetActive(true);
-        }
         
-        icon.sprite = slot.icon;
-    
-        potion = slot;
+        count++;
+
+        if(transform.GetChild(0).GetComponent<Image>().color == inactiveColor){
+            transform.GetChild(0).GetComponent<Image>().color = activeColor;
+        }
+
+        countLabel.text = count.ToString();
+        
     }
 
     public void Clean(){
-        transform.GetChild(0).GetComponent<Image>().sprite = null;
-        transform.GetChild(0).gameObject.SetActive(false);
+        count--;
+        if(count == 0){
+            transform.GetChild(0).GetComponent<Image>().color = inactiveColor;
+        }
+
+        countLabel.text = count.ToString();
+
         
-        potion = null;
     }
 
     public void UsePotion(){
-        potion.potionEffect.OnApply(potion);   
+        if(count > 0){
+            potion.potionEffect.OnApply(potion);
+            
+        }
+        
+
     }
 
 

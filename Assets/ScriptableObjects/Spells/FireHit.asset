@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Fire Hit
   damage: 12
   knockback: 0.01
-  manaCost: 5
+  manaCost: 8
   spellEffect: 0
   Icon: {fileID: -190648134, guid: 795ffc87906f6f148bdf62705b843f91, type: 3}
   frames:

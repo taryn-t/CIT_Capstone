@@ -11,7 +11,6 @@ public class NewGamePanel : MenuPanel
     private WalkerGenerator MapGen;
 
     [SerializeField] Button GenerateBtn;
-    [SerializeField] TMP_InputField  GameName;
     [SerializeField] TMP_InputField  Seed;
     [SerializeField] GameObject LoadingUI;
 
@@ -26,11 +25,10 @@ public class NewGamePanel : MenuPanel
     {
         
         GameManager.Instance.genSeed = Seed.text;
-        GameManager.Instance.gameName = GameName.text;
         
         MapGen = GameManager.Instance.GetMapGenerator();
         
-        MapGen.StartGeneration(Seed.text,GameName.text);
+        MapGen.StartGeneration(Seed.text,"");
         
         Instantiate(LoadingUI);
 

@@ -54,13 +54,21 @@ public class PickUpPotion : MonoBehaviour
 
         if(distance < 0.3f){
             
-            if(GameManager.Instance.potionButton.potion == null){
-               GameManager.Instance.soundEffectController.PlayPositiveSound();
-                GameManager.Instance.potionButton.Set(potion);
+            foreach(PotionButton pb in GameManager.Instance.potionButtons){
+
+                if(pb.potion == potion){
+                    GameManager.Instance.soundEffectController.PlayPositiveSound();
+                    pb.Set(potion);
                 
-                GameManager.Instance.hudController.wavePotions[key].pickedUp++;
-                Destroy(gameObject);
+                    GameManager.Instance.hudController.wavePotions[key].pickedUp++;
+                    StartCoroutine(GameManager.Instance.hudController.ShowPopupMessage($"Picked Up {potion.Name} Potion"));
+                    
+                    Destroy(gameObject);
+                }
+                
             }
+            
+         
             
             
         }

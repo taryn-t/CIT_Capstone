@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4273765028811721509
 Transform:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.32
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 21.76
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -995,8 +995,8 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.3108431
-          value: 0.78911054
+          time: 0.24678671
+          value: 0.63513565
           inSlope: 0.40568143
           outSlope: 0.40568143
           tangentMode: 0
@@ -1004,13 +1004,13 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 0.32673073
-          inSlope: 0
-          outSlope: 0
+          time: 0.9857788
+          value: 0.015916824
+          inSlope: -2.347553
+          outSlope: -2.347553
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.23729095
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1019,8 +1019,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 1
+          time: 0.0053367615
+          value: 0.44594574
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1028,8 +1028,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.5515442
-          value: 1
+          time: 0.6831883
+          value: 0.108109385
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1309,7 +1309,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 1
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1

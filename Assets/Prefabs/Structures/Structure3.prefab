@@ -2365,7 +2365,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 1, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -2515,7 +2515,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 0, y: 7, z: 0}
     second:
       serializedVersion: 2
@@ -2645,7 +2645,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 5, y: 12, z: 0}
     second:
       serializedVersion: 2
@@ -2705,7 +2705,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
@@ -3034,10 +3034,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6333089627276960368}
     m_Modifications:
-    - target: {fileID: 1014717994082573793, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4128880540067508457, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.16
@@ -3081,10 +3077,6 @@ PrefabInstance:
     - target: {fileID: 5549760701415563942, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
       propertyPath: m_Name
       value: Sparky (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5549760701415563942, guid: 7c6d024ff477f4149934ce92791f2c78, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -38,13 +38,15 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         if(GameManager.Instance.GetSpell() != null){
-             if(GameManager.Instance.GetSpell() != null && !playerMovement.frozen){
-            if(Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) && !attack){
-                Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                StartCoroutine(CastSpell( targetPosition));
-                
+            if (GameManager.Instance.GetSpell() != null && !playerMovement.frozen)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) && !attack)
+                {
+                    Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    StartCoroutine(CastSpell(targetPosition));
+
+                }
             }
-        }
         }
        
     }

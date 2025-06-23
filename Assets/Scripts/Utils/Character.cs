@@ -202,7 +202,7 @@ public class Character:MonoBehaviour
     }
 
     public void Freeze(){
-        Body.velocity=Vector2.zero;
+        GetComponent<Rigidbody2D>().velocity=Vector2.zero;
         frozen = true;
     }
 

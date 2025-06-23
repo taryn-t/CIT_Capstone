@@ -1,22 +1,20 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PotionPanel : MonoBehaviour
 {
     private PotionContainer potions;
+
     [SerializeField] PotionButton button;
+    [SerializeField] List<PotionButton> buttons;
 
     private void Start(){
         potions = GameManager.Instance.availablePotions;
-        SetIndex();
+        GameManager.Instance.potionButtons = buttons;
         
-        button.Set(potions.slots[0].potion);
+        
     }
 
-    private void SetIndex()
-    {
-        button.SetIndex(0);
-       
-    }
 
 }

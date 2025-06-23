@@ -85,7 +85,7 @@ public class Enemy :  EnemyAI{
         position.x += spread * UnityEngine.Random.value - spread/2;
         position.y += spread * UnityEngine.Random.value - spread/2;
     
-        if (dropChance <= PotionDropChance && dropChance > ScrollDropChance){
+        if (dropChance <= PotionDropChance ){
         
             int randomPotionIdx =  UnityEngine.Random.Range(0, potionDrops.Length);
             GameObject go =Instantiate(potionDrops[randomPotionIdx]);
@@ -101,24 +101,47 @@ public class Enemy :  EnemyAI{
             IncreasePotionChance();
         }
 
-        if(GameManager.Instance.multiSpell){
+        // if(GameManager.Instance.multiSpell){
+        //     if(!GameManager.Instance.waveSpellDropped){
+        //         GameObject go;
+        //         if(scrollDrops[0] == GameManager.Instance.wave2Scroll && GameManager.Instance.hudController.wave == 2  ){
+        //              go =Instantiate(scrollDrops[0]);
+        //              go.transform.position = position;
+        //             string key = go.GetComponent<PickUpScroll>().key;
 
-            if(dropChance <= ScrollDropChance){
+        //             GameManager.Instance.hudController.waveSpells[key].totalSpawned++;
+        //             GameManager.Instance.waveSpellDropped = true;
+        //         }
+        //         else if(scrollDrops[0] == GameManager.Instance.wave3Scroll && GameManager.Instance.hudController.wave == 3){
+        //             go =Instantiate(scrollDrops[0]);
+        //             go.transform.position = position;
+        //             string key = go.GetComponent<PickUpScroll>().key;
 
-                int randomScrollIdx =  UnityEngine.Random.Range(0, scrollDrops.Length);
-                GameObject go =Instantiate(scrollDrops[randomScrollIdx]);
-                go.transform.position = position;
-                string key = go.GetComponent<PickUpScroll>().key;
+        //             GameManager.Instance.hudController.waveSpells[key].totalSpawned++;
+        //             GameManager.Instance.waveSpellDropped = true;
+        //         }
+                
+                
+        //     }
+        //     else{
+        //         if(dropChance <= ScrollDropChance){
 
-                GameManager.Instance.hudController.waveSpells[key].totalSpawned++;
+        //             GameObject go =Instantiate(scrollDrops[0]);
+        //             go.transform.position = position;
+        //             string key = go.GetComponent<PickUpScroll>().key;
 
-                ResetScrollChance();
+        //             GameManager.Instance.hudController.waveSpells[key].totalSpawned++;
 
-            }
-            else{
-                IncreaseScrollChance();
-            }
-        }         
+        //             ResetScrollChance();
+
+        //         }
+        //         else{
+        //             IncreaseScrollChance();
+        //         }
+        //     }
+
+            
+        // }         
         
 
 
@@ -227,10 +250,7 @@ public class Enemy :  EnemyAI{
     void FixedUpdate(){
 
 
-        if(GameManager.Instance.regenerating ){
-            Freeze();
-        }
-        else if(GameManager.Instance.instructionsUI.GetComponent<Instructions>().open){
+        if( GameManager.Instance.regenerating ||  GameManager.Instance.instructionsUI.GetComponent<Instructions>().open || GameManager.Instance.pauseMenu.activeSelf || GameManager.Instance.hudController.testComplete.activeSelf || GameManager.Instance.hudController.nextWaveGo.activeSelf ){
             Freeze();
         }
         else if(frozen){

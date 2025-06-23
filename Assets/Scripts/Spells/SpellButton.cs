@@ -70,7 +70,7 @@ public class SpellButton : MonoBehaviour
                 break;
             }
         }
-        
+        GameManager.Instance.hudController.nextWaveSpellLabel.text = newSpell.Name;
     SetUpSpells();
         
 
@@ -106,12 +106,19 @@ public class SpellButton : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha1)){
-            ShiftSpellsLeft();
+            activeButton = spellButtons[0];
+            spell = spells[0];
         }
         
         if(Input.GetKeyDown(KeyCode.Alpha2)){
-            ShiftSpellsRight();
+            activeButton = spellButtons[1];
+            spell = spells[1];
         }
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            activeButton = spellButtons[2];
+            spell = spells[2];
+        }
+        
     }
 
     public void SetIndex(int index){
@@ -122,10 +129,11 @@ public class SpellButton : MonoBehaviour
 
         if(!transform.GetChild(0).gameObject.activeSelf){
             transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.GetComponent<Image>().sprite = slot.spell.Icon;
         }
         
         
-        transform.GetChild(0).gameObject.GetComponent<Image>().sprite = slot.spell.Icon;
+        
         
         
         spell = slot.spell;

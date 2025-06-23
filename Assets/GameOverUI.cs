@@ -12,6 +12,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] TMP_Text enemiesDefeated;
     [SerializeField] TMP_Text damageTaken;
     [SerializeField] TMP_Text damageGiven;
+    [SerializeField] TMP_Text testNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +23,11 @@ public class GameOverUI : MonoBehaviour
         TimeSpan timeSpan = TimeSpan.FromSeconds((int)GameManager.Instance.totalTime);
         string formattedTime = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         timeSurvived.text = formattedTime;
-        wavesSurvived.text = GameManager.Instance.wavesSurvived > 0 ?(GameManager.Instance.wavesSurvived-1).ToString() : "0" ;
+        wavesSurvived.text = GameManager.Instance.wavesSurvived > 0 ?GameManager.Instance.wavesSurvived.ToString() : "0" ;
         enemiesDefeated.text = GameManager.Instance.enemiesDefeated.ToString();
         damageTaken.text = GameManager.Instance.playerDamageTaken.ToString();
         damageGiven.text = GameManager.Instance.playerDamageDone.ToString();
+        testNumber.text = $"Test number {GameManager.Instance.testingManager.testNumber}";
     }
 
     // Update is called once per frame

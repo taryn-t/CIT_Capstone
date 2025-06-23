@@ -45,10 +45,14 @@ public class EnemySpawner : Spawner
    }
 
    public void StartSpawn(int wave){
-        amountSpawned=0;
         currentWave = wave;
-                
-        maxAmount = wave*2;
+        
+        currentWave *=2;
+        
+        amountSpawned=0;
+        
+        
+        maxAmount =  wave;
         
         StartCoroutine(Spawn(GameManager.Instance.EnemiesGO.transform));
     

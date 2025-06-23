@@ -5,9 +5,10 @@ public class SpellPanel : MonoBehaviour
 {
     private SpellContainer spells;
     [SerializeField] SpellButton button;
+    [SerializeField] GameObject btnGo;
 
     private void Start(){
-        spells = GameManager.Instance.gameData.playerData.KnownSpells;
+        spells = GameManager.Instance.KnownSpells;
         SetIndex();
         if(!GameManager.Instance.multiSpell){
             Show();
@@ -28,9 +29,9 @@ public class SpellPanel : MonoBehaviour
     {
         
         
-
+        btnGo.SetActive(true);
         
-            button.Set(spells.slots[0]);
+        button.Set(spells.slots[0]);
             
         
     }
